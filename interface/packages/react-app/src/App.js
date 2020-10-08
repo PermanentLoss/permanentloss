@@ -1,14 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Contract } from "@ethersproject/contracts";
-import { Web3Provider, getDefaultProvider } from "@ethersproject/providers";
 import { useQuery } from "@apollo/react-hooks";
-
+import { Contract } from "@ethersproject/contracts";
+import { getDefaultProvider, Web3Provider } from "@ethersproject/providers";
+import { abis, addresses, MAINNET_ID } from "@uniswap-v2-app/contracts";
+import React, { useCallback, useEffect, useState } from "react";
 import { Body, Button, Header, Image, Link } from "./components";
-import { web3Modal, logoutOfWeb3Modal } from './utils/web3Modal'
 import logo from "./ethereumLogo.png";
-
-import { MAINNET_ID, addresses, abis } from "@uniswap-v2-app/contracts";
 import GET_AGGREGATED_UNISWAP_DATA from "./graphql/subgraph";
+import { logoutOfWeb3Modal, web3Modal } from './utils/web3Modal';
 
 async function readOnChainData() {
   // Should replace with the end-user wallet, e.g. Metamask
