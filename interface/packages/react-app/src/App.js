@@ -3,6 +3,7 @@ import { Contract } from "@ethersproject/contracts";
 import { getDefaultProvider, Web3Provider } from "@ethersproject/providers";
 import { abis, addresses, MAINNET_ID } from "@uniswap-v2-app/contracts";
 import React, { useCallback, useEffect, useState } from "react";
+import Plot from 'react-plotly.js';
 import { Body, Button, Header, Image, Link } from "./components";
 import logo from "./ethereumLogo.png";
 import GET_AGGREGATED_UNISWAP_DATA from "./graphql/subgraph";
@@ -40,9 +41,17 @@ function WalletButton({ provider, loadWeb3Modal }) {
   );
 }
 
+function getImpermanentLossPoints() {
+  const x = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 3, 4, 5];
+  // Equation from https://uniswap.org/docs/v2/advanced-topics/understanding-returns/
+  const y = x.map(x => 2 * Math.sqrt(x) / (1+x) - 1);
+  return [x, y];
+}
+
 function App() {
   const { loading, error, data } = useQuery(GET_AGGREGATED_UNISWAP_DATA);
   const [provider, setProvider] = useState();
+  const impermanentLossPoints = getImpermanentLossPoints();
 
   /* Open wallet selection modal. */
   const loadWeb3Modal = useCallback(async () => {
@@ -69,22 +78,19 @@ function App() {
         <WalletButton provider={provider} loadWeb3Modal={loadWeb3Modal} />
       </Header>
       <Body>
-        <Image src={logo} alt="react-logo" />
-        <p>
-          Edit <code>packages/react-app/src/App.js</code> and save to reload.
-        </p>
-        {/* Remove the "hidden" prop and open the JavaScript console in the browser to see what this function does */}
-        <Button onClick={() => readOnChainData()}>
-          Read On-Chain Reserves
-        </Button>
-        <Link
-          href="https://ethereum.org/developers/#getting-started"
-          style={{ marginTop: "8px" }}
-        >
-          Learn Ethereum
-        </Link>
-        <Link href="https://reactjs.org">Learn React</Link>
-        <Link href="https://uniswap.org/docs/v2/" >Learn Uniswap v2</Link>
+      <Plot
+        data={[
+          {
+            x: impermanentLossPoints[0],
+            y: impermanentLossPoints[1],
+            type: 'scatter',
+            mode: 'lines',
+            line: {'shape': 'spline', 'smoothing': .5},
+            marker: {color: 'blue'},
+          },
+        ]}
+        layout={ {width: 720, height: 360, title: 'IL Chart'} }
+      />
       </Body>
     </div>
   );
