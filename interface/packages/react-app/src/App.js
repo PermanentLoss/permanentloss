@@ -10,7 +10,12 @@ import { logoutOfWeb3Modal, web3Modal } from './utils/web3Modal';
 
 async function readOnChainData() {
   // Should replace with the end-user wallet, e.g. Metamask
-  const defaultProvider = getDefaultProvider();
+  const network = "homestead" // mainnet
+  const defaultProvider = getDefaultProvider(network, {
+    etherscan: process.env.REACT_APP_ETHERSCAN_API_KEY,
+    infura: process.env.REACT_APP_INFURA_PROJECT_ID,
+    alchemy: process.env.REACT_APP_ALCHEMY_API_KEY
+  });
   // Create an instance of an ethers.js Contract
   // Read more about ethers.js on https://docs.ethers.io/v5/api/contract/contract/
   const daiWethExchangeContract = new Contract(addresses[MAINNET_ID].pairs["DAI-WETH"], abis.pair, defaultProvider);
@@ -69,7 +74,7 @@ function App() {
           Edit <code>packages/react-app/src/App.js</code> and save to reload.
         </p>
         {/* Remove the "hidden" prop and open the JavaScript console in the browser to see what this function does */}
-        <Button hidden onClick={() => readOnChainData()}>
+        <Button onClick={() => readOnChainData()}>
           Read On-Chain Reserves
         </Button>
         <Link
