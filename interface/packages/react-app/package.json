@@ -18,6 +18,7 @@
     "@apollo/react-hooks": "^3.1.5",
     "@ethersproject/contracts": "^5.0.1",
     "@ethersproject/providers": "^5.0.4",
+    "@ethersproject/units": "^5.0.6",
     "@testing-library/dom": "^6.12.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
