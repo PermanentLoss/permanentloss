@@ -1,0 +1,37 @@
+{
+  "name": "permanentloss-contracts",
+  "version": "0.1.0",
+  "description": "Smart-contracts for the PermanentLoss options platform",
+  "main": "index.js",
+  "repository": "https://github.com/PermanentLoss/permanentloss/contracts",
+  "author": "PermanentLoss",
+  "license": "MIT",
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.1.0"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint . --ext js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.@(js|sol)": [
+      "yarn lint",
+      "yarn format"
+    ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "ganache-cli": "^6.12.0",
+    "prettier": "^2.1.2",
+    "prettier-plugin-solidity": "^1.0.0-alpha.59",
+    "truffle": "^5.1.48"
+  }
+}
