@@ -11,7 +11,10 @@
   },
   "scripts": {
     "format": "prettier --write .",
-    "lint": "eslint . --ext js"
+    "lint": "eslint . --ext js",
+    "truffle:migrate": "doppler run --command='npx truffle migrate --network rinkeby'",
+    "truffle:console": "doppler run --command='npx truffle console --network rinkeby'",
+    "truffle:test": "doppler run --command='npx ganache-cli -i 4 -q -f $INFURA_URL & npx truffle test && kill $! && exit 0'"
   },
   "husky": {
     "hooks": {
