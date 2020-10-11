@@ -260,9 +260,7 @@
   "ast": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IAddressBook.sol",
     "exportedSymbols": {
-      "IAddressBook": [
-        169
-      ]
+      "IAddressBook": [169]
     },
     "id": 170,
     "license": "MIT",
@@ -270,12 +268,7 @@
     "nodes": [
       {
         "id": 74,
-        "literals": [
-          "solidity",
-          "^",
-          "0.7",
-          ".0"
-        ],
+        "literals": ["solidity", "^", "0.7", ".0"],
         "nodeType": "PragmaDirective",
         "src": "32:23:2"
       },
@@ -286,9 +279,7 @@
         "contractKind": "interface",
         "fullyImplemented": false,
         "id": 169,
-        "linearizedBaseContracts": [
-          169
-        ],
+        "linearizedBaseContracts": [169],
         "name": "IAddressBook",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -1327,9 +1318,7 @@
   "legacyAST": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IAddressBook.sol",
     "exportedSymbols": {
-      "IAddressBook": [
-        169
-      ]
+      "IAddressBook": [169]
     },
     "id": 170,
     "license": "MIT",
@@ -1337,12 +1326,7 @@
     "nodes": [
       {
         "id": 74,
-        "literals": [
-          "solidity",
-          "^",
-          "0.7",
-          ".0"
-        ],
+        "literals": ["solidity", "^", "0.7", ".0"],
         "nodeType": "PragmaDirective",
         "src": "32:23:2"
       },
@@ -1353,9 +1337,7 @@
         "contractKind": "interface",
         "fullyImplemented": false,
         "id": 169,
-        "linearizedBaseContracts": [
-          169
-        ],
+        "linearizedBaseContracts": [169],
         "name": "IAddressBook",
         "nodeType": "ContractDefinition",
         "nodes": [

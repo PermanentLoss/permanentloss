@@ -65,15 +65,9 @@
   "ast": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol",
     "exportedSymbols": {
-      "IAddressBook": [
-        169
-      ],
-      "IOwnedUpgradeabilityProxy": [
-        213
-      ],
-      "OpynV2Helpers": [
-        72
-      ]
+      "IAddressBook": [169],
+      "IOwnedUpgradeabilityProxy": [213],
+      "OpynV2Helpers": [72]
     },
     "id": 73,
     "license": "MIT",
@@ -81,12 +75,7 @@
     "nodes": [
       {
         "id": 34,
-        "literals": [
-          "solidity",
-          "^",
-          "0.7",
-          ".0"
-        ],
+        "literals": ["solidity", "^", "0.7", ".0"],
         "nodeType": "PragmaDirective",
         "src": "32:23:1"
       },
@@ -119,9 +108,7 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 72,
-        "linearizedBaseContracts": [
-          72
-        ],
+        "linearizedBaseContracts": [72],
         "name": "OpynV2Helpers",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -299,9 +286,7 @@
               "src": "410:204:1",
               "statements": [
                 {
-                  "assignments": [
-                    56
-                  ],
+                  "assignments": [56],
                   "declarations": [
                     {
                       "constant": false,
@@ -577,15 +562,9 @@
   "legacyAST": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol",
     "exportedSymbols": {
-      "IAddressBook": [
-        169
-      ],
-      "IOwnedUpgradeabilityProxy": [
-        213
-      ],
-      "OpynV2Helpers": [
-        72
-      ]
+      "IAddressBook": [169],
+      "IOwnedUpgradeabilityProxy": [213],
+      "OpynV2Helpers": [72]
     },
     "id": 73,
     "license": "MIT",
@@ -593,12 +572,7 @@
     "nodes": [
       {
         "id": 34,
-        "literals": [
-          "solidity",
-          "^",
-          "0.7",
-          ".0"
-        ],
+        "literals": ["solidity", "^", "0.7", ".0"],
         "nodeType": "PragmaDirective",
         "src": "32:23:1"
       },
@@ -631,9 +605,7 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 72,
-        "linearizedBaseContracts": [
-          72
-        ],
+        "linearizedBaseContracts": [72],
         "name": "OpynV2Helpers",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -811,9 +783,7 @@
               "src": "410:204:1",
               "statements": [
                 {
-                  "assignments": [
-                    56
-                  ],
+                  "assignments": [56],
                   "declarations": [
                     {
                       "constant": false,
