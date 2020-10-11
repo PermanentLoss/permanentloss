@@ -121,9 +121,7 @@
   "ast": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IOwnedUpgradeabilityProxy.sol",
     "exportedSymbols": {
-      "IOwnedUpgradeabilityProxy": [
-        213
-      ]
+      "IOwnedUpgradeabilityProxy": [213]
     },
     "id": 214,
     "license": "MIT",
@@ -131,21 +129,13 @@
     "nodes": [
       {
         "id": 171,
-        "literals": [
-          "solidity",
-          "^",
-          "0.7",
-          ".0"
-        ],
+        "literals": ["solidity", "^", "0.7", ".0"],
         "nodeType": "PragmaDirective",
         "src": "106:23:3"
       },
       {
         "id": 172,
-        "literals": [
-          "experimental",
-          "ABIEncoderV2"
-        ],
+        "literals": ["experimental", "ABIEncoderV2"],
         "nodeType": "PragmaDirective",
         "src": "130:33:3"
       },
@@ -156,9 +146,7 @@
         "contractKind": "interface",
         "fullyImplemented": false,
         "id": 213,
-        "linearizedBaseContracts": [
-          213
-        ],
+        "linearizedBaseContracts": [213],
         "name": "IOwnedUpgradeabilityProxy",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -605,9 +593,7 @@
   "legacyAST": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IOwnedUpgradeabilityProxy.sol",
     "exportedSymbols": {
-      "IOwnedUpgradeabilityProxy": [
-        213
-      ]
+      "IOwnedUpgradeabilityProxy": [213]
     },
     "id": 214,
     "license": "MIT",
@@ -615,21 +601,13 @@
     "nodes": [
       {
         "id": 171,
-        "literals": [
-          "solidity",
-          "^",
-          "0.7",
-          ".0"
-        ],
+        "literals": ["solidity", "^", "0.7", ".0"],
         "nodeType": "PragmaDirective",
         "src": "106:23:3"
       },
       {
         "id": 172,
-        "literals": [
-          "experimental",
-          "ABIEncoderV2"
-        ],
+        "literals": ["experimental", "ABIEncoderV2"],
         "nodeType": "PragmaDirective",
         "src": "130:33:3"
       },
@@ -640,9 +618,7 @@
         "contractKind": "interface",
         "fullyImplemented": false,
         "id": 213,
-        "linearizedBaseContracts": [
-          213
-        ],
+        "linearizedBaseContracts": [213],
         "name": "IOwnedUpgradeabilityProxy",
         "nodeType": "ContractDefinition",
         "nodes": [

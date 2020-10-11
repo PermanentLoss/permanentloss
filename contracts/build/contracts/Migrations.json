@@ -56,9 +56,7 @@
   "ast": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/Migrations.sol",
     "exportedSymbols": {
-      "Migrations": [
-        32
-      ]
+      "Migrations": [32]
     },
     "id": 33,
     "license": "MIT",
@@ -66,15 +64,7 @@
     "nodes": [
       {
         "id": 1,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".22",
-          "<",
-          "0.8",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.4", ".22", "<", "0.8", ".0"],
         "nodeType": "PragmaDirective",
         "src": "32:32:0"
       },
@@ -85,9 +75,7 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 32,
-        "linearizedBaseContracts": [
-          32
-        ],
+        "linearizedBaseContracts": [32],
         "name": "Migrations",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -268,10 +256,7 @@
                       "id": 9,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "209:7:0",
                       "typeDescriptions": {
@@ -449,9 +434,7 @@
   "legacyAST": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/Migrations.sol",
     "exportedSymbols": {
-      "Migrations": [
-        32
-      ]
+      "Migrations": [32]
     },
     "id": 33,
     "license": "MIT",
@@ -459,15 +442,7 @@
     "nodes": [
       {
         "id": 1,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".22",
-          "<",
-          "0.8",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.4", ".22", "<", "0.8", ".0"],
         "nodeType": "PragmaDirective",
         "src": "32:32:0"
       },
@@ -478,9 +453,7 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 32,
-        "linearizedBaseContracts": [
-          32
-        ],
+        "linearizedBaseContracts": [32],
         "name": "Migrations",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -661,10 +634,7 @@
                       "id": 9,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        -18,
-                        -18
-                      ],
+                      "overloadedDeclarations": [-18, -18],
                       "referencedDeclaration": -18,
                       "src": "209:7:0",
                       "typeDescriptions": {
