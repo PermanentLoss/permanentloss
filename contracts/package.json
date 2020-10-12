@@ -7,6 +7,7 @@
   "author": "PermanentLoss",
   "license": "MIT",
   "dependencies": {
+    "@openzeppelin/contracts": "3.2.1-solc-0.7",
     "@truffle/hdwallet-provider": "^1.1.0"
   },
   "scripts": {
