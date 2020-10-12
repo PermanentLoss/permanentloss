@@ -22,8 +22,11 @@
     }
   },
   "lint-staged": {
-    "*.@(js|sol)": [
+    "*.@(js)": [
       "yarn lint",
+      "yarn format"
+    ],
+    "*.@(sol)": [
       "yarn format"
     ]
   },
