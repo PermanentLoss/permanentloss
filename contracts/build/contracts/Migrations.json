@@ -56,7 +56,9 @@
   "ast": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/Migrations.sol",
     "exportedSymbols": {
-      "Migrations": [32]
+      "Migrations": [
+        32
+      ]
     },
     "id": 33,
     "license": "MIT",
@@ -64,7 +66,15 @@
     "nodes": [
       {
         "id": 1,
-        "literals": ["solidity", ">=", "0.4", ".22", "<", "0.8", ".0"],
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.8",
+          ".0"
+        ],
         "nodeType": "PragmaDirective",
         "src": "32:32:0"
       },
@@ -75,7 +85,9 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 32,
-        "linearizedBaseContracts": [32],
+        "linearizedBaseContracts": [
+          32
+        ],
         "name": "Migrations",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -256,7 +268,10 @@
                       "id": 9,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [-18, -18],
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
                       "referencedDeclaration": -18,
                       "src": "209:7:0",
                       "typeDescriptions": {
@@ -434,7 +449,9 @@
   "legacyAST": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/Migrations.sol",
     "exportedSymbols": {
-      "Migrations": [32]
+      "Migrations": [
+        32
+      ]
     },
     "id": 33,
     "license": "MIT",
@@ -442,7 +459,15 @@
     "nodes": [
       {
         "id": 1,
-        "literals": ["solidity", ">=", "0.4", ".22", "<", "0.8", ".0"],
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.8",
+          ".0"
+        ],
         "nodeType": "PragmaDirective",
         "src": "32:32:0"
       },
@@ -453,7 +478,9 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 32,
-        "linearizedBaseContracts": [32],
+        "linearizedBaseContracts": [
+          32
+        ],
         "name": "Migrations",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -634,7 +661,10 @@
                       "id": 9,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [-18, -18],
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
                       "referencedDeclaration": -18,
                       "src": "209:7:0",
                       "typeDescriptions": {
@@ -817,12 +847,12 @@
     "4": {
       "events": {},
       "links": {},
-      "address": "0x40507f5b8A88fbbFDcFa5740b4a7Ee30b3731c01",
-      "transactionHash": "0x5e4e413039f0e92c1fd9295cbb53c16f79c66f646719993e7e103235c24715d3"
+      "address": "0xd44674F920b712F488b3332fb724284c21A098D0",
+      "transactionHash": "0x2d4a5751788fef969045e32d145016cf527ed66a5884a3c50aa8de0b520e2116"
     }
   },
   "schemaVersion": "3.3.0",
-  "updatedAt": "2020-10-11T20:14:45.537Z",
+  "updatedAt": "2020-10-12T21:29:21.227Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
