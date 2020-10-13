@@ -112,6 +112,17 @@ function handlePlotClick(target) {
 }
 
 function App() {
+  const [putOptions, setPutOptions] = useState([]);
+  const [callOptions, setCallOptions] = useState([]);
+
+  useEffect(() => {
+    setPutOptions(getEthPutOptions());
+  }, []);
+
+  useEffect(() => {
+    setCallOptions(getEthCallOptions());
+  }, []);
+
   const { loading, error, data } = useQuery(GET_AGGREGATED_UNISWAP_DATA);
   const [provider, setProvider] = useState();
   const impermanentLossPoints = getImpermanentLossPoints();
@@ -125,7 +136,6 @@ function App() {
     marker: {color: 'blue'},
   };
 
-  const putOptions = getEthPutOptions();
   const putOptionPlotData = {
     x: putOptions[0],
     y: putOptions[1],
@@ -135,7 +145,6 @@ function App() {
     marker: {color: 'green'},
   }
 
-  const callOptions = getEthCallOptions();
   const callOptionPlotData = {
     x: callOptions[0],
     y: callOptions[1],
