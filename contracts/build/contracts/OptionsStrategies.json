@@ -1,0 +1,450 @@
+{
+  "contractName": "OptionsStrategies",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_OpynV2AddressBook",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "OpynV2AddressBook",
+      "outputs": [
+        {
+          "internalType": "contract IAddressBook",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [],
+      "name": "getOpynV2Controller",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.3+commit.9bfce1f6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_OpynV2AddressBook\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"OpynV2AddressBook\",\"outputs\":[{\"internalType\":\"contract IAddressBook\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getOpynV2Controller\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getOpynV2Controller()\":{\"details\":\"Opyn v2 uses proxies to deploy upgradable contracts and this is why we can not return OpynV2AddressBook.getController() directly\",\"returns\":{\"_0\":\"Address of the current Controller implementation contract\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"OpynV2AddressBook()\":{\"notice\":\"Provides addresses for all modules in Opyn v2\"},\"getOpynV2Controller()\":{\"notice\":\"Get the address of the contract that controls the Gamma Protocol (Opyn v2) and the interaction of all sub contracts in the current network\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OptionsStrategies.sol\":\"OptionsStrategies\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OptionsStrategies.sol\":{\"keccak256\":\"0xd5b2d98000f76489618375452f507d85e1fd487f55e7c6a5fba0cf0812d919a5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://81f5b9f99efb84bf092b7cc649681c638afccbb7682b3d5cfbc763ea0efa5407\",\"dweb:/ipfs/QmUMT8wu9imCA8cXxi4YWqnKbTtJmA7gRxtJRxV2uvc9Ag\"]},\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol\":{\"keccak256\":\"0x507464a80b1e97718f56ba8e50b4f6b049e102807b202cec4f7be6909bee6422\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://06cde58e764e96701fb891d119a6ea47092bb0b5cde3df2dbd16a7acb76c4fa4\",\"dweb:/ipfs/QmcKxv3FBKWwLR8RQJaGHx4yvVJoJvXvWdh5eP4EN3JB7N\"]},\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IAddressBook.sol\":{\"keccak256\":\"0xbdb6f9a1d77734f3548256b9ba8b25926196553080348dacfa9c4638a002de28\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2c984025569d6138a2df18087492902c0977d2e6bfb5df25a0ec42d3a0053e59\",\"dweb:/ipfs/Qmdo6hYXQrDs9kRsrAoeKETxyJ4J3bctncVs9x4X63UjKb\"]},\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IOwnedUpgradeabilityProxy.sol\":{\"keccak256\":\"0xde76491a3cd6567ccff4472eedabef361be95fe5e68d5bd368446e79502f0789\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e59e372d77e47a77e4a0f3e97a851f7a8f96a5ad38ecf49989ff7e022caf9819\",\"dweb:/ipfs/QmXc5X65vRY1hpgBRpxyJgScKNRCSvbpAq8hYBdPpGkZH2\"]}},\"version\":1}",
+  "bytecode": "0x60a060405234801561001057600080fd5b506040516102293803806102298339818101604052602081101561003357600080fd5b5051606081901b6001600160601b0319166080526001600160a01b03166101bf61006a6000398060695280609052506101bf6000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c8063454b07f91461003b578063b2e38f161461005f575b600080fd5b610043610067565b604080516001600160a01b039092168252519081900360200190f35b61004361008b565b7f000000000000000000000000000000000000000000000000000000000000000081565b6000807f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316633018205f6040518163ffffffff1660e01b815260040160206040518083038186803b1580156100e757600080fd5b505afa1580156100fb573d6000803e3d6000fd5b505050506040513d602081101561011157600080fd5b505160408051635c60da1b60e01b815290519192506001600160a01b03831691635c60da1b91600480820192602092909190829003018186803b15801561015757600080fd5b505afa15801561016b573d6000803e3d6000fd5b505050506040513d602081101561018157600080fd5b50519150509056fea26469706673582212208bf454b6e4763ab8ae0cab2b442d7802dbd5c4595ed71e065f14cf6c97933eee64736f6c63430007030033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c8063454b07f91461003b578063b2e38f161461005f575b600080fd5b610043610067565b604080516001600160a01b039092168252519081900360200190f35b61004361008b565b7f000000000000000000000000000000000000000000000000000000000000000081565b6000807f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316633018205f6040518163ffffffff1660e01b815260040160206040518083038186803b1580156100e757600080fd5b505afa1580156100fb573d6000803e3d6000fd5b505050506040513d602081101561011157600080fd5b505160408051635c60da1b60e01b815290519192506001600160a01b03831691635c60da1b91600480820192602092909190829003018186803b15801561015757600080fd5b505afa15801561016b573d6000803e3d6000fd5b505050506040513d602081101561018157600080fd5b50519150509056fea26469706673582212208bf454b6e4763ab8ae0cab2b442d7802dbd5c4595ed71e065f14cf6c97933eee64736f6c63430007030033",
+  "immutableReferences": {
+    "55": [
+      {
+        "length": 32,
+        "start": 105
+      },
+      {
+        "length": 32,
+        "start": 144
+      }
+    ]
+  },
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "88:128:1:-:0;;;138:76;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;138:76:1;692:52:2;;;;-1:-1:-1;;;;;;692:52:2;;;-1:-1:-1;;;;;88:128:1;;;;;;;;",
+  "deployedSourceMap": "88:128:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;402:47:2;;;:::i;:::-;;;;-1:-1:-1;;;;;402:47:2;;;;;;;;;;;;;;1144:265;;;:::i;402:47::-;;;:::o;1144:265::-;1196:7;1215:42;1307:17;-1:-1:-1;;;;;1307:31:2;;:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1307:33:2;1369;;;-1:-1:-1;;;1369:33:2;;;;1307;;-1:-1:-1;;;;;;1369:31:2;;;;;:33;;;;;1307;;1369;;;;;;;;:31;:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1369:33:2;;-1:-1:-1;;1144:265:2;:::o",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.7.0;\n\nimport \"./OpynV2Helpers.sol\";\n\ncontract OptionsStrategies is OpynV2Helpers {\n    constructor(address _OpynV2AddressBook) OpynV2Helpers(_OpynV2AddressBook) {}\n}\n",
+  "sourcePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OptionsStrategies.sol",
+  "ast": {
+    "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OptionsStrategies.sol",
+    "exportedSymbols": {
+      "IAddressBook": [
+        188
+      ],
+      "IOwnedUpgradeabilityProxy": [
+        571
+      ],
+      "OptionsStrategies": [
+        47
+      ],
+      "OpynV2Helpers": [
+        91
+      ]
+    },
+    "id": 48,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          "^",
+          "0.7",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:1"
+      },
+      {
+        "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol",
+        "file": "./OpynV2Helpers.sol",
+        "id": 35,
+        "nodeType": "ImportDirective",
+        "scope": 48,
+        "sourceUnit": 92,
+        "src": "57:29:1",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 36,
+              "name": "OpynV2Helpers",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 91,
+              "src": "118:13:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_OpynV2Helpers_$91",
+                "typeString": "contract OpynV2Helpers"
+              }
+            },
+            "id": 37,
+            "nodeType": "InheritanceSpecifier",
+            "src": "118:13:1"
+          }
+        ],
+        "contractDependencies": [
+          91
+        ],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 47,
+        "linearizedBaseContracts": [
+          47,
+          91
+        ],
+        "name": "OptionsStrategies",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 45,
+              "nodeType": "Block",
+              "src": "212:2:1",
+              "statements": []
+            },
+            "id": 46,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "id": 42,
+                    "name": "_OpynV2AddressBook",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 39,
+                    "src": "192:18:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  }
+                ],
+                "id": 43,
+                "modifierName": {
+                  "id": 41,
+                  "name": "OpynV2Helpers",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 91,
+                  "src": "178:13:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_type$_t_contract$_OpynV2Helpers_$91_$",
+                    "typeString": "type(contract OpynV2Helpers)"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "178:33:1"
+              }
+            ],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 40,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39,
+                  "mutability": "mutable",
+                  "name": "_OpynV2AddressBook",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 46,
+                  "src": "150:26:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 38,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "150:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "149:28:1"
+            },
+            "returnParameters": {
+              "id": 44,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "212:0:1"
+            },
+            "scope": 47,
+            "src": "138:76:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 48,
+        "src": "88:128:1"
+      }
+    ],
+    "src": "32:185:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OptionsStrategies.sol",
+    "exportedSymbols": {
+      "IAddressBook": [
+        188
+      ],
+      "IOwnedUpgradeabilityProxy": [
+        571
+      ],
+      "OptionsStrategies": [
+        47
+      ],
+      "OpynV2Helpers": [
+        91
+      ]
+    },
+    "id": 48,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          "^",
+          "0.7",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:1"
+      },
+      {
+        "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol",
+        "file": "./OpynV2Helpers.sol",
+        "id": 35,
+        "nodeType": "ImportDirective",
+        "scope": 48,
+        "sourceUnit": 92,
+        "src": "57:29:1",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 36,
+              "name": "OpynV2Helpers",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 91,
+              "src": "118:13:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_OpynV2Helpers_$91",
+                "typeString": "contract OpynV2Helpers"
+              }
+            },
+            "id": 37,
+            "nodeType": "InheritanceSpecifier",
+            "src": "118:13:1"
+          }
+        ],
+        "contractDependencies": [
+          91
+        ],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 47,
+        "linearizedBaseContracts": [
+          47,
+          91
+        ],
+        "name": "OptionsStrategies",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 45,
+              "nodeType": "Block",
+              "src": "212:2:1",
+              "statements": []
+            },
+            "id": 46,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "id": 42,
+                    "name": "_OpynV2AddressBook",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 39,
+                    "src": "192:18:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  }
+                ],
+                "id": 43,
+                "modifierName": {
+                  "id": 41,
+                  "name": "OpynV2Helpers",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 91,
+                  "src": "178:13:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_type$_t_contract$_OpynV2Helpers_$91_$",
+                    "typeString": "type(contract OpynV2Helpers)"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "178:33:1"
+              }
+            ],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 40,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39,
+                  "mutability": "mutable",
+                  "name": "_OpynV2AddressBook",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 46,
+                  "src": "150:26:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 38,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "150:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "149:28:1"
+            },
+            "returnParameters": {
+              "id": 44,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "212:0:1"
+            },
+            "scope": 47,
+            "src": "138:76:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 48,
+        "src": "88:128:1"
+      }
+    ],
+    "src": "32:185:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.3+commit.9bfce1f6.Emscripten.clang"
+  },
+  "networks": {
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0x4e74Dd85a79A09d8522087E09fA91C23eDC44342",
+      "transactionHash": "0x5faca8266a56b2f0631bfc8271f7c7bf531405ba2797a432383c9dd97cc6a718"
+    }
+  },
+  "schemaVersion": "3.3.0",
+  "updatedAt": "2020-10-12T21:29:21.226Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "getOpynV2Controller()": {
+        "details": "Opyn v2 uses proxies to deploy upgradable contracts and this is why we can not return OpynV2AddressBook.getController() directly",
+        "returns": {
+          "_0": "Address of the current Controller implementation contract"
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "OpynV2AddressBook()": {
+        "notice": "Provides addresses for all modules in Opyn v2"
+      },
+      "getOpynV2Controller()": {
+        "notice": "Get the address of the contract that controls the Gamma Protocol (Opyn v2) and the interaction of all sub contracts in the current network"
+      }
+    },
+    "version": 1
+  }
+}
