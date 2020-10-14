@@ -1,14 +1,15 @@
 import { useQuery } from "@apollo/react-hooks";
 import { Contract } from "@ethersproject/contracts";
 import { getDefaultProvider, Web3Provider } from "@ethersproject/providers";
-import { formatEther, parseEther } from "@ethersproject/units";
-import { abis, addresses, MAINNET_ID } from "@uniswap-v2-app/contracts";
+import { parseEther } from "@ethersproject/units";
+import { abis } from "@uniswap-v2-app/contracts";
 import React, { useCallback, useEffect, useState } from "react";
 import Plot from 'react-plotly.js';
-import { Body, Button, Header, Image, Link } from "./components";
+import { Body, Header } from "./components";
+import WalletButton from './components/WalletButton';
 import GET_AGGREGATED_UNISWAP_DATA from "./graphql/subgraph";
-import { logoutOfWeb3Modal, web3Modal } from './utils/web3Modal';
-import { optionsContracts } from './stubs/optionsContractsGraphQl'; 
+import { optionsContracts } from './stubs/optionsContractsGraphQl';
+import { web3Modal } from './utils/web3Modal';
 
 const NETWORK = "homestead" // mainnet
 const DEFAULT_PROVIDER = getDefaultProvider(NETWORK, {
@@ -23,32 +24,6 @@ const CURRENT_ETH_PRICE = 375;
 const OPYN_UNISWAP_EXCHANGE = "0xc0a47dfe034b400b47bdad5fecda2621de6c4d95";
 const OPYN_UNISWAP_CONTRACT = new Contract(OPYN_UNISWAP_EXCHANGE, abis.uniswapv1_factory, DEFAULT_PROVIDER);
 
-async function readOnChainData() {
-  // Should replace with the end-user wallet, e.g. Metamask
-  // Create an instance of an ethers.js Contract
-  // Read more about ethers.js on https://docs.ethers.io/v5/api/contract/contract/
-  const daiWethExchangeContract = new Contract(addresses[MAINNET_ID].pairs["DAI-WETH"], abis.pair, DEFAULT_PROVIDER);
-  // Reserves held in the DAI-WETH pair contract
-  const reserves = await daiWethExchangeContract.getReserves();
-  console.log({ reserves });
-}
-
-function WalletButton({ provider, loadWeb3Modal }) {
-  return (
-    <Button
-      onClick={() => {
-        if (!provider) {
-          loadWeb3Modal();
-        } else {
-          logoutOfWeb3Modal();
-        }
-      }}
-    >
-      {!provider ? "Connect Wallet" : "Disconnect Wallet"}
-    </Button>
-  );
-}
-
 function getImpermanentLossPoints() {
   const x = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 3, 4, 5];
   // Equation from https://uniswap.org/docs/v2/advanced-topics/understanding-returns/
@@ -57,19 +32,19 @@ function getImpermanentLossPoints() {
 }
 
 function getEthPutOptions() {
-  // const wethPutOptions = optionsContracts.data.optionsContracts.filter(
-  //   x => x.underlying === WETH_CONTRACT 
-  //   && x.underlying !== '0x0000000000000000000000000000000000000000'
-  //   && isEpochInFuture(x.expiry));
-  //   wethPutOptions.forEach(async(option) => {
-  //   console.log(`put option:${JSON.stringify(option)}`);
-  //   const exchangeAddress = await OPYN_UNISWAP_CONTRACT.getExchange(option.address);
-  //   const optionMarket = new Contract(exchangeAddress, abis.uniswapv1_market, DEFAULT_PROVIDER);
-  //   const price = await optionMarket.getEthToTokenInputPrice(parseEther("1.0"));
-  //   const strikePrice = option.strikePriceValue * 10; // for some reason they store it like this
-  //   console.log(`strikePrice:${strikePrice}   price:${price}`);
-  // });
-  // console.log(`oToken address:${wethPutOptions[0].address}`)
+  const wethPutOptions = optionsContracts.data.optionsContracts.filter(
+    x => x.underlying === WETH_CONTRACT 
+    && x.underlying !== '0x0000000000000000000000000000000000000000'
+    && isEpochInFuture(x.expiry));
+    wethPutOptions.forEach(async(option) => {
+    console.log(`put option:${JSON.stringify(option)}`);
+    const exchangeAddress = await OPYN_UNISWAP_CONTRACT.getExchange(option.address);
+    const optionMarket = new Contract(exchangeAddress, abis.uniswapv1_market, DEFAULT_PROVIDER);
+    const price = await optionMarket.getEthToTokenInputPrice(parseEther("1.0"));
+    const strikePrice = option.strikePriceValue * 10; // for some reason they store it like this
+    console.log(`strikePrice:${strikePrice}   price:${price}`);
+  });
+  console.log(`oToken address:${wethPutOptions[0].address}`)
   
   // console.log(`price:${price}`);
   // return wethPutOptions[0].strikePriceValue, price/8;
@@ -82,19 +57,19 @@ function getEthPutOptions() {
 }
 
 function getEthCallOptions() {
-  // const wethCallOptions = optionsContracts.data.optionsContracts.filter(
-  //   x => x.strike === "0x0000000000000000000000000000000000000000" 
-  //   && x.underlying === USDC_CONTRACT
-  //   && isEpochInFuture(x.expiry));
-  // wethCallOptions.forEach(async(option) => {
-  //   console.log(`call option:${JSON.stringify(option)}`);
-  //   const exchangeAddress = await OPYN_UNISWAP_CONTRACT.getExchange(option.address);
-  //   const optionMarket = new Contract(exchangeAddress, abis.uniswapv1_market, DEFAULT_PROVIDER);
-  //   const price = await optionMarket.getEthToTokenInputPrice(parseEther("1.0"));
-  //   const strikePrice = option.strikePriceValue * 10; // for some reason they store it like this
-  //   console.log(`strikePrice:${strikePrice}   price:${price}`);
+  const wethCallOptions = optionsContracts.data.optionsContracts.filter(
+    x => x.strike === "0x0000000000000000000000000000000000000000" 
+    && x.underlying === USDC_CONTRACT
+    && isEpochInFuture(x.expiry));
+  wethCallOptions.forEach(async(option) => {
+    console.log(`call option:${JSON.stringify(option)}`);
+    const exchangeAddress = await OPYN_UNISWAP_CONTRACT.getExchange(option.address);
+    const optionMarket = new Contract(exchangeAddress, abis.uniswapv1_market, DEFAULT_PROVIDER);
+    const price = await optionMarket.getEthToTokenInputPrice(parseEther("1.0"));
+    const strikePrice = option.strikePriceValue * 10; // for some reason they store it like this
+    console.log(`strikePrice:${strikePrice}   price:${price}`);
 
-  // });
+  });
   // // TODO re-enable live data
   return [
     [400/CURRENT_ETH_PRICE, 500/CURRENT_ETH_PRICE],
