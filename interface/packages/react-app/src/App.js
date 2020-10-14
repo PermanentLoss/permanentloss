@@ -1,7 +1,6 @@
 import { useQuery } from "@apollo/react-hooks";
-import { EtherscanProvider } from '@ethersproject/providers';
 import { Contract } from "@ethersproject/contracts";
-import { getDefaultProvider, Web3Provider } from "@ethersproject/providers";
+import { EtherscanProvider, Web3Provider } from '@ethersproject/providers';
 import { parseEther } from "@ethersproject/units";
 import { abis } from "@uniswap-v2-app/contracts";
 import React, { useCallback, useEffect, useState } from "react";
@@ -10,21 +9,12 @@ import { Body, Header } from "./components";
 import WalletButton from "./components/WalletButton";
 import GET_AGGREGATED_UNISWAP_DATA from "./graphql/subgraph";
 import { optionsContracts } from './stubs/optionsContractsGraphQl';
+import ethPriceFeed from './utils/ethPriceFeed';
 import { web3Modal } from './utils/web3Modal';
-
-const NETWORK = "homestead" // mainnet
-// getDefaultProvider breaks uniswap calls getDefaultProvider
-// const DEFAULT_PROVIDER = getDefaultProvider(NETWORK, {
-//   etherscan: process.env.REACT_APP_ETHERSCAN_API_KEY,
-//   infura: process.env.REACT_APP_INFURA_PROJECT_ID,
-//   alchemy: process.env.REACT_APP_ALCHEMY_API_KEY,
-//   quorum: 1 // Otherwise getEthToTokenInputPrice() "throws Unhandled Rejection (Error): failed to meet quorum"
-// });
 
 const DEFAULT_PROVIDER = new EtherscanProvider('homestead', process.env.REACT_APP_ETHERSCAN_API_KEY);
 const WETH_CONTRACT = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2";
 const USDC_CONTRACT = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
-const CURRENT_ETH_PRICE = 375;
 const OPYN_UNISWAP_EXCHANGE = "0xc0a47dfe034b400b47bdad5fecda2621de6c4d95";
 const OPYN_UNISWAP_CONTRACT = new Contract(OPYN_UNISWAP_EXCHANGE, abis.uniswapv1_factory, DEFAULT_PROVIDER);
 
@@ -37,6 +27,8 @@ function getImpermanentLossPoints() {
 
 // TODO combine common logic of getEthPutOptions and getEthCallOptions
 async function getEthPutOptions() {
+  const currentEthPrice = await ethPriceFeed(DEFAULT_PROVIDER);
+
   const data = [
     [], // X values
     [] // Y values
@@ -53,17 +45,15 @@ async function getEthPutOptions() {
       const price = await optionMarket.getEthToTokenInputPrice(parseEther("1.0")) / 10**7;
       const strikePrice = option.strikePriceValue * 10; // needs to be scaled for some reason
       // console.log(`strikePrice:${strikePrice}   price:${price}`);
-      data[0].push(strikePrice/CURRENT_ETH_PRICE);
-      data[1].push(1/price * CURRENT_ETH_PRICE);
+      data[0].push(strikePrice/currentEthPrice);
+      data[1].push(1/price * currentEthPrice);
   }));
   return data;
-  // return [
-  //   [320/CURRENT_ETH_PRICE, 360/CURRENT_ETH_PRICE],
-  //   [1/28.2702* CURRENT_ETH_PRICE, 1/21.5 * CURRENT_ETH_PRICE]
-  // ];
 }
 
 async function getEthCallOptions() {
+  const currentEthPrice = await ethPriceFeed(DEFAULT_PROVIDER);
+
   const data = [
     [], // X values
     [] // Y values
@@ -80,14 +70,10 @@ async function getEthCallOptions() {
     const price = await optionMarket.getEthToTokenInputPrice(parseEther("1.0")) / 10**6;
     const strikePrice = 1/(option.strikePriceValue) * 10**5
     // console.log(`strikePrice:${strikePrice}   price:${price}`);
-    data[0].push(strikePrice/CURRENT_ETH_PRICE);
-    data[1].push(1/price * CURRENT_ETH_PRICE);
+    data[0].push(strikePrice/currentEthPrice);
+    data[1].push(1/price * currentEthPrice);
   }));
   return data;
-  // return [
-  //   [400/CURRENT_ETH_PRICE, 500/CURRENT_ETH_PRICE],
-  //   [1/4561.26 * CURRENT_ETH_PRICE, 1/14485.4 * CURRENT_ETH_PRICE]
-  // ];
 }
 
 function isEpochInFuture(epoch)
