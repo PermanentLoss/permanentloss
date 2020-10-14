@@ -11,7 +11,7 @@ const DEFAULT_PROVIDER = new EtherscanProvider(
 );
 
 function App() {
-  const [provider, setProvider] = useState();
+  const [provider, setProvider] = useState(null);
 
   /* Open wallet selection modal. */
   const loadWeb3Modal = useCallback(async () => {
@@ -29,10 +29,13 @@ function App() {
   return (
     <div>
       <Header>
-        <WalletButton web3Provider={provider} loadWeb3Modal={loadWeb3Modal} />
+        <WalletButton
+          web3Provider={provider ?? DEFAULT_PROVIDER}
+          loadWeb3Modal={loadWeb3Modal}
+        />
       </Header>
       <Body>
-        <OptionsILGraph web3Provider={DEFAULT_PROVIDER} />
+        <OptionsILGraph web3Provider={provider ?? DEFAULT_PROVIDER} />
       </Body>
     </div>
   );
