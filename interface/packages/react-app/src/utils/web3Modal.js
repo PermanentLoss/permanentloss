@@ -1,5 +1,5 @@
-import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
+import Web3Modal from 'web3modal';
 
 // Enter a valid infura key here to avoid being rate limited
 // You can get a key for free at https://infura.io/register
