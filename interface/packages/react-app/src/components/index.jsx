@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Header = styled.header`
   background-color: #282c34;
@@ -28,8 +28,8 @@ export const Image = styled.img`
 `;
 
 export const Link = styled.a.attrs({
-  target: "_blank",
-  rel: "noopener noreferrer",
+  target: '_blank',
+  rel: 'noopener noreferrer',
 })`
   color: #61dafb;
   margin-top: 10px;
@@ -47,8 +47,8 @@ export const Button = styled.button`
   margin: 0px 20px;
   padding: 12px 24px;
 
-  ${props => props.hidden && "hidden"}
-  
+  ${(props) => props.hidden && 'hidden'}
+
   :focus {
     border: none;
     outline: none;

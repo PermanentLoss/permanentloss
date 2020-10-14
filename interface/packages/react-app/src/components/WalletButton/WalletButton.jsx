@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button } from '../../components';
+import { Button } from '..';
 import { logoutOfWeb3Modal } from '../../utils/web3Modal';
-
 
 export default function WalletButton({ provider, loadWeb3Modal }) {
   return (
@@ -14,7 +13,7 @@ export default function WalletButton({ provider, loadWeb3Modal }) {
         }
       }}
     >
-      {!provider ? "Connect Wallet" : "Disconnect Wallet"}
+      {!provider ? 'Connect Wallet' : 'Disconnect Wallet'}
     </Button>
   );
 }
