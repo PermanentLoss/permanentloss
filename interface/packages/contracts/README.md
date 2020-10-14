@@ -1,4 +1,4 @@
-## @uniswap-v2-app/contracts
+## @permanentloss-interface/contracts
 
 A minimalist, opinionated structure for managing smart contract ABIs and addresses.
 
