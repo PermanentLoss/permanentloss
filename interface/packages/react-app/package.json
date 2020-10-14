@@ -73,7 +73,7 @@
   },
   "husky": {
     "hooks": {
-      "per-push": "npx eslint --fix ."
+      "pre-push": "npx eslint --fix ."
     }
   }
 }
