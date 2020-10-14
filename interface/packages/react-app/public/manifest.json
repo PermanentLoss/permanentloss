@@ -1,6 +1,6 @@
 {
-  "short_name": "Eth App",
-  "name": "Create Eth App Sample",
+  "short_name": "PermanentLoss",
+  "name": "PermanentLoss, a platform for liquidity providers to hedge against impermanent loss",
   "icons": [
     {
       "src": "favicon.ico",
