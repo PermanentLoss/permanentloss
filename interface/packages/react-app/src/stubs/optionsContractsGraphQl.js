@@ -638,4 +638,4 @@ export const optionsContracts = JSON.parse(`
     ]
   }
 }
-`)
+`);
