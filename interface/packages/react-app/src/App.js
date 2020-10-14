@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
+import { EtherscanProvider } from '@ethersproject/providers';
 import { Contract } from "@ethersproject/contracts";
 import { getDefaultProvider, Web3Provider } from "@ethersproject/providers";
 import { parseEther } from "@ethersproject/units";
@@ -12,12 +13,15 @@ import { optionsContracts } from './stubs/optionsContractsGraphQl';
 import { web3Modal } from './utils/web3Modal';
 
 const NETWORK = "homestead" // mainnet
-const DEFAULT_PROVIDER = getDefaultProvider(NETWORK, {
-  etherscan: process.env.REACT_APP_ETHERSCAN_API_KEY,
-  // infura: process.env.REACT_APP_INFURA_PROJECT_ID,
-  // alchemy: process.env.REACT_APP_ALCHEMY_API_KEY,
-  quorum: 1 // Otherwise getEthToTokenInputPrice() "throws Unhandled Rejection (Error): failed to meet quorum"
-});
+// getDefaultProvider breaks uniswap calls getDefaultProvider
+// const DEFAULT_PROVIDER = getDefaultProvider(NETWORK, {
+//   etherscan: process.env.REACT_APP_ETHERSCAN_API_KEY,
+//   infura: process.env.REACT_APP_INFURA_PROJECT_ID,
+//   alchemy: process.env.REACT_APP_ALCHEMY_API_KEY,
+//   quorum: 1 // Otherwise getEthToTokenInputPrice() "throws Unhandled Rejection (Error): failed to meet quorum"
+// });
+
+const DEFAULT_PROVIDER = new EtherscanProvider('homestead', process.env.REACT_APP_ETHERSCAN_API_KEY);
 const WETH_CONTRACT = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2";
 const USDC_CONTRACT = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
 const CURRENT_ETH_PRICE = 375;
@@ -31,48 +35,59 @@ function getImpermanentLossPoints() {
   return [x, y];
 }
 
-function getEthPutOptions() {
+// TODO combine common logic of getEthPutOptions and getEthCallOptions
+async function getEthPutOptions() {
+  const data = [
+    [], // X values
+    [] // Y values
+  ];
   const wethPutOptions = optionsContracts.data.optionsContracts.filter(
     x => x.underlying === WETH_CONTRACT 
     && x.underlying !== '0x0000000000000000000000000000000000000000'
     && isEpochInFuture(x.expiry));
-    wethPutOptions.forEach(async(option) => {
-    console.log(`put option:${JSON.stringify(option)}`);
-    const exchangeAddress = await OPYN_UNISWAP_CONTRACT.getExchange(option.address);
-    const optionMarket = new Contract(exchangeAddress, abis.uniswapv1_market, DEFAULT_PROVIDER);
-    const price = await optionMarket.getEthToTokenInputPrice(parseEther("1.0"));
-    const strikePrice = option.strikePriceValue * 10; // for some reason they store it like this
-    console.log(`strikePrice:${strikePrice}   price:${price}`);
-  });
-  console.log(`oToken address:${wethPutOptions[0].address}`)
-  
-
-  // TODO re-enable live data
-  return [
-    [320/CURRENT_ETH_PRICE, 360/CURRENT_ETH_PRICE],
-    [1/28.2702* CURRENT_ETH_PRICE, 1/21.5 * CURRENT_ETH_PRICE]
-  ];
+  wethPutOptions.sort((a,b) => a.strikePriceValue - b.strikePriceValue);
+  await Promise.all(wethPutOptions.map(async(option) => {
+      // console.log(`put option:${JSON.stringify(option)}`);
+      const exchangeAddress = await OPYN_UNISWAP_CONTRACT.getExchange(option.address);
+      const optionMarket = new Contract(exchangeAddress, abis.uniswapv1_market, DEFAULT_PROVIDER);
+      const price = await optionMarket.getEthToTokenInputPrice(parseEther("1.0")) / 10**7;
+      const strikePrice = option.strikePriceValue * 10; // needs to be scaled for some reason
+      // console.log(`strikePrice:${strikePrice}   price:${price}`);
+      data[0].push(strikePrice/CURRENT_ETH_PRICE);
+      data[1].push(1/price * CURRENT_ETH_PRICE);
+  }));
+  return data;
+  // return [
+  //   [320/CURRENT_ETH_PRICE, 360/CURRENT_ETH_PRICE],
+  //   [1/28.2702* CURRENT_ETH_PRICE, 1/21.5 * CURRENT_ETH_PRICE]
+  // ];
 }
 
-function getEthCallOptions() {
+async function getEthCallOptions() {
+  const data = [
+    [], // X values
+    [] // Y values
+  ];
   const wethCallOptions = optionsContracts.data.optionsContracts.filter(
     x => x.strike === "0x0000000000000000000000000000000000000000" 
     && x.underlying === USDC_CONTRACT
     && isEpochInFuture(x.expiry));
-  wethCallOptions.forEach(async(option) => {
-    console.log(`call option:${JSON.stringify(option)}`);
+  wethCallOptions.sort((a,b) => a.strikePriceValue - b.strikePriceValue);
+  await Promise.all(wethCallOptions.map(async(option) => {
+    // console.log(`call option:${JSON.stringify(option)}`);
     const exchangeAddress = await OPYN_UNISWAP_CONTRACT.getExchange(option.address);
     const optionMarket = new Contract(exchangeAddress, abis.uniswapv1_market, DEFAULT_PROVIDER);
-    const price = await optionMarket.getEthToTokenInputPrice(parseEther("1.0"));
-    const strikePrice = option.strikePriceValue * 10; // for some reason they store it like this
-    console.log(`strikePrice:${strikePrice}   price:${price}`);
-
-  });
-  // // TODO re-enable live data
-  return [
-    [400/CURRENT_ETH_PRICE, 500/CURRENT_ETH_PRICE],
-    [1/4561.26 * CURRENT_ETH_PRICE, 1/14485.4 * CURRENT_ETH_PRICE]
-  ];
+    const price = await optionMarket.getEthToTokenInputPrice(parseEther("1.0")) / 10**6;
+    const strikePrice = 1/(option.strikePriceValue) * 10**5
+    // console.log(`strikePrice:${strikePrice}   price:${price}`);
+    data[0].push(strikePrice/CURRENT_ETH_PRICE);
+    data[1].push(1/price * CURRENT_ETH_PRICE);
+  }));
+  return data;
+  // return [
+  //   [400/CURRENT_ETH_PRICE, 500/CURRENT_ETH_PRICE],
+  //   [1/4561.26 * CURRENT_ETH_PRICE, 1/14485.4 * CURRENT_ETH_PRICE]
+  // ];
 }
 
 function isEpochInFuture(epoch)
@@ -89,11 +104,19 @@ function App() {
   const [callOptions, setCallOptions] = useState([]);
 
   useEffect(() => {
-    setPutOptions(getEthPutOptions());
+    const gimmeOptions = async() => {
+      const options = await getEthPutOptions();
+      setPutOptions(options);
+    }
+    gimmeOptions();
   }, []);
 
   useEffect(() => {
-    setCallOptions(getEthCallOptions());
+    const gimmeOptions = async() => {
+      const options = await getEthCallOptions();
+      setCallOptions(options);
+    }
+    gimmeOptions();
   }, []);
 
   const { loading, error, data } = useQuery(GET_AGGREGATED_UNISWAP_DATA);
