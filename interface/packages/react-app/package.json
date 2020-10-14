@@ -33,7 +33,6 @@
     "apollo-client": "^2.6.8",
     "apollo-utilities": "^1.3.3",
     "chalk": "^4.1.0",
-    "eslint": "^6.8.0",
     "eslint-plugin-flowtype": "^4.6.0",
     "ethers": "^5.0.17",
     "graphql": "^14.6.0",
@@ -56,5 +55,19 @@
     "ipfs": "yarn build && node scripts/ipfs.js",
     "start": "react-scripts start",
     "test": "react-scripts test"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.11.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-config-wesbos": "^1.0.1",
+    "eslint-plugin-html": "^6.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.4",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "prettier": "^2.1.2"
   }
 }
