@@ -95,8 +95,12 @@ function OptionsILGraph({ web3Provider }) {
     },
   };
 
-  function handlePlotClick(target) {
-    console.log(target);
+  function handlePlotClick(pointsAndEvent) {
+    const closestCurve = pointsAndEvent.points[0];
+    if(closestCurve.customdata)
+    {
+      console.log(`user clicked: ${JSON.stringify(closestCurve.customdata)}`);
+    }
   }
 
   return (
