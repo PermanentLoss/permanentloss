@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Body, Header } from './components';
 import OptionsILGraph from './components/OptionsILGraph';
+import OptionsSeller from './components/OptionsSeller';
 import WalletButton from './components/WalletButton';
 import { web3Modal } from './utils/web3Modal';
 
@@ -32,16 +33,20 @@ function App() {
       <Header>
         <WalletButton web3Provider={provider} loadWeb3Modal={loadWeb3Modal} />
       </Header>
-      <Routes>
-        <Body>
+      <Body>
+        <Routes>
           <Route
             path="/"
             element={
               <OptionsILGraph web3Provider={provider ?? DEFAULT_PROVIDER} />
             }
           />
-        </Body>
-      </Routes>
+          <Route
+            path="sell/"
+            element={<OptionsSeller web3Provider={provider} />}
+          />
+        </Routes>
+      </Body>
     </BrowserRouter>
   );
 }
