@@ -45,23 +45,13 @@ export function getImpermanentLossPoints() {
   return [x, y];
 }
 
-export async function getEthCallOptions(web3Provider, opynUniswapContract) {
+export async function getEthOptions(web3Provider, opynUniswapContract, isPut) {
   const currentEthPrice = await ethPriceFeed(web3Provider);
-
-  const data = [
-    [], // X values
-    [], // Y values
-  ];
-  const wethCallOptions = optionsContracts.data.optionsContracts.filter(
-    (x) =>
-      x.strike === '0x0000000000000000000000000000000000000000' &&
-      x.underlying === USDC_CONTRACT &&
-      isEpochInFuture(x.expiry)
-  );
-  wethCallOptions.sort((a, b) => a.strikePriceValue - b.strikePriceValue);
+  const options = optionsContracts.data.optionsContracts.filter(isPut ? filterForPuts : filterForCalls);
+  const populatedWethOptions = [];
   await Promise.all(
-    wethCallOptions.map(async (option) => {
-      // console.log(`call option:${JSON.stringify(option)}`);
+    options.map(async (option) => {
+      // console.log(`${isPut ? 'put' : 'call'} option:${JSON.stringify(option)}`);
       const exchangeAddress = await opynUniswapContract.getExchange(
         option.address
       );
@@ -70,52 +60,51 @@ export async function getEthCallOptions(web3Provider, opynUniswapContract) {
         abis.uniswapv1_market,
         web3Provider
       );
-      const price =
-        (await optionMarket.getEthToTokenInputPrice(parseEther('1.0'))) /
-        10 ** 6;
-      const strikePrice = (1 / option.strikePriceValue) * 10 ** 5;
-      // console.log(`strikePrice:${strikePrice}   price:${price}`);
-      data[0].push(strikePrice / currentEthPrice);
-      data[1].push((1 / price) * currentEthPrice);
+      
+      const inputPrice = isPut ? '1.0' : '.02'; // Call options measured in usdc so 1.0 eth will report massive slippage
+      const rawPrice = await optionMarket.getEthToTokenInputPrice(parseEther(inputPrice));
+      const price = isPut ? 1/convertPutPrice(rawPrice) * currentEthPrice 
+        : parseFloat(inputPrice, 10)/convertCallPrice(rawPrice) * currentEthPrice * currentEthPrice;
+      const strikePrice = isPut ? convertPutStrikePrice(option.strikePriceValue) : convertCallStrikePrice(option.strikePriceValue);
+      // console.log(`${isPut ? 'put' : 'call'} strikePrice:${strikePrice}   price:${price}`);
+      const strikePriceAsPercentDrop = strikePrice / currentEthPrice;
+      // console.log(`${isPut ? 'put' : 'call'} x:${strikePriceAsPercentDrop}   y:${price}`);
+      populatedWethOptions.push({...option, ...{strikePriceAsPercentDrop: strikePriceAsPercentDrop, price: price}})
     })
   );
+  populatedWethOptions.sort((a,b) => a.strikePriceAsPercentDrop - b.strikePriceAsPercentDrop)
+  const data = {
+    x: populatedWethOptions.map(x => x.strikePriceAsPercentDrop),
+    y: populatedWethOptions.map(y => y.price),
+    meta: populatedWethOptions
+  };
   return data;
 }
 
-// TODO combine common logic of getEthPutOptions and getEthCallOptions
-export async function getEthPutOptions(web3Provider, opynUniswapContract) {
-  const currentEthPrice = await ethPriceFeed(web3Provider);
+function filterForPuts(x) {
+  return x.underlying === WETH_CONTRACT &&
+    x.underlying !== '0x0000000000000000000000000000000000000000' &&
+    isEpochInFuture(x.expiry)
+}
 
-  const data = [
-    [], // X values
-    [], // Y values
-  ];
-  const wethPutOptions = optionsContracts.data.optionsContracts.filter(
-    (x) =>
-      x.underlying === WETH_CONTRACT &&
-      x.underlying !== '0x0000000000000000000000000000000000000000' &&
-      isEpochInFuture(x.expiry)
-  );
-  wethPutOptions.sort((a, b) => a.strikePriceValue - b.strikePriceValue);
-  await Promise.all(
-    wethPutOptions.map(async (option) => {
-      // console.log(`put option:${JSON.stringify(option)}`);
-      const exchangeAddress = await opynUniswapContract.getExchange(
-        option.address
-      );
-      const optionMarket = new Contract(
-        exchangeAddress,
-        abis.uniswapv1_market,
-        web3Provider
-      );
-      const price =
-        (await optionMarket.getEthToTokenInputPrice(parseEther('1.0'))) /
-        10 ** 7;
-      const strikePrice = option.strikePriceValue * 10; // needs to be scaled for some reason
-      // console.log(`strikePrice:${strikePrice}   price:${price}`);
-      data[0].push(strikePrice / currentEthPrice);
-      data[1].push((1 / price) * currentEthPrice);
-    })
-  );
-  return data;
+function filterForCalls(x) {
+  return x.strike === '0x0000000000000000000000000000000000000000' &&
+    x.underlying === USDC_CONTRACT &&
+    isEpochInFuture(x.expiry)
+}
+
+function convertPutStrikePrice(strikePrice) {
+  return strikePrice * 10;
+}
+
+function convertCallStrikePrice (strikePrice) {
+  return (1 / strikePrice) * 10 ** 5;
+}
+
+function convertCallPrice(price) {
+  return (price / 10 ** 6);
+}
+
+function convertPutPrice(price) {
+  return price / 10 ** 7;
 }

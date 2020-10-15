@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useState } from 'react';
 import Plot from 'react-plotly.js';
 import {
-  getEthCallOptions,
-  getEthPutOptions,
+  getEthOptions,
   getImpermanentLossPoints
 } from './utils';
 
@@ -24,7 +23,7 @@ function OptionsILGraph({ web3Provider }) {
 
   useEffect(() => {
     const gimmeOptions = async () => {
-      const options = await getEthPutOptions(web3Provider, opynUniswapContract);
+      const options = await getEthOptions(web3Provider, opynUniswapContract, true);
       setPutOptions(options);
     };
     gimmeOptions();
@@ -32,9 +31,10 @@ function OptionsILGraph({ web3Provider }) {
 
   useEffect(() => {
     const gimmeOptions = async () => {
-      const options = await getEthCallOptions(
+      const options = await getEthOptions(
         web3Provider,
-        opynUniswapContract
+        opynUniswapContract,
+        false
       );
       setCallOptions(options);
     };
@@ -53,18 +53,20 @@ function OptionsILGraph({ web3Provider }) {
   };
 
   const putOptionPlotData = {
-    x: putOptions[0],
-    y: putOptions[1],
-    name: 'Put Price',
+    x: putOptions.x,
+    y: putOptions.y,
+    customdata: putOptions.meta,
+    name: 'Put Price for 1 ETH',
     yaxis: 'y2',
     type: ' scatter',
     marker: { color: 'green' },
   };
 
   const callOptionPlotData = {
-    x: callOptions[0],
-    y: callOptions[1],
-    name: 'Call Price',
+    x: callOptions.x,
+    y: callOptions.y,
+    customdata: callOptions.meta,
+    name: 'Call Price for 1 ETH',
     yaxis: 'y3',
     type: ' scatter',
     marker: { color: 'orange' },
