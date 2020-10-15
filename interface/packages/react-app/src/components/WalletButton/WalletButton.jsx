@@ -1,4 +1,4 @@
-import { Web3Provider } from '@ethersproject/providers';
+import { EtherscanProvider, Web3Provider } from '@ethersproject/providers';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Button } from '..';
@@ -21,7 +21,10 @@ function WalletButton({ web3Provider, loadWeb3Modal }) {
 }
 
 WalletButton.propTypes = {
-  web3Provider: PropTypes.instanceOf(Web3Provider).isRequired,
+  web3Provider: PropTypes.oneOfType([
+    PropTypes.instanceOf(Web3Provider),
+    PropTypes.instanceOf(EtherscanProvider),
+  ]),
   loadWeb3Modal: PropTypes.func.isRequired,
 };
 

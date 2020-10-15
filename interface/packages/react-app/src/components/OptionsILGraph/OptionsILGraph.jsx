@@ -1,4 +1,4 @@
-import { Web3Provider } from '@ethersproject/providers';
+import { EtherscanProvider, Web3Provider } from '@ethersproject/providers';
 import { abis } from '@uniswap-v2-app/contracts';
 import { Contract } from 'ethers';
 import PropTypes from 'prop-types';
@@ -107,7 +107,10 @@ function OptionsILGraph({ web3Provider }) {
 }
 
 OptionsILGraph.propTypes = {
-  web3Provider: PropTypes.instanceOf(Web3Provider).isRequired,
+  web3Provider: PropTypes.oneOfType([
+    PropTypes.instanceOf(Web3Provider),
+    PropTypes.instanceOf(EtherscanProvider),
+  ]).isRequired,
 };
 
 export default OptionsILGraph;

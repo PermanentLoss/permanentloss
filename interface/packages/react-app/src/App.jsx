@@ -29,10 +29,7 @@ function App() {
   return (
     <div>
       <Header>
-        <WalletButton
-          web3Provider={provider ?? DEFAULT_PROVIDER}
-          loadWeb3Modal={loadWeb3Modal}
-        />
+        <WalletButton web3Provider={provider} loadWeb3Modal={loadWeb3Modal} />
       </Header>
       <Body>
         <OptionsILGraph web3Provider={provider ?? DEFAULT_PROVIDER} />
