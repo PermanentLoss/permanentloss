@@ -1,5 +1,6 @@
 import { EtherscanProvider, Web3Provider } from '@ethersproject/providers';
 import React, { useCallback, useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Body, Header } from './components';
 import OptionsILGraph from './components/OptionsILGraph';
 import WalletButton from './components/WalletButton';
@@ -27,14 +28,21 @@ function App() {
   }, [loadWeb3Modal]);
 
   return (
-    <div>
+    <BrowserRouter>
       <Header>
         <WalletButton web3Provider={provider} loadWeb3Modal={loadWeb3Modal} />
       </Header>
-      <Body>
-        <OptionsILGraph web3Provider={provider ?? DEFAULT_PROVIDER} />
-      </Body>
-    </div>
+      <Routes>
+        <Body>
+          <Route
+            path="/"
+            element={
+              <OptionsILGraph web3Provider={provider ?? DEFAULT_PROVIDER} />
+            }
+          />
+        </Body>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
