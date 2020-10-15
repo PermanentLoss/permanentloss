@@ -1,5 +1,5 @@
 {
-  "name": "@uniswap-v2-app/monorepo",
+  "name": "@permanentloss-interface/monorepo",
   "version": "1.0.0",
   "keywords": [
     "uniswap",
@@ -10,11 +10,11 @@
   ],
   "private": true,
   "scripts": {
-    "react-app:build": "yarn workspace @uniswap-v2-app/react-app build",
-    "react-app:eject": "yarn workspace @uniswap-v2-app/react-app eject",
-    "react-app:ipfs": "yarn workspace @uniswap-v2-app/react-app ipfs",
-    "react-app:start": "yarn workspace @uniswap-v2-app/react-app start",
-    "react-app:test": "yarn workspace @uniswap-v2-app/react-app test"
+    "react-app:build": "yarn workspace @permanentloss-interface/react-app build",
+    "react-app:eject": "yarn workspace @permanentloss-interface/react-app eject",
+    "react-app:ipfs": "yarn workspace @permanentloss-interface/react-app ipfs",
+    "react-app:start": "yarn workspace @permanentloss-interface/react-app start",
+    "react-app:test": "yarn workspace @permanentloss-interface/react-app test"
   },
   "workspaces": {
     "packages": [

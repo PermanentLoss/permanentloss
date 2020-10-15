@@ -1,5 +1,5 @@
 import { parseEther } from '@ethersproject/units';
-import { abis } from '@uniswap-v2-app/contracts';
+import { abis } from '@permanentloss-interface/contracts';
 import { Contract } from 'ethers';
 import { optionsContracts } from '../../stubs/optionsContractsGraphQl';
 import ethPriceFeed from '../../utils/ethPriceFeed';

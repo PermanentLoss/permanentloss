@@ -1,5 +1,5 @@
 import { EtherscanProvider, Web3Provider } from '@ethersproject/providers';
-import { abis } from '@uniswap-v2-app/contracts';
+import { abis } from '@permanentloss-interface/contracts';
 import { Contract } from 'ethers';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useState } from 'react';
