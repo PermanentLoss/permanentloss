@@ -24,7 +24,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "@types/react": "^16.9.19",
-    "@uniswap-v2-app/contracts": "^1.0.0",
+    "@permanentloss-interface/contracts": "^1.0.0",
     "@uniswap/sdk": "^3.0.2",
     "@uniswap/v2-core": "^1.0.1",
     "@uniswap/v2-periphery": "^1.1.0-beta.0",
