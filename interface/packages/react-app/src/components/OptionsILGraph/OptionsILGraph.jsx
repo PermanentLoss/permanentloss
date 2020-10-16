@@ -9,7 +9,7 @@ import {
   getImpermanentLossPoints
 } from './utils';
 
-function OptionsILGraph({ web3Provider }) {
+function OptionsILGraph({ web3Provider, setSelectedPut, setSelectedCall }) {
   const [putOptions, setPutOptions] = useState([]);
   const [callOptions, setCallOptions] = useState([]);
 
@@ -99,7 +99,13 @@ function OptionsILGraph({ web3Provider }) {
     const closestCurve = pointsAndEvent.points[0];
     if(closestCurve.customdata)
     {
-      console.log(`user clicked: ${JSON.stringify(closestCurve.customdata)}`);
+      const data = closestCurve.customdata;
+      console.log(`user clicked: ${JSON.stringify(data)}`);
+      if (data.strikePriceAsPercentDrop > 1) {
+        setSelectedCall(data);
+      } else {
+        setSelectedPut(data);
+      }
     }
   }
 
@@ -117,6 +123,8 @@ OptionsILGraph.propTypes = {
     PropTypes.instanceOf(Web3Provider),
     PropTypes.instanceOf(EtherscanProvider),
   ]).isRequired,
+  setSelectedPut: PropTypes.func.isRequired,
+  setSelectedCall: PropTypes.func.isRequired
 };
 
 export default OptionsILGraph;
