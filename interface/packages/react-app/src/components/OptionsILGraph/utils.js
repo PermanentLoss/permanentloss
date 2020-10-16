@@ -69,7 +69,7 @@ export async function getEthOptions(web3Provider, opynUniswapContract, isPut) {
       // console.log(`${isPut ? 'put' : 'call'} strikePrice:${strikePrice}   price:${price}`);
       const strikePriceAsPercentDrop = strikePrice / currentEthPrice;
       // console.log(`${isPut ? 'put' : 'call'} x:${strikePriceAsPercentDrop}   y:${price}`);
-      populatedWethOptions.push({...option, ...{strikePriceAsPercentDrop: strikePriceAsPercentDrop, price: price, strikePriceInDollars: strikePrice}})
+      populatedWethOptions.push({...option, ...{strikePriceAsPercentDrop: strikePriceAsPercentDrop, price: price, strikePriceInDollars: strikePrice, isPut: isPut}})
     })
   );
   populatedWethOptions.sort((a,b) => a.strikePriceAsPercentDrop - b.strikePriceAsPercentDrop)

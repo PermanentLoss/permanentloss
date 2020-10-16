@@ -1,7 +1,7 @@
 import React, { useState }  from 'react';
 import PropTypes from 'prop-types';
 
-function ApyCalculator({put, call})
+function ApyCalculator({put, call, onRemoveOption})
 {   
     const ethPrice = 380;
     const [uniswapRoi, setUniswapRoi] = useState(20);
@@ -21,15 +21,19 @@ function ApyCalculator({put, call})
     }
 
     function getProjectedGainzPerOptionPeriod() {
-        const minEpoch = Math.min(
-            isNaN(put?.expiry) ? Number.MAX_VALUE : put.expiry,
-            isNaN(call?.expiry) ? Number.MAX_VALUE : call.expiry);
+        const minEpoch = getMinEpoch();
         if (minEpoch > 0) {
             return getRoiPerDay() * numberOfDaysTillExpiration(minEpoch) * ethPrice * 2
         } else {
             return 0;
         }
         
+    }
+
+    function getMinEpoch() {
+        return Math.min(
+            isNaN(put?.expiry) ? Number.MAX_VALUE : put.expiry,
+            isNaN(call?.expiry) ? Number.MAX_VALUE : call.expiry);
     }
 
     function putSection() {
@@ -44,7 +48,7 @@ function ApyCalculator({put, call})
     {
         if (option) {
             return <div>
-                <h4>{isPut ? 'Put' : 'Call'} Option</h4>
+                <h4>{isPut ? 'Put' : 'Call'} Option <span onClick={onRemoveOption.bind(null, option)}>X</span></h4>
                 {optionSection(option.strikePriceInDollars, option.price, option.expiry)}
             </div>
         }
@@ -64,12 +68,16 @@ function ApyCalculator({put, call})
     }
 
     function getPercentCostOfOptions() {
+        return getCostOfOptions() / projectedGain * 100;;
+    }
+
+    function getCostOfOptions() {
         let cost = 0;
         if (put && put.price !== null) {
-            cost += put.price / projectedGain * 100;
+            cost += put.price;
         }
         if (call && call.price != null) {
-            cost += call.price / projectedGain * 100;
+            cost += call.price 
         }
         return cost;
     }
@@ -77,16 +85,19 @@ function ApyCalculator({put, call})
     return (
         <div className="apy-section">
             <div>
-                Uniswap APY: <input type="number" value={uniswapRoi} onChange={e => updateUniswapRoi(e.target.value)} />
+                Uniswap APY: <input type="number" value={uniswapRoi} onChange={e => updateUniswapRoi(e.target.value)} /> over the next {numberOfDaysTillExpiration(getMinEpoch()).toFixed(2)} days 
             </div>
             <div>
-                Projected Gain:${projectedGain}
+                Projected Naked Gain:${projectedGain.toFixed(2)}
+            </div>
+            <div>
+                Projected Protected Gain:${(projectedGain - getCostOfOptions()).toFixed(2)}
             </div>    
             <div>
-                Cost to APY:-{getPercentCostOfOptions()}%
+                Cost to APY:-{getPercentCostOfOptions().toFixed(2)}%
             </div>                
             <div>
-                Net APY:{uniswapRoi - getPercentCostOfOptions()}%
+                Net APY:{((1 - (getPercentCostOfOptions() / 100)) * uniswapRoi).toFixed(2)}%
             </div>
             {putSection()}
             {callSection()}
@@ -96,7 +107,8 @@ function ApyCalculator({put, call})
 
 ApyCalculator.propTypes = {
     put: PropTypes.object,
-    call: PropTypes.object
+    call: PropTypes.object,
+    onRemoveOption: PropTypes.func
   };
 
 export default ApyCalculator
