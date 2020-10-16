@@ -20,11 +20,6 @@ contract("VaultsManager", (accounts) => {
     const USDCAddress = "0x4DBCdF9B62e891a7cec5A2568C3F4FAF9E8Abe2b";
     const USDC = new web3.eth.Contract(ERC20.abi, USDCAddress);
 
-    let balance = await USDC.methods
-      .balanceOf(accounts[0])
-      .call({from: accounts[0]});
-    console.log(`Previous balance: ${balance}`);
-
     // Send USDC to the first test account
     await USDC.methods
       .transfer(accounts[0], aHundredUSDC)
@@ -39,13 +34,17 @@ contract("VaultsManager", (accounts) => {
       .send({from: accounts[0]});
   });
 
-  describe("testing the createCollateralizedVaul function", async () => {
-    it("should create new vault and deposit the given amount of collateral", async () => {
-      const txReceipt = await vaultsManager.createCollateralizedVault(
+  describe("testing the openCollateralizedVault function", async () => {
+    it("should open new vault and deposit the given amount of collateral", async () => {
+      const txReceipt = await vaultsManager.openCollateralizedVault(
         Collateral.USDC,
         aHundredUSDC
       );
-      expectEvent(txReceipt, "CreatedVault", {owner: accounts[0]});
+      expectEvent(txReceipt, "CollateralizedVaultOpened", {
+        accountOwner: accounts[0],
+        vaultId: "1",
+        amountDeposited: aHundredUSDC,
+      });
     });
   });
 });
