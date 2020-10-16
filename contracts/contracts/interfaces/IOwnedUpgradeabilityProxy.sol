@@ -9,6 +9,8 @@ interface IOwnedUpgradeabilityProxy {
 
     fallback() external payable;
 
+    receive() external payable;
+
     function implementation() external view returns (address impl);
 
     function proxyOwner() external view returns (address owner);
