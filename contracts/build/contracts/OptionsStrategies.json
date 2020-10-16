@@ -64,10 +64,10 @@
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OptionsStrategies.sol",
     "exportedSymbols": {
       "IAddressBook": [
-        336
+        384
       ],
       "IOwnedUpgradeabilityProxy": [
-        722
+        770
       ],
       "OptionsStrategies": [
         47
@@ -237,10 +237,10 @@
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OptionsStrategies.sol",
     "exportedSymbols": {
       "IAddressBook": [
-        336
+        384
       ],
       "IOwnedUpgradeabilityProxy": [
-        722
+        770
       ],
       "OptionsStrategies": [
         47
@@ -419,7 +419,7 @@
     }
   },
   "schemaVersion": "3.3.0",
-  "updatedAt": "2020-10-16T01:05:17.956Z",
+  "updatedAt": "2020-10-16T02:57:01.539Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

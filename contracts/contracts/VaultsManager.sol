@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
+pragma experimental ABIEncoderV2;
+
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 import "./OpynV2Helpers.sol";
@@ -9,9 +11,9 @@ import {IController, Actions} from "./interfaces/IController.sol";
 contract VaultsManager is OpynV2Helpers {
     address[3] public validCollateral;
 
-    event NewBalance(uint256 newBalance);
-
     enum Collateral {USDC, cUSDC, WETH}
+
+    event CreatedVault(address owner);
 
     constructor(address _OpynV2AddressBook, address[3] memory _validCollateral)
         OpynV2Helpers(_OpynV2AddressBook)
@@ -22,7 +24,7 @@ contract VaultsManager is OpynV2Helpers {
     function createCollateralizedVault(
         Collateral _assetToDeposit,
         uint256 _amount
-    ) public returns (uint256) {
+    ) public {
         IController controller = IController(getOpynV2Controller());
 
         require(
@@ -53,8 +55,32 @@ contract VaultsManager is OpynV2Helpers {
             "VaultsManager: Failed transfering collateral"
         );
 
-        emit NewBalance(collateral.balanceOf(address(this)));
+        Actions.ActionArgs[] memory actions;
 
-        return collateral.balanceOf(address(this));
+        actions[0] = Actions.ActionArgs({
+            actionType: Actions.ActionType.OpenVault,
+            owner: msg.sender,
+            secondAddress: address(0),
+            asset: address(0),
+            vaultId: newVaultId,
+            amount: 0,
+            index: 0,
+            data: "0x0000000000000000000000000000000000000000"
+        });
+
+        actions[1] = Actions.ActionArgs({
+            actionType: Actions.ActionType.DepositCollateral,
+            owner: msg.sender,
+            secondAddress: msg.sender,
+            asset: validCollateral[uint256(_assetToDeposit)],
+            vaultId: newVaultId,
+            amount: _amount,
+            index: 0,
+            data: "0x0000000000000000000000000000000000000000"
+        });
+
+        controller.operate(actions);
+
+        emit CreatedVault(msg.sender);
     }
 }
