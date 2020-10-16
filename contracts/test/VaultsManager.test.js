@@ -45,7 +45,7 @@ contract("VaultsManager", (accounts) => {
         Collateral.USDC,
         aHundredUSDC
       );
-      expectEvent(txReceipt, "NewBalance", {newBalance: aHundredUSDC});
+      expectEvent(txReceipt, "CreatedVault", {owner: accounts[0]});
     });
   });
 });

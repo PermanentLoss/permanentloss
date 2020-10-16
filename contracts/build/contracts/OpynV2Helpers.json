@@ -64,10 +64,10 @@
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol",
     "exportedSymbols": {
       "IAddressBook": [
-        336
+        384
       ],
       "IOwnedUpgradeabilityProxy": [
-        722
+        770
       ],
       "OpynV2Helpers": [
         91
@@ -94,7 +94,7 @@
         "id": 50,
         "nodeType": "ImportDirective",
         "scope": 92,
-        "sourceUnit": 337,
+        "sourceUnit": 385,
         "src": "57:39:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -105,7 +105,7 @@
         "id": 51,
         "nodeType": "ImportDirective",
         "scope": 92,
-        "sourceUnit": 723,
+        "sourceUnit": 771,
         "src": "97:52:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -147,17 +147,17 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IAddressBook_$336",
+              "typeIdentifier": "t_contract$_IAddressBook_$384",
               "typeString": "contract IAddressBook"
             },
             "typeName": {
               "id": 54,
               "name": "IAddressBook",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 336,
+              "referencedDeclaration": 384,
               "src": "402:12:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IAddressBook_$336",
+                "typeIdentifier": "t_contract$_IAddressBook_$384",
                 "typeString": "contract IAddressBook"
               }
             },
@@ -184,7 +184,7 @@
                       "referencedDeclaration": 55,
                       "src": "692:17:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IAddressBook_$336",
+                        "typeIdentifier": "t_contract$_IAddressBook_$384",
                         "typeString": "contract IAddressBook"
                       }
                     },
@@ -216,10 +216,10 @@
                         "name": "IAddressBook",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 336,
+                        "referencedDeclaration": 384,
                         "src": "712:12:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IAddressBook_$336_$",
+                          "typeIdentifier": "t_type$_t_contract$_IAddressBook_$384_$",
                           "typeString": "type(contract IAddressBook)"
                         }
                       },
@@ -234,13 +234,13 @@
                       "src": "712:32:2",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IAddressBook_$336",
+                        "typeIdentifier": "t_contract$_IAddressBook_$384",
                         "typeString": "contract IAddressBook"
                       }
                     },
                     "src": "692:52:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IAddressBook_$336",
+                      "typeIdentifier": "t_contract$_IAddressBook_$384",
                       "typeString": "contract IAddressBook"
                     }
                   },
@@ -330,17 +330,17 @@
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$722",
+                        "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$770",
                         "typeString": "contract IOwnedUpgradeabilityProxy"
                       },
                       "typeName": {
                         "id": 74,
                         "name": "IOwnedUpgradeabilityProxy",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 722,
+                        "referencedDeclaration": 770,
                         "src": "1215:25:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$722",
+                          "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$770",
                           "typeString": "contract IOwnedUpgradeabilityProxy"
                         }
                       },
@@ -364,7 +364,7 @@
                                 "referencedDeclaration": 55,
                                 "src": "1307:17:2",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_IAddressBook_$336",
+                                  "typeIdentifier": "t_contract$_IAddressBook_$384",
                                   "typeString": "contract IAddressBook"
                                 }
                               },
@@ -375,7 +375,7 @@
                               "lValueRequested": false,
                               "memberName": "getController",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 261,
+                              "referencedDeclaration": 309,
                               "src": "1307:31:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_external_view$__$returns$_t_address_$",
@@ -452,10 +452,10 @@
                       "name": "IOwnedUpgradeabilityProxy",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 722,
+                      "referencedDeclaration": 770,
                       "src": "1260:25:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_type$_t_contract$_IOwnedUpgradeabilityProxy_$722_$",
+                        "typeIdentifier": "t_type$_t_contract$_IOwnedUpgradeabilityProxy_$770_$",
                         "typeString": "type(contract IOwnedUpgradeabilityProxy)"
                       }
                     },
@@ -470,7 +470,7 @@
                     "src": "1260:91:2",
                     "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$722",
+                      "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$770",
                       "typeString": "contract IOwnedUpgradeabilityProxy"
                     }
                   },
@@ -490,7 +490,7 @@
                         "referencedDeclaration": 75,
                         "src": "1369:16:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$722",
+                          "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$770",
                           "typeString": "contract IOwnedUpgradeabilityProxy"
                         }
                       },
@@ -501,7 +501,7 @@
                       "lValueRequested": false,
                       "memberName": "implementation",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 699,
+                      "referencedDeclaration": 747,
                       "src": "1369:31:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$__$returns$_t_address_$",
@@ -600,10 +600,10 @@
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol",
     "exportedSymbols": {
       "IAddressBook": [
-        336
+        384
       ],
       "IOwnedUpgradeabilityProxy": [
-        722
+        770
       ],
       "OpynV2Helpers": [
         91
@@ -630,7 +630,7 @@
         "id": 50,
         "nodeType": "ImportDirective",
         "scope": 92,
-        "sourceUnit": 337,
+        "sourceUnit": 385,
         "src": "57:39:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -641,7 +641,7 @@
         "id": 51,
         "nodeType": "ImportDirective",
         "scope": 92,
-        "sourceUnit": 723,
+        "sourceUnit": 771,
         "src": "97:52:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -683,17 +683,17 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IAddressBook_$336",
+              "typeIdentifier": "t_contract$_IAddressBook_$384",
               "typeString": "contract IAddressBook"
             },
             "typeName": {
               "id": 54,
               "name": "IAddressBook",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 336,
+              "referencedDeclaration": 384,
               "src": "402:12:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IAddressBook_$336",
+                "typeIdentifier": "t_contract$_IAddressBook_$384",
                 "typeString": "contract IAddressBook"
               }
             },
@@ -720,7 +720,7 @@
                       "referencedDeclaration": 55,
                       "src": "692:17:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IAddressBook_$336",
+                        "typeIdentifier": "t_contract$_IAddressBook_$384",
                         "typeString": "contract IAddressBook"
                       }
                     },
@@ -752,10 +752,10 @@
                         "name": "IAddressBook",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 336,
+                        "referencedDeclaration": 384,
                         "src": "712:12:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IAddressBook_$336_$",
+                          "typeIdentifier": "t_type$_t_contract$_IAddressBook_$384_$",
                           "typeString": "type(contract IAddressBook)"
                         }
                       },
@@ -770,13 +770,13 @@
                       "src": "712:32:2",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IAddressBook_$336",
+                        "typeIdentifier": "t_contract$_IAddressBook_$384",
                         "typeString": "contract IAddressBook"
                       }
                     },
                     "src": "692:52:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IAddressBook_$336",
+                      "typeIdentifier": "t_contract$_IAddressBook_$384",
                       "typeString": "contract IAddressBook"
                     }
                   },
@@ -866,17 +866,17 @@
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$722",
+                        "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$770",
                         "typeString": "contract IOwnedUpgradeabilityProxy"
                       },
                       "typeName": {
                         "id": 74,
                         "name": "IOwnedUpgradeabilityProxy",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 722,
+                        "referencedDeclaration": 770,
                         "src": "1215:25:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$722",
+                          "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$770",
                           "typeString": "contract IOwnedUpgradeabilityProxy"
                         }
                       },
@@ -900,7 +900,7 @@
                                 "referencedDeclaration": 55,
                                 "src": "1307:17:2",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_IAddressBook_$336",
+                                  "typeIdentifier": "t_contract$_IAddressBook_$384",
                                   "typeString": "contract IAddressBook"
                                 }
                               },
@@ -911,7 +911,7 @@
                               "lValueRequested": false,
                               "memberName": "getController",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 261,
+                              "referencedDeclaration": 309,
                               "src": "1307:31:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_external_view$__$returns$_t_address_$",
@@ -988,10 +988,10 @@
                       "name": "IOwnedUpgradeabilityProxy",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 722,
+                      "referencedDeclaration": 770,
                       "src": "1260:25:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_type$_t_contract$_IOwnedUpgradeabilityProxy_$722_$",
+                        "typeIdentifier": "t_type$_t_contract$_IOwnedUpgradeabilityProxy_$770_$",
                         "typeString": "type(contract IOwnedUpgradeabilityProxy)"
                       }
                     },
@@ -1006,7 +1006,7 @@
                     "src": "1260:91:2",
                     "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$722",
+                      "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$770",
                       "typeString": "contract IOwnedUpgradeabilityProxy"
                     }
                   },
@@ -1026,7 +1026,7 @@
                         "referencedDeclaration": 75,
                         "src": "1369:16:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$722",
+                          "typeIdentifier": "t_contract$_IOwnedUpgradeabilityProxy_$770",
                           "typeString": "contract IOwnedUpgradeabilityProxy"
                         }
                       },
@@ -1037,7 +1037,7 @@
                       "lValueRequested": false,
                       "memberName": "implementation",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 699,
+                      "referencedDeclaration": 747,
                       "src": "1369:31:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$__$returns$_t_address_$",
@@ -1145,7 +1145,7 @@
     }
   },
   "schemaVersion": "3.3.0",
-  "updatedAt": "2020-10-16T01:05:17.961Z",
+  "updatedAt": "2020-10-16T02:57:01.541Z",
   "devdoc": {
     "author": "The PermanentLoss contributors",
     "kind": "dev",
