@@ -32,7 +32,15 @@ function App() {
 
   function ApyElement() {
     if (selectedPut || selectedCall) {
-      return <ApyCalculator put={selectedPut} call={selectedCall}></ApyCalculator>
+      return <ApyCalculator put={selectedPut} call={selectedCall} onRemoveOption={removeOption}></ApyCalculator>
+    }
+  }
+
+  function removeOption(option) {
+    if (option.isPut) {
+      setSelectedPut(null);
+    } else {
+      setSelectedCall(null);
     }
   }
 
@@ -50,7 +58,8 @@ function App() {
                 <OptionsILGraph 
                 web3Provider={provider ?? DEFAULT_PROVIDER}
                 setSelectedPut={setSelectedPut} 
-                setSelectedCall={setSelectedCall}/>
+                setSelectedCall={setSelectedCall}
+                />
                 {ApyElement()}
               </div>
             }
