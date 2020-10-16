@@ -38,6 +38,10 @@
       "type": "fallback"
     },
     {
+      "stateMutability": "payable",
+      "type": "receive"
+    },
+    {
       "inputs": [],
       "name": "implementation",
       "outputs": [
@@ -108,7 +112,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.3+commit.9bfce1f6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"ProxyOwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"impl\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"proxyOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newOwner\",\"type\":\"address\"}],\"name\":\"transferProxyOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_implementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_implementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"_data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IOwnedUpgradeabilityProxy.sol\":\"IOwnedUpgradeabilityProxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IOwnedUpgradeabilityProxy.sol\":{\"keccak256\":\"0xde76491a3cd6567ccff4472eedabef361be95fe5e68d5bd368446e79502f0789\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e59e372d77e47a77e4a0f3e97a851f7a8f96a5ad38ecf49989ff7e022caf9819\",\"dweb:/ipfs/QmXc5X65vRY1hpgBRpxyJgScKNRCSvbpAq8hYBdPpGkZH2\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.3+commit.9bfce1f6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"ProxyOwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"implementation\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"impl\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"proxyOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newOwner\",\"type\":\"address\"}],\"name\":\"transferProxyOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_implementation\",\"type\":\"address\"}],\"name\":\"upgradeTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_implementation\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"_data\",\"type\":\"bytes\"}],\"name\":\"upgradeToAndCall\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IOwnedUpgradeabilityProxy.sol\":\"IOwnedUpgradeabilityProxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IOwnedUpgradeabilityProxy.sol\":{\"keccak256\":\"0x8f8c41bfe3caf39ddb10a58664d8d144d175228b0f2d669093c596edcf857714\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://35a34209499eca217c0a0a70ea6cc80b57632d8933800a36bb25264346dc72ce\",\"dweb:/ipfs/QmWYtwdeKZ46QLHetdwRAvUEoRYgKQT4qkyTwjTcEtqHzw\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -116,21 +120,21 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: MIT\n// !! THIS FILE WAS AUTOGENERATED BY abi-to-sol. SEE BELOW FOR SOURCE. !!\npragma solidity ^0.7.0;\npragma experimental ABIEncoderV2;\n\ninterface IOwnedUpgradeabilityProxy {\n    event ProxyOwnershipTransferred(address previousOwner, address newOwner);\n    event Upgraded(address indexed implementation);\n\n    fallback() external payable;\n\n    function implementation() external view returns (address impl);\n\n    function proxyOwner() external view returns (address owner);\n\n    function transferProxyOwnership(address _newOwner) external;\n\n    function upgradeTo(address _implementation) external;\n\n    function upgradeToAndCall(address _implementation, bytes memory _data)\n        external\n        payable;\n}\n",
+  "source": "// SPDX-License-Identifier: MIT\n// !! THIS FILE WAS AUTOGENERATED BY abi-to-sol. SEE BELOW FOR SOURCE. !!\npragma solidity ^0.7.0;\npragma experimental ABIEncoderV2;\n\ninterface IOwnedUpgradeabilityProxy {\n    event ProxyOwnershipTransferred(address previousOwner, address newOwner);\n    event Upgraded(address indexed implementation);\n\n    fallback() external payable;\n\n    receive() external payable;\n\n    function implementation() external view returns (address impl);\n\n    function proxyOwner() external view returns (address owner);\n\n    function transferProxyOwnership(address _newOwner) external;\n\n    function upgradeTo(address _implementation) external;\n\n    function upgradeToAndCall(address _implementation, bytes memory _data)\n        external\n        payable;\n}\n",
   "sourcePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IOwnedUpgradeabilityProxy.sol",
   "ast": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IOwnedUpgradeabilityProxy.sol",
     "exportedSymbols": {
       "IOwnedUpgradeabilityProxy": [
-        571
+        722
       ]
     },
-    "id": 572,
+    "id": 723,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 529,
+        "id": 677,
         "literals": [
           "solidity",
           "^",
@@ -138,16 +142,16 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "106:23:5"
+        "src": "106:23:6"
       },
       {
-        "id": 530,
+        "id": 678,
         "literals": [
           "experimental",
           "ABIEncoderV2"
         ],
         "nodeType": "PragmaDirective",
-        "src": "130:33:5"
+        "src": "130:33:6"
       },
       {
         "abstract": false,
@@ -155,31 +159,31 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 571,
+        "id": 722,
         "linearizedBaseContracts": [
-          571
+          722
         ],
         "name": "IOwnedUpgradeabilityProxy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "anonymous": false,
-            "id": 536,
+            "id": 684,
             "name": "ProxyOwnershipTransferred",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 535,
+              "id": 683,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 532,
+                  "id": 680,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "previousOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 536,
-                  "src": "239:21:5",
+                  "scope": 684,
+                  "src": "239:21:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -187,10 +191,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 531,
+                    "id": 679,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "239:7:5",
+                    "src": "239:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -201,13 +205,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 534,
+                  "id": 682,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "newOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 536,
-                  "src": "262:16:5",
+                  "scope": 684,
+                  "src": "262:16:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -215,10 +219,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 533,
+                    "id": 681,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "262:7:5",
+                    "src": "262:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -228,28 +232,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "238:41:5"
+              "src": "238:41:6"
             },
-            "src": "207:73:5"
+            "src": "207:73:6"
           },
           {
             "anonymous": false,
-            "id": 540,
+            "id": 688,
             "name": "Upgraded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 539,
+              "id": 687,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 538,
+                  "id": 686,
                   "indexed": true,
                   "mutability": "mutable",
                   "name": "implementation",
                   "nodeType": "VariableDeclaration",
-                  "scope": 540,
-                  "src": "300:30:5",
+                  "scope": 688,
+                  "src": "300:30:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -257,10 +261,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 537,
+                    "id": 685,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "300:7:5",
+                    "src": "300:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -270,61 +274,86 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "299:32:5"
+              "src": "299:32:6"
             },
-            "src": "285:47:5"
+            "src": "285:47:6"
           },
           {
-            "id": 543,
+            "id": 691,
             "implemented": false,
             "kind": "fallback",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 541,
+              "id": 689,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "346:2:5"
+              "src": "346:2:6"
             },
             "returnParameters": {
-              "id": 542,
+              "id": 690,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "365:0:5"
+              "src": "365:0:6"
             },
-            "scope": 571,
-            "src": "338:28:5",
+            "scope": 722,
+            "src": "338:28:6",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 694,
+            "implemented": false,
+            "kind": "receive",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 692,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "379:2:6"
+            },
+            "returnParameters": {
+              "id": 693,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "398:0:6"
+            },
+            "scope": 722,
+            "src": "372:27:6",
             "stateMutability": "payable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "5c60da1b",
-            "id": 548,
+            "id": 699,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "implementation",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 544,
+              "id": 695,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "395:2:5"
+              "src": "428:2:6"
             },
             "returnParameters": {
-              "id": 547,
+              "id": 698,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 546,
+                  "id": 697,
                   "mutability": "mutable",
                   "name": "impl",
                   "nodeType": "VariableDeclaration",
-                  "scope": 548,
-                  "src": "421:12:5",
+                  "scope": 699,
+                  "src": "454:12:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -332,10 +361,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 545,
+                    "id": 696,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "421:7:5",
+                    "src": "454:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -345,40 +374,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "420:14:5"
+              "src": "453:14:6"
             },
-            "scope": 571,
-            "src": "372:63:5",
+            "scope": 722,
+            "src": "405:63:6",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "025313a2",
-            "id": 553,
+            "id": 704,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "proxyOwner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 549,
+              "id": 700,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "460:2:5"
+              "src": "493:2:6"
             },
             "returnParameters": {
-              "id": 552,
+              "id": 703,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 551,
+                  "id": 702,
                   "mutability": "mutable",
                   "name": "owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 553,
-                  "src": "486:13:5",
+                  "scope": 704,
+                  "src": "519:13:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -386,10 +415,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 550,
+                    "id": 701,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "486:7:5",
+                    "src": "519:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -399,34 +428,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "485:15:5"
+              "src": "518:15:6"
             },
-            "scope": 571,
-            "src": "441:60:5",
+            "scope": 722,
+            "src": "474:60:6",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "f1739cae",
-            "id": 558,
+            "id": 709,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "transferProxyOwnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 556,
+              "id": 707,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 555,
+                  "id": 706,
                   "mutability": "mutable",
                   "name": "_newOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 558,
-                  "src": "539:17:5",
+                  "scope": 709,
+                  "src": "572:17:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -434,10 +463,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 554,
+                    "id": 705,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "539:7:5",
+                    "src": "572:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -447,40 +476,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "538:19:5"
+              "src": "571:19:6"
             },
             "returnParameters": {
-              "id": 557,
+              "id": 708,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "566:0:5"
+              "src": "599:0:6"
             },
-            "scope": 571,
-            "src": "507:60:5",
+            "scope": 722,
+            "src": "540:60:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "3659cfe6",
-            "id": 563,
+            "id": 714,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "upgradeTo",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 561,
+              "id": 712,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 560,
+                  "id": 711,
                   "mutability": "mutable",
                   "name": "_implementation",
                   "nodeType": "VariableDeclaration",
-                  "scope": 563,
-                  "src": "592:23:5",
+                  "scope": 714,
+                  "src": "625:23:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -488,10 +517,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 559,
+                    "id": 710,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "592:7:5",
+                    "src": "625:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -501,40 +530,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "591:25:5"
+              "src": "624:25:6"
             },
             "returnParameters": {
-              "id": 562,
+              "id": 713,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "625:0:5"
+              "src": "658:0:6"
             },
-            "scope": 571,
-            "src": "573:53:5",
+            "scope": 722,
+            "src": "606:53:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "4f1ef286",
-            "id": 570,
+            "id": 721,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "upgradeToAndCall",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 568,
+              "id": 719,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 565,
+                  "id": 716,
                   "mutability": "mutable",
                   "name": "_implementation",
                   "nodeType": "VariableDeclaration",
-                  "scope": 570,
-                  "src": "658:23:5",
+                  "scope": 721,
+                  "src": "691:23:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -542,10 +571,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 564,
+                    "id": 715,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "658:7:5",
+                    "src": "691:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -556,12 +585,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 567,
+                  "id": 718,
                   "mutability": "mutable",
                   "name": "_data",
                   "nodeType": "VariableDeclaration",
-                  "scope": 570,
-                  "src": "683:18:5",
+                  "scope": 721,
+                  "src": "716:18:6",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -569,10 +598,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 566,
+                    "id": 717,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "683:5:5",
+                    "src": "716:5:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -581,40 +610,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "657:45:5"
+              "src": "690:45:6"
             },
             "returnParameters": {
-              "id": 569,
+              "id": 720,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "735:0:5"
+              "src": "768:0:6"
             },
-            "scope": 571,
-            "src": "632:104:5",
+            "scope": 722,
+            "src": "665:104:6",
             "stateMutability": "payable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 572,
-        "src": "165:573:5"
+        "scope": 723,
+        "src": "165:606:6"
       }
     ],
-    "src": "106:633:5"
+    "src": "106:666:6"
   },
   "legacyAST": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IOwnedUpgradeabilityProxy.sol",
     "exportedSymbols": {
       "IOwnedUpgradeabilityProxy": [
-        571
+        722
       ]
     },
-    "id": 572,
+    "id": 723,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 529,
+        "id": 677,
         "literals": [
           "solidity",
           "^",
@@ -622,16 +651,16 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "106:23:5"
+        "src": "106:23:6"
       },
       {
-        "id": 530,
+        "id": 678,
         "literals": [
           "experimental",
           "ABIEncoderV2"
         ],
         "nodeType": "PragmaDirective",
-        "src": "130:33:5"
+        "src": "130:33:6"
       },
       {
         "abstract": false,
@@ -639,31 +668,31 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 571,
+        "id": 722,
         "linearizedBaseContracts": [
-          571
+          722
         ],
         "name": "IOwnedUpgradeabilityProxy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "anonymous": false,
-            "id": 536,
+            "id": 684,
             "name": "ProxyOwnershipTransferred",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 535,
+              "id": 683,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 532,
+                  "id": 680,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "previousOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 536,
-                  "src": "239:21:5",
+                  "scope": 684,
+                  "src": "239:21:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -671,10 +700,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 531,
+                    "id": 679,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "239:7:5",
+                    "src": "239:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -685,13 +714,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 534,
+                  "id": 682,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "newOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 536,
-                  "src": "262:16:5",
+                  "scope": 684,
+                  "src": "262:16:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -699,10 +728,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 533,
+                    "id": 681,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "262:7:5",
+                    "src": "262:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -712,28 +741,28 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "238:41:5"
+              "src": "238:41:6"
             },
-            "src": "207:73:5"
+            "src": "207:73:6"
           },
           {
             "anonymous": false,
-            "id": 540,
+            "id": 688,
             "name": "Upgraded",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 539,
+              "id": 687,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 538,
+                  "id": 686,
                   "indexed": true,
                   "mutability": "mutable",
                   "name": "implementation",
                   "nodeType": "VariableDeclaration",
-                  "scope": 540,
-                  "src": "300:30:5",
+                  "scope": 688,
+                  "src": "300:30:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -741,10 +770,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 537,
+                    "id": 685,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "300:7:5",
+                    "src": "300:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -754,61 +783,86 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "299:32:5"
+              "src": "299:32:6"
             },
-            "src": "285:47:5"
+            "src": "285:47:6"
           },
           {
-            "id": 543,
+            "id": 691,
             "implemented": false,
             "kind": "fallback",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 541,
+              "id": 689,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "346:2:5"
+              "src": "346:2:6"
             },
             "returnParameters": {
-              "id": 542,
+              "id": 690,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "365:0:5"
+              "src": "365:0:6"
             },
-            "scope": 571,
-            "src": "338:28:5",
+            "scope": 722,
+            "src": "338:28:6",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 694,
+            "implemented": false,
+            "kind": "receive",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 692,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "379:2:6"
+            },
+            "returnParameters": {
+              "id": 693,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "398:0:6"
+            },
+            "scope": 722,
+            "src": "372:27:6",
             "stateMutability": "payable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "5c60da1b",
-            "id": 548,
+            "id": 699,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "implementation",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 544,
+              "id": 695,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "395:2:5"
+              "src": "428:2:6"
             },
             "returnParameters": {
-              "id": 547,
+              "id": 698,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 546,
+                  "id": 697,
                   "mutability": "mutable",
                   "name": "impl",
                   "nodeType": "VariableDeclaration",
-                  "scope": 548,
-                  "src": "421:12:5",
+                  "scope": 699,
+                  "src": "454:12:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -816,10 +870,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 545,
+                    "id": 696,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "421:7:5",
+                    "src": "454:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -829,40 +883,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "420:14:5"
+              "src": "453:14:6"
             },
-            "scope": 571,
-            "src": "372:63:5",
+            "scope": 722,
+            "src": "405:63:6",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "025313a2",
-            "id": 553,
+            "id": 704,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "proxyOwner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 549,
+              "id": 700,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "460:2:5"
+              "src": "493:2:6"
             },
             "returnParameters": {
-              "id": 552,
+              "id": 703,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 551,
+                  "id": 702,
                   "mutability": "mutable",
                   "name": "owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 553,
-                  "src": "486:13:5",
+                  "scope": 704,
+                  "src": "519:13:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -870,10 +924,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 550,
+                    "id": 701,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "486:7:5",
+                    "src": "519:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -883,34 +937,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "485:15:5"
+              "src": "518:15:6"
             },
-            "scope": 571,
-            "src": "441:60:5",
+            "scope": 722,
+            "src": "474:60:6",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "f1739cae",
-            "id": 558,
+            "id": 709,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "transferProxyOwnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 556,
+              "id": 707,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 555,
+                  "id": 706,
                   "mutability": "mutable",
                   "name": "_newOwner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 558,
-                  "src": "539:17:5",
+                  "scope": 709,
+                  "src": "572:17:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -918,10 +972,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 554,
+                    "id": 705,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "539:7:5",
+                    "src": "572:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -931,40 +985,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "538:19:5"
+              "src": "571:19:6"
             },
             "returnParameters": {
-              "id": 557,
+              "id": 708,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "566:0:5"
+              "src": "599:0:6"
             },
-            "scope": 571,
-            "src": "507:60:5",
+            "scope": 722,
+            "src": "540:60:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "3659cfe6",
-            "id": 563,
+            "id": 714,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "upgradeTo",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 561,
+              "id": 712,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 560,
+                  "id": 711,
                   "mutability": "mutable",
                   "name": "_implementation",
                   "nodeType": "VariableDeclaration",
-                  "scope": 563,
-                  "src": "592:23:5",
+                  "scope": 714,
+                  "src": "625:23:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -972,10 +1026,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 559,
+                    "id": 710,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "592:7:5",
+                    "src": "625:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -985,40 +1039,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "591:25:5"
+              "src": "624:25:6"
             },
             "returnParameters": {
-              "id": 562,
+              "id": 713,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "625:0:5"
+              "src": "658:0:6"
             },
-            "scope": 571,
-            "src": "573:53:5",
+            "scope": 722,
+            "src": "606:53:6",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "4f1ef286",
-            "id": 570,
+            "id": 721,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "upgradeToAndCall",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 568,
+              "id": 719,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 565,
+                  "id": 716,
                   "mutability": "mutable",
                   "name": "_implementation",
                   "nodeType": "VariableDeclaration",
-                  "scope": 570,
-                  "src": "658:23:5",
+                  "scope": 721,
+                  "src": "691:23:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1026,10 +1080,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 564,
+                    "id": 715,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "658:7:5",
+                    "src": "691:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1040,12 +1094,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 567,
+                  "id": 718,
                   "mutability": "mutable",
                   "name": "_data",
                   "nodeType": "VariableDeclaration",
-                  "scope": 570,
-                  "src": "683:18:5",
+                  "scope": 721,
+                  "src": "716:18:6",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1053,10 +1107,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 566,
+                    "id": 717,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "683:5:5",
+                    "src": "716:5:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -1065,26 +1119,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "657:45:5"
+              "src": "690:45:6"
             },
             "returnParameters": {
-              "id": 569,
+              "id": 720,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "735:0:5"
+              "src": "768:0:6"
             },
-            "scope": 571,
-            "src": "632:104:5",
+            "scope": 722,
+            "src": "665:104:6",
             "stateMutability": "payable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 572,
-        "src": "165:573:5"
+        "scope": 723,
+        "src": "165:606:6"
       }
     ],
-    "src": "106:633:5"
+    "src": "106:666:6"
   },
   "compiler": {
     "name": "solc",
@@ -1092,7 +1146,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.0",
-  "updatedAt": "2020-10-12T21:27:32.286Z",
+  "updatedAt": "2020-10-16T01:05:17.995Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

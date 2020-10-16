@@ -15,7 +15,7 @@
     "lint": "eslint . --ext js",
     "truffle:migrate": "doppler run --command='npx truffle migrate --network rinkeby'",
     "truffle:console": "doppler run --command='npx truffle console --network rinkeby'",
-    "truffle:test": "doppler run --command='npx ganache-cli -i 4 -q -f $INFURA_URL & npx truffle test && kill $! && exit 0'"
+    "truffle:test": "doppler run --command='npx ganache-cli -i 4 -q -f $INFURA_URL -u $USDC -u $DEPLOYER_ACCOUNT & npx truffle test && kill $! && exit 0'"
   },
   "husky": {
     "hooks": {
@@ -32,11 +32,13 @@
     ]
   },
   "devDependencies": {
+    "@openzeppelin/test-helpers": "^0.5.7",
     "babel-eslint": "^10.1.0",
     "chai": "^4.2.0",
     "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "ethers": "^5.0.17",
     "ganache-cli": "^6.12.0",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
