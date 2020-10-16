@@ -24,56 +24,36 @@
       ],
       "stateMutability": "view",
       "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getOpynV2Controller",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.3+commit.9bfce1f6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_OpynV2AddressBook\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"OpynV2AddressBook\",\"outputs\":[{\"internalType\":\"contract IAddressBook\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getOpynV2Controller\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getOpynV2Controller()\":{\"details\":\"Opyn v2 uses proxies to deploy upgradable contracts and this is why we can not return OpynV2AddressBook.getController() directly\",\"returns\":{\"_0\":\"Address of the current Controller implementation contract\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"OpynV2AddressBook()\":{\"notice\":\"Provides addresses for all modules in Opyn v2\"},\"getOpynV2Controller()\":{\"notice\":\"Get the address of the contract that controls the Gamma Protocol (Opyn v2) and the interaction of all sub contracts in the current network\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OptionsStrategies.sol\":\"OptionsStrategies\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OptionsStrategies.sol\":{\"keccak256\":\"0xd5b2d98000f76489618375452f507d85e1fd487f55e7c6a5fba0cf0812d919a5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://81f5b9f99efb84bf092b7cc649681c638afccbb7682b3d5cfbc763ea0efa5407\",\"dweb:/ipfs/QmUMT8wu9imCA8cXxi4YWqnKbTtJmA7gRxtJRxV2uvc9Ag\"]},\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol\":{\"keccak256\":\"0x507464a80b1e97718f56ba8e50b4f6b049e102807b202cec4f7be6909bee6422\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://06cde58e764e96701fb891d119a6ea47092bb0b5cde3df2dbd16a7acb76c4fa4\",\"dweb:/ipfs/QmcKxv3FBKWwLR8RQJaGHx4yvVJoJvXvWdh5eP4EN3JB7N\"]},\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IAddressBook.sol\":{\"keccak256\":\"0xbdb6f9a1d77734f3548256b9ba8b25926196553080348dacfa9c4638a002de28\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2c984025569d6138a2df18087492902c0977d2e6bfb5df25a0ec42d3a0053e59\",\"dweb:/ipfs/Qmdo6hYXQrDs9kRsrAoeKETxyJ4J3bctncVs9x4X63UjKb\"]},\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IOwnedUpgradeabilityProxy.sol\":{\"keccak256\":\"0x8f8c41bfe3caf39ddb10a58664d8d144d175228b0f2d669093c596edcf857714\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://35a34209499eca217c0a0a70ea6cc80b57632d8933800a36bb25264346dc72ce\",\"dweb:/ipfs/QmWYtwdeKZ46QLHetdwRAvUEoRYgKQT4qkyTwjTcEtqHzw\"]}},\"version\":1}",
-  "bytecode": "0x60a060405234801561001057600080fd5b506040516102293803806102298339818101604052602081101561003357600080fd5b5051606081901b6001600160601b0319166080526001600160a01b03166101bf61006a6000398060695280609052506101bf6000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c8063454b07f91461003b578063b2e38f161461005f575b600080fd5b610043610067565b604080516001600160a01b039092168252519081900360200190f35b61004361008b565b7f000000000000000000000000000000000000000000000000000000000000000081565b6000807f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316633018205f6040518163ffffffff1660e01b815260040160206040518083038186803b1580156100e757600080fd5b505afa1580156100fb573d6000803e3d6000fd5b505050506040513d602081101561011157600080fd5b505160408051635c60da1b60e01b815290519192506001600160a01b03831691635c60da1b91600480820192602092909190829003018186803b15801561015757600080fd5b505afa15801561016b573d6000803e3d6000fd5b505050506040513d602081101561018157600080fd5b50519150509056fea26469706673582212205c9fec40b5306a59c00d581d98dc57d9373e1977c995f0f19c4cceff5268cf0164736f6c63430007030033",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c8063454b07f91461003b578063b2e38f161461005f575b600080fd5b610043610067565b604080516001600160a01b039092168252519081900360200190f35b61004361008b565b7f000000000000000000000000000000000000000000000000000000000000000081565b6000807f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316633018205f6040518163ffffffff1660e01b815260040160206040518083038186803b1580156100e757600080fd5b505afa1580156100fb573d6000803e3d6000fd5b505050506040513d602081101561011157600080fd5b505160408051635c60da1b60e01b815290519192506001600160a01b03831691635c60da1b91600480820192602092909190829003018186803b15801561015757600080fd5b505afa15801561016b573d6000803e3d6000fd5b505050506040513d602081101561018157600080fd5b50519150509056fea26469706673582212205c9fec40b5306a59c00d581d98dc57d9373e1977c995f0f19c4cceff5268cf0164736f6c63430007030033",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.3+commit.9bfce1f6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_OpynV2AddressBook\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"OpynV2AddressBook\",\"outputs\":[{\"internalType\":\"contract IAddressBook\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"OpynV2AddressBook()\":{\"notice\":\"Provides addresses for all modules in Opyn v2\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OptionsStrategies.sol\":\"OptionsStrategies\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OptionsStrategies.sol\":{\"keccak256\":\"0xd5b2d98000f76489618375452f507d85e1fd487f55e7c6a5fba0cf0812d919a5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://81f5b9f99efb84bf092b7cc649681c638afccbb7682b3d5cfbc763ea0efa5407\",\"dweb:/ipfs/QmUMT8wu9imCA8cXxi4YWqnKbTtJmA7gRxtJRxV2uvc9Ag\"]},\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol\":{\"keccak256\":\"0xbcf89e2130bfe3bbe275318a1ab0a01ebadd6f7eb9caf74451ca2610b1c8ca51\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3682437b8b223d960ca40b622ab63dfc2185042f86075ce2c43223a174d62349\",\"dweb:/ipfs/QmYZS4VH9vkttuUUrPQ9z5SD4qPu9dqriLHturPpYZpZ8K\"]},\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IAddressBook.sol\":{\"keccak256\":\"0xbdb6f9a1d77734f3548256b9ba8b25926196553080348dacfa9c4638a002de28\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2c984025569d6138a2df18087492902c0977d2e6bfb5df25a0ec42d3a0053e59\",\"dweb:/ipfs/Qmdo6hYXQrDs9kRsrAoeKETxyJ4J3bctncVs9x4X63UjKb\"]}},\"version\":1}",
+  "bytecode": "0x60a060405234801561001057600080fd5b5060405161010d38038061010d8339818101604052602081101561003357600080fd5b5051606081901b6001600160601b0319166080526001600160a01b031660a9610064600039806051525060a96000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063454b07f914602d575b600080fd5b6033604f565b604080516001600160a01b039092168252519081900360200190f35b7f00000000000000000000000000000000000000000000000000000000000000008156fea2646970667358221220d12fab013a28228f0882b7a7fcc856fe1b8ce08bf82e6a6fa5f414694353ed7264736f6c63430007030033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063454b07f914602d575b600080fd5b6033604f565b604080516001600160a01b039092168252519081900360200190f35b7f00000000000000000000000000000000000000000000000000000000000000008156fea2646970667358221220d12fab013a28228f0882b7a7fcc856fe1b8ce08bf82e6a6fa5f414694353ed7264736f6c63430007030033",
   "immutableReferences": {
-    "55": [
+    "54": [
       {
         "length": 32,
-        "start": 105
-      },
-      {
-        "length": 32,
-        "start": 144
+        "start": 81
       }
     ]
   },
   "generatedSources": [],
   "deployedGeneratedSources": [],
-  "sourceMap": "88:128:1:-:0;;;138:76;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;138:76:1;692:52:2;;;;-1:-1:-1;;;;;;692:52:2;;;-1:-1:-1;;;;;88:128:1;;;;;;;;",
-  "deployedSourceMap": "88:128:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;402:47:2;;;:::i;:::-;;;;-1:-1:-1;;;;;402:47:2;;;;;;;;;;;;;;1144:265;;;:::i;402:47::-;;;:::o;1144:265::-;1196:7;1215:42;1307:17;-1:-1:-1;;;;;1307:31:2;;:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1307:33:2;1369;;;-1:-1:-1;;;1369:33:2;;;;1307;;-1:-1:-1;;;;;;1369:31:2;;;;;:33;;;;;1307;;1369;;;;;;;;:31;:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1369:33:2;;-1:-1:-1;;1144:265:2;:::o",
+  "sourceMap": "88:128:1:-:0;;;138:76;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;138:76:1;639:52:2;;;;-1:-1:-1;;;;;;639:52:2;;;-1:-1:-1;;;;;88:128:1;;;;;;;;",
+  "deployedSourceMap": "88:128:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;349:47:2;;;:::i;:::-;;;;-1:-1:-1;;;;;349:47:2;;;;;;;;;;;;;;;;;:::o",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.7.0;\n\nimport \"./OpynV2Helpers.sol\";\n\ncontract OptionsStrategies is OpynV2Helpers {\n    constructor(address _OpynV2AddressBook) OpynV2Helpers(_OpynV2AddressBook) {}\n}\n",
   "sourcePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OptionsStrategies.sol",
   "ast": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OptionsStrategies.sol",
     "exportedSymbols": {
       "IAddressBook": [
-        384
-      ],
-      "IOwnedUpgradeabilityProxy": [
-        770
+        432
       ],
       "OptionsStrategies": [
         47
       ],
       "OpynV2Helpers": [
-        91
+        68
       ]
     },
     "id": 48,
@@ -97,7 +77,7 @@
         "id": 35,
         "nodeType": "ImportDirective",
         "scope": 48,
-        "sourceUnit": 92,
+        "sourceUnit": 69,
         "src": "57:29:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -110,10 +90,10 @@
               "id": 36,
               "name": "OpynV2Helpers",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 91,
+              "referencedDeclaration": 68,
               "src": "118:13:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_OpynV2Helpers_$91",
+                "typeIdentifier": "t_contract$_OpynV2Helpers_$68",
                 "typeString": "contract OpynV2Helpers"
               }
             },
@@ -123,14 +103,14 @@
           }
         ],
         "contractDependencies": [
-          91
+          68
         ],
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 47,
         "linearizedBaseContracts": [
           47,
-          91
+          68
         ],
         "name": "OptionsStrategies",
         "nodeType": "ContractDefinition",
@@ -167,10 +147,10 @@
                   "name": "OpynV2Helpers",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 91,
+                  "referencedDeclaration": 68,
                   "src": "178:13:1",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_OpynV2Helpers_$91_$",
+                    "typeIdentifier": "t_type$_t_contract$_OpynV2Helpers_$68_$",
                     "typeString": "type(contract OpynV2Helpers)"
                   }
                 },
@@ -237,16 +217,13 @@
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OptionsStrategies.sol",
     "exportedSymbols": {
       "IAddressBook": [
-        384
-      ],
-      "IOwnedUpgradeabilityProxy": [
-        770
+        432
       ],
       "OptionsStrategies": [
         47
       ],
       "OpynV2Helpers": [
-        91
+        68
       ]
     },
     "id": 48,
@@ -270,7 +247,7 @@
         "id": 35,
         "nodeType": "ImportDirective",
         "scope": 48,
-        "sourceUnit": 92,
+        "sourceUnit": 69,
         "src": "57:29:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -283,10 +260,10 @@
               "id": 36,
               "name": "OpynV2Helpers",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 91,
+              "referencedDeclaration": 68,
               "src": "118:13:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_OpynV2Helpers_$91",
+                "typeIdentifier": "t_contract$_OpynV2Helpers_$68",
                 "typeString": "contract OpynV2Helpers"
               }
             },
@@ -296,14 +273,14 @@
           }
         ],
         "contractDependencies": [
-          91
+          68
         ],
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 47,
         "linearizedBaseContracts": [
           47,
-          91
+          68
         ],
         "name": "OptionsStrategies",
         "nodeType": "ContractDefinition",
@@ -340,10 +317,10 @@
                   "name": "OpynV2Helpers",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 91,
+                  "referencedDeclaration": 68,
                   "src": "178:13:1",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_OpynV2Helpers_$91_$",
+                    "typeIdentifier": "t_type$_t_contract$_OpynV2Helpers_$68_$",
                     "typeString": "type(contract OpynV2Helpers)"
                   }
                 },
@@ -419,17 +396,10 @@
     }
   },
   "schemaVersion": "3.3.0",
-  "updatedAt": "2020-10-16T02:57:01.539Z",
+  "updatedAt": "2020-10-16T21:56:52.600Z",
   "devdoc": {
     "kind": "dev",
-    "methods": {
-      "getOpynV2Controller()": {
-        "details": "Opyn v2 uses proxies to deploy upgradable contracts and this is why we can not return OpynV2AddressBook.getController() directly",
-        "returns": {
-          "_0": "Address of the current Controller implementation contract"
-        }
-      }
-    },
+    "methods": {},
     "version": 1
   },
   "userdoc": {
@@ -437,9 +407,6 @@
     "methods": {
       "OpynV2AddressBook()": {
         "notice": "Provides addresses for all modules in Opyn v2"
-      },
-      "getOpynV2Controller()": {
-        "notice": "Get the address of the contract that controls the Gamma Protocol (Opyn v2) and the interaction of all sub contracts in the current network"
       }
     },
     "version": 1

@@ -10,10 +10,15 @@ import {IController, Actions} from "./interfaces/IController.sol";
 
 contract VaultsManager is OpynV2Helpers {
     address[3] public validCollateral;
+    mapping(address => mapping(uint256 => uint256)) public ownerVaultIdBalance;
 
     enum Collateral {USDC, cUSDC, WETH}
 
-    event CreatedVault(address owner);
+    event CollateralizedVaultOpened(
+        address accountOwner,
+        uint256 vaultId,
+        uint256 amountDeposited
+    );
 
     constructor(address _OpynV2AddressBook, address[3] memory _validCollateral)
         OpynV2Helpers(_OpynV2AddressBook)
@@ -21,18 +26,19 @@ contract VaultsManager is OpynV2Helpers {
         validCollateral = _validCollateral;
     }
 
-    function createCollateralizedVault(
+    function openCollateralizedVault(
         Collateral _assetToDeposit,
         uint256 _amount
     ) public {
-        IController controller = IController(getOpynV2Controller());
+        IController controller = IController(OpynV2AddressBook.getController());
 
         require(
             !controller.systemFullyPaused(),
             "VaultsManager: The Opyn V2 system is currently fully paused"
         );
 
-        uint256 newVaultId = controller.getAccountVaultCounter(msg.sender) + 1;
+        uint256 newVaultId = controller.getAccountVaultCounter(address(this)) +
+            1;
 
         IERC20 collateral = IERC20(validCollateral[uint256(_assetToDeposit)]);
 
@@ -55,11 +61,31 @@ contract VaultsManager is OpynV2Helpers {
             "VaultsManager: Failed transfering collateral"
         );
 
-        Actions.ActionArgs[] memory actions;
+        address MarginPool = OpynV2AddressBook.getMarginPool();
+
+        bool firstApproveSuccess = collateral.approve(MarginPool, 0);
+        require(
+            firstApproveSuccess,
+            "VaultsManager: Failed setting collateral approve to 0"
+        );
+
+        bool secondApproveSuccess = collateral.approve(
+            MarginPool,
+            type(uint256).max
+        );
+        require(
+            secondApproveSuccess,
+            "VaultsManager: Failed setting collateral approve to 0"
+        );
+
+        ownerVaultIdBalance[msg.sender][newVaultId] = _amount;
+        emit CollateralizedVaultOpened(msg.sender, newVaultId, _amount);
+
+        Actions.ActionArgs[] memory actions = new Actions.ActionArgs[](2);
 
         actions[0] = Actions.ActionArgs({
             actionType: Actions.ActionType.OpenVault,
-            owner: msg.sender,
+            owner: address(this),
             secondAddress: address(0),
             asset: address(0),
             vaultId: newVaultId,
@@ -70,8 +96,8 @@ contract VaultsManager is OpynV2Helpers {
 
         actions[1] = Actions.ActionArgs({
             actionType: Actions.ActionType.DepositCollateral,
-            owner: msg.sender,
-            secondAddress: msg.sender,
+            owner: address(this),
+            secondAddress: address(this),
             asset: validCollateral[uint256(_assetToDeposit)],
             vaultId: newVaultId,
             amount: _amount,
@@ -80,7 +106,5 @@ contract VaultsManager is OpynV2Helpers {
         });
 
         controller.operate(actions);
-
-        emit CreatedVault(msg.sender);
     }
 }
