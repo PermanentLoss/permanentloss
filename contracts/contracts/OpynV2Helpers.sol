@@ -8,7 +8,7 @@ import "./interfaces/IAddressBook.sol";
 /// @notice Helper functions to easily interact with the Opyn v2 margin protocol
 contract OpynV2Helpers {
     /// @notice Provides addresses for all modules in Opyn v2
-    IAddressBook public immutable OpynV2AddressBook;
+    IAddressBook public OpynV2AddressBook;
 
     /// @notice Create a new contract that provides the Opyn v2 helper functions
     /// @param _OpynV2AddressBook The address of the AddressBook contract
