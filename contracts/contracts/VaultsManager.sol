@@ -24,6 +24,30 @@ contract VaultsManager is OpynV2Helpers {
         OpynV2Helpers(_OpynV2AddressBook)
     {
         validCollateral = _validCollateral;
+
+        address MarginPool = OpynV2AddressBook.getMarginPool();
+        IERC20 collateral;
+        bool firstApproveSuccess;
+        bool secondApproveSuccess;
+
+        for (uint8 i = 0; i < validCollateral.length; i++) {
+            collateral = IERC20(validCollateral[i]);
+
+            firstApproveSuccess = collateral.approve(MarginPool, 0);
+            require(
+                firstApproveSuccess,
+                "VaultsManager: Failed setting collateral approve to 0"
+            );
+
+            secondApproveSuccess = collateral.approve(
+                MarginPool,
+                type(uint256).max
+            );
+            require(
+                secondApproveSuccess,
+                "VaultsManager: Failed setting collateral approve to 0"
+            );
+        }
     }
 
     function openCollateralizedVault(
@@ -59,23 +83,6 @@ contract VaultsManager is OpynV2Helpers {
         require(
             transferSuccess,
             "VaultsManager: Failed transfering collateral"
-        );
-
-        address MarginPool = OpynV2AddressBook.getMarginPool();
-
-        bool firstApproveSuccess = collateral.approve(MarginPool, 0);
-        require(
-            firstApproveSuccess,
-            "VaultsManager: Failed setting collateral approve to 0"
-        );
-
-        bool secondApproveSuccess = collateral.approve(
-            MarginPool,
-            type(uint256).max
-        );
-        require(
-            secondApproveSuccess,
-            "VaultsManager: Failed setting collateral approve to 0"
         );
 
         ownerVaultIdBalance[msg.sender][newVaultId] = _amount;
