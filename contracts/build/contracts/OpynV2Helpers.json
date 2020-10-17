@@ -26,28 +26,21 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.3+commit.9bfce1f6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_OpynV2AddressBook\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"OpynV2AddressBook\",\"outputs\":[{\"internalType\":\"contract IAddressBook\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"The PermanentLoss contributors\",\"kind\":\"dev\",\"methods\":{\"constructor\":{\"params\":{\"_OpynV2AddressBook\":\"The address of the AddressBook contract on the current network\"}}},\"title\":\"Opyn v2 helper functions\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"OpynV2AddressBook()\":{\"notice\":\"Provides addresses for all modules in Opyn v2\"},\"constructor\":{\"notice\":\"Create a new contract that provides the Opyn v2 helper functions\"}},\"notice\":\"Helper functions to easily interact with the Opyn v2 margin protocol\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol\":\"OpynV2Helpers\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol\":{\"keccak256\":\"0xbcf89e2130bfe3bbe275318a1ab0a01ebadd6f7eb9caf74451ca2610b1c8ca51\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3682437b8b223d960ca40b622ab63dfc2185042f86075ce2c43223a174d62349\",\"dweb:/ipfs/QmYZS4VH9vkttuUUrPQ9z5SD4qPu9dqriLHturPpYZpZ8K\"]},\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IAddressBook.sol\":{\"keccak256\":\"0xbdb6f9a1d77734f3548256b9ba8b25926196553080348dacfa9c4638a002de28\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2c984025569d6138a2df18087492902c0977d2e6bfb5df25a0ec42d3a0053e59\",\"dweb:/ipfs/Qmdo6hYXQrDs9kRsrAoeKETxyJ4J3bctncVs9x4X63UjKb\"]}},\"version\":1}",
-  "bytecode": "0x60a060405234801561001057600080fd5b5060405161010d38038061010d8339818101604052602081101561003357600080fd5b5051606081901b6001600160601b0319166080526001600160a01b031660a9610064600039806051525060a96000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063454b07f914602d575b600080fd5b6033604f565b604080516001600160a01b039092168252519081900360200190f35b7f00000000000000000000000000000000000000000000000000000000000000008156fea264697066735822122077c9a9fdf0f4ddbb5eaabca003bac6acb60f2fef05b5b8236dd55b2f7dbd6c7664736f6c63430007030033",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063454b07f914602d575b600080fd5b6033604f565b604080516001600160a01b039092168252519081900360200190f35b7f00000000000000000000000000000000000000000000000000000000000000008156fea264697066735822122077c9a9fdf0f4ddbb5eaabca003bac6acb60f2fef05b5b8236dd55b2f7dbd6c7664736f6c63430007030033",
-  "immutableReferences": {
-    "54": [
-      {
-        "length": 32,
-        "start": 81
-      }
-    ]
-  },
+  "metadata": "{\"compiler\":{\"version\":\"0.7.3+commit.9bfce1f6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_OpynV2AddressBook\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"OpynV2AddressBook\",\"outputs\":[{\"internalType\":\"contract IAddressBook\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"The PermanentLoss contributors\",\"kind\":\"dev\",\"methods\":{\"constructor\":{\"params\":{\"_OpynV2AddressBook\":\"The address of the AddressBook contract on the current network\"}}},\"title\":\"Opyn v2 helper functions\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"OpynV2AddressBook()\":{\"notice\":\"Provides addresses for all modules in Opyn v2\"},\"constructor\":{\"notice\":\"Create a new contract that provides the Opyn v2 helper functions\"}},\"notice\":\"Helper functions to easily interact with the Opyn v2 margin protocol\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol\":\"OpynV2Helpers\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol\":{\"keccak256\":\"0x9e2b7d1bed90d837c9b1daf88b06d9003c993ff7afe4c4f6843103ba86e2c34e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c8575231e477a21e3f2de6e653b640d7338877b47773a8116e2992766ea07135\",\"dweb:/ipfs/QmSR6og9fJAaMMthhZkpi4twswo9XpDJrnUTD1hLVbVAyJ\"]},\"/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/interfaces/IAddressBook.sol\":{\"keccak256\":\"0xbdb6f9a1d77734f3548256b9ba8b25926196553080348dacfa9c4638a002de28\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2c984025569d6138a2df18087492902c0977d2e6bfb5df25a0ec42d3a0053e59\",\"dweb:/ipfs/Qmdo6hYXQrDs9kRsrAoeKETxyJ4J3bctncVs9x4X63UjKb\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516100f83803806100f88339818101604052602081101561003357600080fd5b5051600080546001600160a01b039092166001600160a01b03199092169190911790556094806100646000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063454b07f914602d575b600080fd5b6033604f565b604080516001600160a01b039092168252519081900360200190f35b6000546001600160a01b03168156fea26469706673582212205dd087a41491d67dd0c57c3c20bc4db4eebe92cbbdb90e21801203b7ffa7f40a64736f6c63430007030033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063454b07f914602d575b600080fd5b6033604f565b604080516001600160a01b039092168252519081900360200190f35b6000546001600160a01b03168156fea26469706673582212205dd087a41491d67dd0c57c3c20bc4db4eebe92cbbdb90e21801203b7ffa7f40a64736f6c63430007030033",
+  "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
-  "sourceMap": "258:442:2:-:0;;;589:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;589:109:2;639:52;;;;-1:-1:-1;;;;;;639:52:2;;;-1:-1:-1;;;;;258:442:2;;;;;;;;",
-  "deployedSourceMap": "258:442:2:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;349:47;;;:::i;:::-;;;;-1:-1:-1;;;;;349:47:2;;;;;;;;;;;;;;;;;:::o",
-  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.7.0;\n\nimport \"./interfaces/IAddressBook.sol\";\n\n/// @title Opyn v2 helper functions\n/// @author The PermanentLoss contributors\n/// @notice Helper functions to easily interact with the Opyn v2 margin protocol\ncontract OpynV2Helpers {\n    /// @notice Provides addresses for all modules in Opyn v2\n    IAddressBook public immutable OpynV2AddressBook;\n\n    /// @notice Create a new contract that provides the Opyn v2 helper functions\n    /// @param _OpynV2AddressBook The address of the AddressBook contract\n    /// on the current network\n    constructor(address _OpynV2AddressBook) {\n        OpynV2AddressBook = IAddressBook(_OpynV2AddressBook);\n    }\n}\n",
+  "sourceMap": "258:432:2:-:0;;;579:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;579:109:2;629:17;:52;;-1:-1:-1;;;;;629:52:2;;;-1:-1:-1;;;;;;629:52:2;;;;;;;;;258:432;;;;;;",
+  "deployedSourceMap": "258:432:2:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;349:37;;;:::i;:::-;;;;-1:-1:-1;;;;;349:37:2;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;349:37:2;;:::o",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.7.0;\n\nimport \"./interfaces/IAddressBook.sol\";\n\n/// @title Opyn v2 helper functions\n/// @author The PermanentLoss contributors\n/// @notice Helper functions to easily interact with the Opyn v2 margin protocol\ncontract OpynV2Helpers {\n    /// @notice Provides addresses for all modules in Opyn v2\n    IAddressBook public OpynV2AddressBook;\n\n    /// @notice Create a new contract that provides the Opyn v2 helper functions\n    /// @param _OpynV2AddressBook The address of the AddressBook contract\n    /// on the current network\n    constructor(address _OpynV2AddressBook) {\n        OpynV2AddressBook = IAddressBook(_OpynV2AddressBook);\n    }\n}\n",
   "sourcePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol",
   "ast": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol",
     "exportedSymbols": {
       "IAddressBook": [
-        432
+        712
       ],
       "OpynV2Helpers": [
         68
@@ -74,7 +67,7 @@
         "id": 50,
         "nodeType": "ImportDirective",
         "scope": 69,
-        "sourceUnit": 433,
+        "sourceUnit": 713,
         "src": "57:39:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -108,25 +101,25 @@
             },
             "functionSelector": "454b07f9",
             "id": 54,
-            "mutability": "immutable",
+            "mutability": "mutable",
             "name": "OpynV2AddressBook",
             "nodeType": "VariableDeclaration",
             "scope": 68,
-            "src": "349:47:2",
+            "src": "349:37:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IAddressBook_$432",
+              "typeIdentifier": "t_contract$_IAddressBook_$712",
               "typeString": "contract IAddressBook"
             },
             "typeName": {
               "id": 53,
               "name": "IAddressBook",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 432,
+              "referencedDeclaration": 712,
               "src": "349:12:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IAddressBook_$432",
+                "typeIdentifier": "t_contract$_IAddressBook_$712",
                 "typeString": "contract IAddressBook"
               }
             },
@@ -136,7 +129,7 @@
             "body": {
               "id": 66,
               "nodeType": "Block",
-              "src": "629:69:2",
+              "src": "619:69:2",
               "statements": [
                 {
                   "expression": {
@@ -151,9 +144,9 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 54,
-                      "src": "639:17:2",
+                      "src": "629:17:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IAddressBook_$432",
+                        "typeIdentifier": "t_contract$_IAddressBook_$712",
                         "typeString": "contract IAddressBook"
                       }
                     },
@@ -167,7 +160,7 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 57,
-                          "src": "672:18:2",
+                          "src": "662:18:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -185,10 +178,10 @@
                         "name": "IAddressBook",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 432,
-                        "src": "659:12:2",
+                        "referencedDeclaration": 712,
+                        "src": "649:12:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IAddressBook_$432_$",
+                          "typeIdentifier": "t_type$_t_contract$_IAddressBook_$712_$",
                           "typeString": "type(contract IAddressBook)"
                         }
                       },
@@ -200,29 +193,29 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "659:32:2",
+                      "src": "649:32:2",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IAddressBook_$432",
+                        "typeIdentifier": "t_contract$_IAddressBook_$712",
                         "typeString": "contract IAddressBook"
                       }
                     },
-                    "src": "639:52:2",
+                    "src": "629:52:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IAddressBook_$432",
+                      "typeIdentifier": "t_contract$_IAddressBook_$712",
                       "typeString": "contract IAddressBook"
                     }
                   },
                   "id": 65,
                   "nodeType": "ExpressionStatement",
-                  "src": "639:52:2"
+                  "src": "629:52:2"
                 }
               ]
             },
             "documentation": {
               "id": 55,
               "nodeType": "StructuredDocumentation",
-              "src": "403:181:2",
+              "src": "393:181:2",
               "text": "@notice Create a new contract that provides the Opyn v2 helper functions\n @param _OpynV2AddressBook The address of the AddressBook contract\n on the current network"
             },
             "id": 67,
@@ -242,7 +235,7 @@
                   "name": "_OpynV2AddressBook",
                   "nodeType": "VariableDeclaration",
                   "scope": 67,
-                  "src": "601:26:2",
+                  "src": "591:26:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -253,7 +246,7 @@
                     "id": 56,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "601:7:2",
+                    "src": "591:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -263,32 +256,32 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "600:28:2"
+              "src": "590:28:2"
             },
             "returnParameters": {
               "id": 59,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "629:0:2"
+              "src": "619:0:2"
             },
             "scope": 68,
-            "src": "589:109:2",
+            "src": "579:109:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
         "scope": 69,
-        "src": "258:442:2"
+        "src": "258:432:2"
       }
     ],
-    "src": "32:669:2"
+    "src": "32:659:2"
   },
   "legacyAST": {
     "absolutePath": "/home/andre/src/repos/github/PermanentLoss/permanentloss/contracts/contracts/OpynV2Helpers.sol",
     "exportedSymbols": {
       "IAddressBook": [
-        432
+        712
       ],
       "OpynV2Helpers": [
         68
@@ -315,7 +308,7 @@
         "id": 50,
         "nodeType": "ImportDirective",
         "scope": 69,
-        "sourceUnit": 433,
+        "sourceUnit": 713,
         "src": "57:39:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -349,25 +342,25 @@
             },
             "functionSelector": "454b07f9",
             "id": 54,
-            "mutability": "immutable",
+            "mutability": "mutable",
             "name": "OpynV2AddressBook",
             "nodeType": "VariableDeclaration",
             "scope": 68,
-            "src": "349:47:2",
+            "src": "349:37:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IAddressBook_$432",
+              "typeIdentifier": "t_contract$_IAddressBook_$712",
               "typeString": "contract IAddressBook"
             },
             "typeName": {
               "id": 53,
               "name": "IAddressBook",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 432,
+              "referencedDeclaration": 712,
               "src": "349:12:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IAddressBook_$432",
+                "typeIdentifier": "t_contract$_IAddressBook_$712",
                 "typeString": "contract IAddressBook"
               }
             },
@@ -377,7 +370,7 @@
             "body": {
               "id": 66,
               "nodeType": "Block",
-              "src": "629:69:2",
+              "src": "619:69:2",
               "statements": [
                 {
                   "expression": {
@@ -392,9 +385,9 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 54,
-                      "src": "639:17:2",
+                      "src": "629:17:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IAddressBook_$432",
+                        "typeIdentifier": "t_contract$_IAddressBook_$712",
                         "typeString": "contract IAddressBook"
                       }
                     },
@@ -408,7 +401,7 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 57,
-                          "src": "672:18:2",
+                          "src": "662:18:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -426,10 +419,10 @@
                         "name": "IAddressBook",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 432,
-                        "src": "659:12:2",
+                        "referencedDeclaration": 712,
+                        "src": "649:12:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IAddressBook_$432_$",
+                          "typeIdentifier": "t_type$_t_contract$_IAddressBook_$712_$",
                           "typeString": "type(contract IAddressBook)"
                         }
                       },
@@ -441,29 +434,29 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "659:32:2",
+                      "src": "649:32:2",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IAddressBook_$432",
+                        "typeIdentifier": "t_contract$_IAddressBook_$712",
                         "typeString": "contract IAddressBook"
                       }
                     },
-                    "src": "639:52:2",
+                    "src": "629:52:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IAddressBook_$432",
+                      "typeIdentifier": "t_contract$_IAddressBook_$712",
                       "typeString": "contract IAddressBook"
                     }
                   },
                   "id": 65,
                   "nodeType": "ExpressionStatement",
-                  "src": "639:52:2"
+                  "src": "629:52:2"
                 }
               ]
             },
             "documentation": {
               "id": 55,
               "nodeType": "StructuredDocumentation",
-              "src": "403:181:2",
+              "src": "393:181:2",
               "text": "@notice Create a new contract that provides the Opyn v2 helper functions\n @param _OpynV2AddressBook The address of the AddressBook contract\n on the current network"
             },
             "id": 67,
@@ -483,7 +476,7 @@
                   "name": "_OpynV2AddressBook",
                   "nodeType": "VariableDeclaration",
                   "scope": 67,
-                  "src": "601:26:2",
+                  "src": "591:26:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -494,7 +487,7 @@
                     "id": 56,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "601:7:2",
+                    "src": "591:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -504,26 +497,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "600:28:2"
+              "src": "590:28:2"
             },
             "returnParameters": {
               "id": 59,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "629:0:2"
+              "src": "619:0:2"
             },
             "scope": 68,
-            "src": "589:109:2",
+            "src": "579:109:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
         "scope": 69,
-        "src": "258:442:2"
+        "src": "258:432:2"
       }
     ],
-    "src": "32:669:2"
+    "src": "32:659:2"
   },
   "compiler": {
     "name": "solc",
@@ -538,7 +531,7 @@
     }
   },
   "schemaVersion": "3.3.0",
-  "updatedAt": "2020-10-16T21:56:52.603Z",
+  "updatedAt": "2020-10-17T02:17:37.252Z",
   "devdoc": {
     "author": "The PermanentLoss contributors",
     "kind": "dev",

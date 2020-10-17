@@ -3,6 +3,7 @@ const {expect} = require("chai");
 const ERC20 = require("@openzeppelin/contracts/build/contracts/ERC20.json");
 const {expectEvent} = require("@openzeppelin/test-helpers");
 const ethers = require("ethers");
+const {validCollateral} = require("../utils/collateral");
 
 contract("VaultsManager", (accounts) => {
   let vaultsManager;
@@ -17,12 +18,14 @@ contract("VaultsManager", (accounts) => {
 
     const deployerWithUSDCAddr = "0x019460841193Ba8A74D32228AF33cba52e68Dfb4";
 
-    const USDCAddress = "0x4DBCdF9B62e891a7cec5A2568C3F4FAF9E8Abe2b";
-    const USDC = new web3.eth.Contract(ERC20.abi, USDCAddress);
+    const USDC = new web3.eth.Contract(
+      ERC20.abi,
+      validCollateral[Collateral.USDC]
+    );
 
     // Send USDC to the first test account
     await USDC.methods
-      .transfer(accounts[0], aHundredUSDC)
+      .transfer(accounts[0], (parseInt(aHundredUSDC) * 1.5).toString())
       .send({from: deployerWithUSDCAddr});
 
     // Approve the VaultsManager contract to use the test account's USDCs
@@ -42,8 +45,41 @@ contract("VaultsManager", (accounts) => {
       );
       expectEvent(txReceipt, "CollateralizedVaultOpened", {
         accountOwner: accounts[0],
+        collateral: validCollateral[Collateral.USDC],
         vaultId: "1",
-        amountDeposited: aHundredUSDC,
+        amount: aHundredUSDC,
+      });
+    });
+  });
+
+  describe("testing the depositCollateral function", async () => {
+    it("should deposit the given amount of collateral", async () => {
+      const txReceipt = await vaultsManager.depositCollateral(
+        Collateral.USDC,
+        "1",
+        (parseInt(aHundredUSDC) / 2).toString()
+      );
+      expectEvent(txReceipt, "CollateralDeposited", {
+        accountOwner: accounts[0],
+        collateral: validCollateral[Collateral.USDC],
+        vaultId: "1",
+        amount: (parseInt(aHundredUSDC) / 2).toString(),
+      });
+    });
+  });
+
+  describe("testing the withdrawCollateral function", async () => {
+    it("should withdraw the requested amount of collateral", async () => {
+      const txReceipt = await vaultsManager.withdrawCollateral(
+        Collateral.USDC,
+        "1",
+        (parseInt(aHundredUSDC) / 2).toString()
+      );
+      expectEvent(txReceipt, "CollateralWithdrawn", {
+        accountOwner: accounts[0],
+        collateral: validCollateral[Collateral.USDC],
+        vaultId: "1",
+        amount: (parseInt(aHundredUSDC) / 2).toString(),
       });
     });
   });
