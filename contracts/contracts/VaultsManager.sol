@@ -45,7 +45,7 @@ contract VaultsManager is OpynV2Helpers {
             );
             require(
                 secondApproveSuccess,
-                "VaultsManager: Failed setting collateral approve to 0"
+                "VaultsManager: Failed setting collateral approve to maximum uint256"
             );
         }
     }
