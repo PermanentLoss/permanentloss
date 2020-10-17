@@ -9,7 +9,7 @@ import {
   getImpermanentLossPoints
 } from './utils';
 
-function OptionsILGraph({ web3Provider, setSelectedPut, setSelectedCall }) {
+function OptionsILGraph({ web3Provider, ethPrice, setSelectedPut, setSelectedCall }) {
   const [putOptions, setPutOptions] = useState([]);
   const [callOptions, setCallOptions] = useState([]);
 
@@ -23,23 +23,34 @@ function OptionsILGraph({ web3Provider, setSelectedPut, setSelectedCall }) {
 
   useEffect(() => {
     const gimmeOptions = async () => {
-      const options = await getEthOptions(web3Provider, opynUniswapContract, true);
+      const options = await getEthOptions(
+        web3Provider,
+        ethPrice,
+        opynUniswapContract,
+        true
+      );
       setPutOptions(options);
     };
-    gimmeOptions();
-  }, [opynUniswapContract, web3Provider]);
+    // TODO might be a better way to do this but I'm a hooks newb
+    if (ethPrice > 0) {
+      gimmeOptions();
+    }
+  }, [opynUniswapContract, web3Provider, ethPrice]);
 
   useEffect(() => {
     const gimmeOptions = async () => {
       const options = await getEthOptions(
         web3Provider,
+        ethPrice,
         opynUniswapContract,
         false
       );
       setCallOptions(options);
     };
-    gimmeOptions();
-  }, [opynUniswapContract, web3Provider]);
+    if (ethPrice > 0) {
+      gimmeOptions();
+    }
+  }, [opynUniswapContract, web3Provider, ethPrice]);
 
   const impermanentLossPoints = getImpermanentLossPoints();
   const impermanentLossPlotData = {
@@ -123,6 +134,7 @@ OptionsILGraph.propTypes = {
     PropTypes.instanceOf(Web3Provider),
     PropTypes.instanceOf(EtherscanProvider),
   ]).isRequired,
+  ethPrice: PropTypes.number.isRequired,
   setSelectedPut: PropTypes.func.isRequired,
   setSelectedCall: PropTypes.func.isRequired
 };

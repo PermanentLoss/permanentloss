@@ -2,7 +2,6 @@ import { parseEther } from '@ethersproject/units';
 import { abis } from '@permanentloss-interface/contracts';
 import { Contract } from 'ethers';
 import { optionsContracts } from '../../stubs/optionsContractsGraphQl';
-import ethPriceFeed from '../../utils/ethPriceFeed';
 
 const WETH_CONTRACT = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2';
 const USDC_CONTRACT = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48';
@@ -45,8 +44,7 @@ export function getImpermanentLossPoints() {
   return [x, y];
 }
 
-export async function getEthOptions(web3Provider, opynUniswapContract, isPut) {
-  const currentEthPrice = await ethPriceFeed(web3Provider);
+export async function getEthOptions(web3Provider, currentEthPrice, opynUniswapContract, isPut) {
   const options = optionsContracts.data.optionsContracts.filter(isPut ? filterForPuts : filterForCalls);
   const populatedWethOptions = [];
   await Promise.all(

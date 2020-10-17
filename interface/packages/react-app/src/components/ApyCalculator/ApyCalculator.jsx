@@ -1,9 +1,8 @@
 import React, { useState }  from 'react';
 import PropTypes from 'prop-types';
 
-function ApyCalculator({put, call, onRemoveOption})
+function ApyCalculator({put, call, ethPrice, onRemoveOption})
 {   
-    const ethPrice = 380;
     const [uniswapRoi, setUniswapRoi] = useState(20);
     const [projectedGain, setProjectedGain] = 
         useState(getProjectedGainzPerOptionPeriod(put?.expiry) + getProjectedGainzPerOptionPeriod(call?.expiry));
@@ -108,6 +107,7 @@ function ApyCalculator({put, call, onRemoveOption})
 ApyCalculator.propTypes = {
     put: PropTypes.object,
     call: PropTypes.object,
+    ethPrice: PropTypes.number.isRequired,
     onRemoveOption: PropTypes.func
   };
 

@@ -7,6 +7,7 @@ import OptionsILGraph from './components/OptionsILGraph';
 import OptionsSeller from './components/OptionsSeller';
 import WalletButton from './components/WalletButton';
 import { web3Modal } from './utils/web3Modal';
+import ethPriceFeed from './utils/ethPriceFeed';
 
 const DEFAULT_PROVIDER = new EtherscanProvider(
   'homestead',
@@ -17,7 +18,7 @@ function App() {
   const [provider, setProvider] = useState(null);
   const [selectedPut, setSelectedPut] = useState(null);
   const [selectedCall, setSelectedCall] = useState(null);
-
+  const [currentEthPrice, setCurrentEthPrice] = useState(0);
   /* Open wallet selection modal. */
   const loadWeb3Modal = useCallback(async () => {
     const newProvider = await web3Modal.connect();
@@ -31,9 +32,19 @@ function App() {
     }
   }, [loadWeb3Modal]);
 
+  useEffect(() => {
+    const gimmePrice = async () => {
+      const providerInUse = provider ?? DEFAULT_PROVIDER;
+      const ethPrice = await ethPriceFeed(providerInUse);
+      // console.log(`eth price:${ethPrice}`);
+      setCurrentEthPrice(ethPrice);
+    };
+    gimmePrice();
+  }, [provider]);
+
   function ApyElement() {
     if (selectedPut || selectedCall) {
-      return <ApyCalculator put={selectedPut} call={selectedCall} onRemoveOption={removeOption}></ApyCalculator>
+      return <ApyCalculator ethPrice={currentEthPrice} put={selectedPut} call={selectedCall} onRemoveOption={removeOption}></ApyCalculator>
     }
   }
 
@@ -58,6 +69,7 @@ function App() {
               <div>
                 <OptionsILGraph 
                 web3Provider={provider ?? DEFAULT_PROVIDER}
+                ethPrice={currentEthPrice}
                 setSelectedPut={setSelectedPut} 
                 setSelectedCall={setSelectedCall}
                 />
