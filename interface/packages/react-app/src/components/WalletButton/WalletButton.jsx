@@ -1,8 +1,8 @@
 import { EtherscanProvider, Web3Provider } from '@ethersproject/providers';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Button } from '..';
 import { logoutOfWeb3Modal } from '../../utils/web3Modal';
+import { Button } from '../index';
 
 function WalletButton({ web3Provider, loadWeb3Modal }) {
   return (
