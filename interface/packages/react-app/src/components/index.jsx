@@ -45,7 +45,7 @@ export const Button = styled.button`
   font-size: 16px;
   text-align: center;
   text-decoration: none;
-  margin: 0px 20px;
+  margin-left: auto;
   padding: 12px 24px;
 
   ${(props) => props.hidden && 'hidden'}
