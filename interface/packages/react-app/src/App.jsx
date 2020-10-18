@@ -5,10 +5,10 @@ import { Body, Header } from './components';
 import ApyCalculator from './components/ApyCalculator';
 import OptionsILGraph from './components/OptionsILGraph';
 import OptionsSeller from './components/OptionsSeller';
-import WalletButton from './components/WalletButton';
-import { web3Modal } from './utils/web3Modal';
-import ethPriceFeed from './utils/ethPriceFeed';
 import PortfolioDetector from './components/PortfolioDetector/PortfolioDetector';
+import WalletButton from './components/WalletButton';
+import ethPriceFeed from './utils/ethPriceFeed';
+import { web3Modal } from './utils/web3Modal';
 
 const DEFAULT_PROVIDER = new EtherscanProvider(
   'homestead',
@@ -27,7 +27,7 @@ function App() {
     const newProvider = await web3Modal.connect();
     setProvider(new Web3Provider(newProvider));
   }, []);
-  
+
   /* If user has loaded a wallet before, load it automatically. */
   useEffect(() => {
     if (web3Modal.cachedProvider) {
@@ -47,7 +47,14 @@ function App() {
 
   function ApyElement() {
     if (selectedPut || selectedCall) {
-      return <ApyCalculator ethPrice={currentEthPrice} put={selectedPut} call={selectedCall} onRemoveOption={removeOption}></ApyCalculator>
+      return (
+        <ApyCalculator
+          ethPrice={currentEthPrice}
+          put={selectedPut}
+          call={selectedCall}
+          onRemoveOption={removeOption}
+        />
+      );
     }
   }
 
@@ -78,14 +85,14 @@ function App() {
             path="/"
             element={
               <div>
-                <OptionsILGraph 
-                web3Provider={provider ?? DEFAULT_PROVIDER}
-                ethPrice={currentEthPrice}
-                ethPortfolioSize={ethPortfolioSize}
-                setSelectedPut={setSelectedPut} 
-                setSelectedCall={setSelectedCall}
+                <OptionsILGraph
+                  web3Provider={provider ?? DEFAULT_PROVIDER}
+                  ethPrice={currentEthPrice}
+                  ethPortfolioSize={ethPortfolioSize}
+                  setSelectedPut={setSelectedPut}
+                  setSelectedCall={setSelectedCall}
                 />
-                <PortfolioDetector 
+                <PortfolioDetector
                   web3Provider={provider ?? DEFAULT_PROVIDER}
                   setEthPortfolioSize={changeEthPortfolioSize}
                 />

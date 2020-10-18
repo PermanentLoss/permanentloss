@@ -1,19 +1,32 @@
+import { useQuery } from '@apollo/react-hooks';
 import { EtherscanProvider, Web3Provider } from '@ethersproject/providers';
 import { abis } from '@permanentloss-interface/contracts';
 import { Contract } from 'ethers';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useState } from 'react';
 import Plot from 'react-plotly.js';
-import {
-  getEthOptions,
-  getImpermanentLossPoints
-} from './utils';
+import GET_OPYN_V1_OPTIONS_CONTRACTS from '../../graphql/opynv1subgraph';
+import { getEthOptions, getImpermanentLossPoints } from './utils';
 
-const EMPTY_PLOT = {x:[], y:[]};
-
-function OptionsILGraph({ web3Provider, ethPrice, ethPortfolioSize, setSelectedPut, setSelectedCall }) {
+function OptionsILGraph({
+  web3Provider,
+  ethPrice,
+  ethPortfolioSize,
+  setSelectedPut,
+  setSelectedCall,
+}) {
   const [putOptions, setPutOptions] = useState([]);
   const [callOptions, setCallOptions] = useState([]);
+
+  const [optionsContracts, setOptionsContracts] = useState([]);
+
+  const { loading, error, data } = useQuery(GET_OPYN_V1_OPTIONS_CONTRACTS);
+
+  useEffect(() => {
+    if (!loading && !error && data && data.optionsContracts) {
+      setOptionsContracts(data.optionsContracts);
+    }
+  }, [loading, error, data, optionsContracts]);
 
   const OPYN_UNISWAP_EXCHANGE = '0xc0a47dfe034b400b47bdad5fecda2621de6c4d95';
 
@@ -30,16 +43,21 @@ function OptionsILGraph({ web3Provider, ethPrice, ethPortfolioSize, setSelectedP
         ethPrice,
         ethPortfolioSize,
         opynUniswapContract,
-        true
+        true,
+        optionsContracts
       );
-      setPutOptions(options);
+      if (options !== null) {
+        setPutOptions(options);
+      }
     };
-    // TODO might be a better way to do this but I'm a hooks newb
-    if (ethPrice > 0) {
-      setPutOptions(EMPTY_PLOT);
-      gimmeOptions();
-    }
-  }, [opynUniswapContract, web3Provider, ethPrice, ethPortfolioSize]);
+    gimmeOptions();
+  }, [
+    opynUniswapContract,
+    web3Provider,
+    ethPrice,
+    ethPortfolioSize,
+    optionsContracts,
+  ]);
 
   useEffect(() => {
     const gimmeOptions = async () => {
@@ -48,15 +66,21 @@ function OptionsILGraph({ web3Provider, ethPrice, ethPortfolioSize, setSelectedP
         ethPrice,
         ethPortfolioSize,
         opynUniswapContract,
-        false
+        false,
+        optionsContracts
       );
-      setCallOptions(options);
+      if (options !== null) {
+        setCallOptions(options);
+      }
     };
-    if (ethPrice > 0) {
-      setCallOptions(EMPTY_PLOT);
-      gimmeOptions();
-    }
-  }, [opynUniswapContract, web3Provider, ethPrice, ethPortfolioSize]);
+    gimmeOptions();
+  }, [
+    opynUniswapContract,
+    web3Provider,
+    ethPrice,
+    ethPortfolioSize,
+    optionsContracts,
+  ]);
 
   const impermanentLossPoints = getImpermanentLossPoints();
   const impermanentLossPlotData = {
@@ -114,8 +138,7 @@ function OptionsILGraph({ web3Provider, ethPrice, ethPortfolioSize, setSelectedP
 
   function handlePlotClick(pointsAndEvent) {
     const closestCurve = pointsAndEvent.points[0];
-    if(closestCurve.customdata)
-    {
+    if (closestCurve.customdata) {
       const data = closestCurve.customdata;
       console.log(`user clicked: ${JSON.stringify(data)}`);
       if (data.strikePriceAsPercentDrop > 1) {
@@ -143,7 +166,7 @@ OptionsILGraph.propTypes = {
   ethPrice: PropTypes.number.isRequired,
   ethPortfolioSize: PropTypes.number.isRequired,
   setSelectedPut: PropTypes.func.isRequired,
-  setSelectedCall: PropTypes.func.isRequired
+  setSelectedCall: PropTypes.func.isRequired,
 };
 
 export default OptionsILGraph;
