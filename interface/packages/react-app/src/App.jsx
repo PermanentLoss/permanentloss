@@ -45,6 +45,16 @@ function App() {
     gimmePrice();
   }, [provider]);
 
+  function removeOption(option) {
+    if (option !== null) {
+      if (option.isPut) {
+        setSelectedPut(null);
+      } else {
+        setSelectedCall(null);
+      }
+    }
+  }
+
   function ApyElement() {
     if (selectedPut || selectedCall) {
       return (
@@ -55,16 +65,6 @@ function App() {
           onRemoveOption={removeOption}
         />
       );
-    }
-  }
-
-  function removeOption(option) {
-    if (option !== null) {
-      if (option.isPut) {
-        setSelectedPut(null);
-      } else {
-        setSelectedCall(null);
-      }
     }
   }
 
