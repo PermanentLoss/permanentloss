@@ -1,8 +1,7 @@
 import React, { useState }  from 'react';
 import PropTypes from 'prop-types';
 
-function ApyCalculator({put, call, ethPrice, onRemoveOption})
-{   
+function ApyCalculator({put, call, ethPrice, onRemoveOption}) {
     const [uniswapRoi, setUniswapRoi] = useState(20);
     const [projectedGain, setProjectedGain] = 
         useState(getProjectedGainzPerOptionPeriod(put?.expiry) + getProjectedGainzPerOptionPeriod(call?.expiry));
