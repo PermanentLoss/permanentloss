@@ -139,12 +139,12 @@ function OptionsILGraph({
   function handlePlotClick(pointsAndEvent) {
     const closestCurve = pointsAndEvent.points[0];
     if (closestCurve.customdata) {
-      const data = closestCurve.customdata;
-      console.log(`user clicked: ${JSON.stringify(data)}`);
+      const _data = closestCurve.customdata;
+      console.log(`user clicked: ${JSON.stringify(_data)}`);
       if (data.strikePriceAsPercentDrop > 1) {
-        setSelectedCall(data);
+        setSelectedCall(_data);
       } else {
-        setSelectedPut(data);
+        setSelectedPut(_data);
       }
     }
   }
