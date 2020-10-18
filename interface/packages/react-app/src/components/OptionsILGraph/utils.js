@@ -43,6 +43,38 @@ export function getImpermanentLossPoints() {
   return [x, y];
 }
 
+function filterForPuts(x) {
+  return (
+    x.underlying === WETH_CONTRACT &&
+    x.underlying !== '0x0000000000000000000000000000000000000000' &&
+    isEpochInFuture(x.expiry)
+  );
+}
+
+function filterForCalls(x) {
+  return (
+    x.strike === '0x0000000000000000000000000000000000000000' &&
+    x.underlying === USDC_CONTRACT &&
+    isEpochInFuture(x.expiry)
+  );
+}
+
+function convertPutStrikePrice(strikePrice) {
+  return strikePrice * 10;
+}
+
+function convertCallStrikePrice(strikePrice) {
+  return (1 / strikePrice) * 10 ** 5;
+}
+
+function convertCallPrice(price) {
+  return price / 10 ** 6;
+}
+
+function convertPutPrice(price) {
+  return price / 10 ** 7;
+}
+
 export async function getEthOptions(
   web3Provider,
   currentEthPrice,
@@ -105,36 +137,4 @@ export async function getEthOptions(
     meta: populatedWethOptions,
   };
   return data;
-}
-
-function filterForPuts(x) {
-  return (
-    x.underlying === WETH_CONTRACT &&
-    x.underlying !== '0x0000000000000000000000000000000000000000' &&
-    isEpochInFuture(x.expiry)
-  );
-}
-
-function filterForCalls(x) {
-  return (
-    x.strike === '0x0000000000000000000000000000000000000000' &&
-    x.underlying === USDC_CONTRACT &&
-    isEpochInFuture(x.expiry)
-  );
-}
-
-function convertPutStrikePrice(strikePrice) {
-  return strikePrice * 10;
-}
-
-function convertCallStrikePrice(strikePrice) {
-  return (1 / strikePrice) * 10 ** 5;
-}
-
-function convertCallPrice(price) {
-  return price / 10 ** 6;
-}
-
-function convertPutPrice(price) {
-  return price / 10 ** 7;
 }
