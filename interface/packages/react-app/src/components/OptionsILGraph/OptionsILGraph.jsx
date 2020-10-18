@@ -8,6 +8,10 @@ import Plot from 'react-plotly.js';
 import GET_OPYN_V1_OPTIONS_CONTRACTS from '../../graphql/opynv1subgraph';
 import { getEthOptions, getImpermanentLossPoints } from './utils';
 
+const EMPTY_PLOT = {x:[], y:[]};
+const PUT_COLOR = 'green';
+const CALL_COLOR = 'orange';
+
 function OptionsILGraph({
   web3Provider,
   ethPrice,
@@ -15,10 +19,11 @@ function OptionsILGraph({
   setSelectedPut,
   setSelectedCall,
 }) {
-  const [putOptions, setPutOptions] = useState([]);
-  const [callOptions, setCallOptions] = useState([]);
-
-  const [optionsContracts, setOptionsContracts] = useState([]);
+  const [putOptions, setPutOptions] = useState(EMPTY_PLOT);
+  const [callOptions, setCallOptions] = useState(EMPTY_PLOT);
+  const [putLineData, setPutLineData] = useState(null);
+  const [callLineData, setCallLineData] = useState(null);
+  const [optionsContracts, setOptionsContracts] = useState(EMPTY_PLOT);
 
   const { loading, error, data } = useQuery(GET_OPYN_V1_OPTIONS_CONTRACTS);
 
@@ -50,6 +55,7 @@ function OptionsILGraph({
         setPutOptions(options);
       }
     };
+    clearStalePoints(true);
     gimmeOptions();
   }, [
     opynUniswapContract,
@@ -73,6 +79,7 @@ function OptionsILGraph({
         setCallOptions(options);
       }
     };
+    clearStalePoints(false);
     gimmeOptions();
   }, [
     opynUniswapContract,
@@ -100,7 +107,7 @@ function OptionsILGraph({
     name: `Put Price for ${ethPortfolioSize} ETH`,
     yaxis: 'y2',
     type: ' scatter',
-    marker: { color: 'green' },
+    marker: { color: PUT_COLOR },
   };
 
   const callOptionPlotData = {
@@ -110,7 +117,7 @@ function OptionsILGraph({
     name: `Call Price for ${ethPortfolioSize} ETH`,
     yaxis: 'y3',
     type: ' scatter',
-    marker: { color: 'orange' },
+    marker: { color: CALL_COLOR },
   };
 
   const layout = {
@@ -134,18 +141,50 @@ function OptionsILGraph({
       overlaying: 'y',
       side: 'right',
     },
+    shapes: [putLineData, callLineData]
   };
 
   function handlePlotClick(pointsAndEvent) {
     const closestCurve = pointsAndEvent.points[0];
     if (closestCurve.customdata) {
       const _data = closestCurve.customdata;
-      console.log(`user clicked: ${JSON.stringify(_data)}`);
-      if (_data.strikePriceAsPercentDrop > 1) {
+      // console.log(`user clicked: ${JSON.stringify(_data)}`);
+      drawLineForSelectedPoint(closestCurve.x, _data.isPut);
+      if (!_data.isPut) {
         setSelectedCall(_data);
       } else {
         setSelectedPut(_data);
       }
+    }
+  }
+
+  function drawLineForSelectedPoint(x, isPut) {
+    const data = {
+      type: 'line',
+      x0: x,
+      y0: -1,
+      x1: x,
+      y1: 0,
+      line: {
+        color: isPut ? PUT_COLOR : CALL_COLOR,
+        width: 3,
+        dash: 'dash'
+      }
+    }
+    if (isPut) {
+      setPutLineData(data);
+    } else {
+      setCallLineData(data);
+    }
+  }
+  
+  function clearStalePoints(isPut) {
+    if (isPut) {
+      setPutOptions(EMPTY_PLOT);
+      setPutLineData(null);
+    } else {
+      setCallOptions(EMPTY_PLOT);
+      setCallLineData(null);
     }
   }
 
