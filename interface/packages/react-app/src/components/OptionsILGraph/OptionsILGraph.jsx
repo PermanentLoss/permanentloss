@@ -141,7 +141,7 @@ function OptionsILGraph({
     if (closestCurve.customdata) {
       const _data = closestCurve.customdata;
       console.log(`user clicked: ${JSON.stringify(_data)}`);
-      if (data.strikePriceAsPercentDrop > 1) {
+      if (_data.strikePriceAsPercentDrop > 1) {
         setSelectedCall(_data);
       } else {
         setSelectedPut(_data);
