@@ -44,9 +44,10 @@ export function getImpermanentLossPoints() {
   return [x, y];
 }
 
-export async function getEthOptions(web3Provider, currentEthPrice, opynUniswapContract, isPut) {
+export async function getEthOptions(web3Provider, currentEthPrice, ethPortfolioSize, opynUniswapContract, isPut) {
   const options = optionsContracts.data.optionsContracts.filter(isPut ? filterForPuts : filterForCalls);
   const populatedWethOptions = [];
+  // console.log(`ethPortfolioSize:${ethPortfolioSize}`);
   await Promise.all(
     options.map(async (option) => {
       // console.log(`${isPut ? 'put' : 'call'} option:${JSON.stringify(option)}`);
@@ -58,8 +59,7 @@ export async function getEthOptions(web3Provider, currentEthPrice, opynUniswapCo
         abis.uniswapv1_market,
         web3Provider
       );
-      
-      const inputPrice = isPut ? '1.0' : '.02'; // Call options measured in usdc so 1.0 eth will report massive slippage
+      const inputPrice = isPut ? '' + ethPortfolioSize : '' + .02 * ethPortfolioSize; // Call options measured in usdc so 1.0 eth will report massive slippage
       const rawPrice = await optionMarket.getEthToTokenInputPrice(parseEther(inputPrice));
       const price = isPut ? 1/convertPutPrice(rawPrice) * currentEthPrice 
         : parseFloat(inputPrice, 10)/convertCallPrice(rawPrice) * currentEthPrice * currentEthPrice;

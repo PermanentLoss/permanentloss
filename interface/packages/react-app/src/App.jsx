@@ -8,6 +8,7 @@ import OptionsSeller from './components/OptionsSeller';
 import WalletButton from './components/WalletButton';
 import { web3Modal } from './utils/web3Modal';
 import ethPriceFeed from './utils/ethPriceFeed';
+import PortfolioDetector from './components/PortfolioDetector/PortfolioDetector';
 
 const DEFAULT_PROVIDER = new EtherscanProvider(
   'homestead',
@@ -19,6 +20,8 @@ function App() {
   const [selectedPut, setSelectedPut] = useState(null);
   const [selectedCall, setSelectedCall] = useState(null);
   const [currentEthPrice, setCurrentEthPrice] = useState(0);
+  const [ethPortfolioSize, setEthPortfolioSize] = useState(1);
+
   /* Open wallet selection modal. */
   const loadWeb3Modal = useCallback(async () => {
     const newProvider = await web3Modal.connect();
@@ -49,11 +52,19 @@ function App() {
   }
 
   function removeOption(option) {
-    if (option.isPut) {
-      setSelectedPut(null);
-    } else {
-      setSelectedCall(null);
+    if (option !== null) {
+      if (option.isPut) {
+        setSelectedPut(null);
+      } else {
+        setSelectedCall(null);
+      }
     }
+  }
+
+  function changeEthPortfolioSize(newVal) {
+    setEthPortfolioSize(newVal);
+    removeOption(selectedPut);
+    removeOption(selectedCall);
   }
 
   return (
@@ -70,8 +81,13 @@ function App() {
                 <OptionsILGraph 
                 web3Provider={provider ?? DEFAULT_PROVIDER}
                 ethPrice={currentEthPrice}
+                ethPortfolioSize={ethPortfolioSize}
                 setSelectedPut={setSelectedPut} 
                 setSelectedCall={setSelectedCall}
+                />
+                <PortfolioDetector 
+                  web3Provider={provider ?? DEFAULT_PROVIDER}
+                  setEthPortfolioSize={changeEthPortfolioSize}
                 />
                 {ApyElement()}
               </div>

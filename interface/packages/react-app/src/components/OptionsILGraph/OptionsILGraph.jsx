@@ -9,7 +9,9 @@ import {
   getImpermanentLossPoints
 } from './utils';
 
-function OptionsILGraph({ web3Provider, ethPrice, setSelectedPut, setSelectedCall }) {
+const EMPTY_PLOT = {x:[], y:[]};
+
+function OptionsILGraph({ web3Provider, ethPrice, ethPortfolioSize, setSelectedPut, setSelectedCall }) {
   const [putOptions, setPutOptions] = useState([]);
   const [callOptions, setCallOptions] = useState([]);
 
@@ -26,6 +28,7 @@ function OptionsILGraph({ web3Provider, ethPrice, setSelectedPut, setSelectedCal
       const options = await getEthOptions(
         web3Provider,
         ethPrice,
+        ethPortfolioSize,
         opynUniswapContract,
         true
       );
@@ -33,24 +36,27 @@ function OptionsILGraph({ web3Provider, ethPrice, setSelectedPut, setSelectedCal
     };
     // TODO might be a better way to do this but I'm a hooks newb
     if (ethPrice > 0) {
+      setPutOptions(EMPTY_PLOT);
       gimmeOptions();
     }
-  }, [opynUniswapContract, web3Provider, ethPrice]);
+  }, [opynUniswapContract, web3Provider, ethPrice, ethPortfolioSize]);
 
   useEffect(() => {
     const gimmeOptions = async () => {
       const options = await getEthOptions(
         web3Provider,
         ethPrice,
+        ethPortfolioSize,
         opynUniswapContract,
         false
       );
       setCallOptions(options);
     };
     if (ethPrice > 0) {
+      setCallOptions(EMPTY_PLOT);
       gimmeOptions();
     }
-  }, [opynUniswapContract, web3Provider, ethPrice]);
+  }, [opynUniswapContract, web3Provider, ethPrice, ethPortfolioSize]);
 
   const impermanentLossPoints = getImpermanentLossPoints();
   const impermanentLossPlotData = {
@@ -67,7 +73,7 @@ function OptionsILGraph({ web3Provider, ethPrice, setSelectedPut, setSelectedCal
     x: putOptions.x,
     y: putOptions.y,
     customdata: putOptions.meta,
-    name: 'Put Price for 1 ETH',
+    name: `Put Price for ${ethPortfolioSize} ETH`,
     yaxis: 'y2',
     type: ' scatter',
     marker: { color: 'green' },
@@ -77,7 +83,7 @@ function OptionsILGraph({ web3Provider, ethPrice, setSelectedPut, setSelectedCal
     x: callOptions.x,
     y: callOptions.y,
     customdata: callOptions.meta,
-    name: 'Call Price for 1 ETH',
+    name: `Call Price for ${ethPortfolioSize} ETH`,
     yaxis: 'y3',
     type: ' scatter',
     marker: { color: 'orange' },
@@ -135,6 +141,7 @@ OptionsILGraph.propTypes = {
     PropTypes.instanceOf(EtherscanProvider),
   ]).isRequired,
   ethPrice: PropTypes.number.isRequired,
+  ethPortfolioSize: PropTypes.number.isRequired,
   setSelectedPut: PropTypes.func.isRequired,
   setSelectedCall: PropTypes.func.isRequired
 };
