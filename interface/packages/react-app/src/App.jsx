@@ -1,15 +1,19 @@
 import { EtherscanProvider, Web3Provider } from '@ethersproject/providers';
+import 'bootstrap/dist/css/bootstrap-grid.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useCallback, useEffect, useState } from 'react';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Body } from './components';
 import ApyCalculator from './components/ApyCalculator';
+import Faq from './components/faq';
 import Header from './components/Header';
 import OptionsILGraph from './components/OptionsILGraph';
 import OptionsSeller from './components/OptionsSeller';
 import PortfolioDetector from './components/PortfolioDetector/PortfolioDetector';
 import WalletButton from './components/WalletButton';
-import Faq from './components/faq';
+import './index.css';
 import ethPriceFeed from './utils/ethPriceFeed';
 import { web3Modal } from './utils/web3Modal';
 
@@ -82,37 +86,44 @@ function App() {
       <Header>
         <WalletButton web3Provider={provider} loadWeb3Modal={loadWeb3Modal} />
       </Header>
-      <Body>
+      <Container className="bg-dark text-white">
         <Routes>
           <Route
             path="/"
             element={
-              <div>
-                <OptionsILGraph
-                  web3Provider={provider ?? DEFAULT_PROVIDER}
-                  ethPrice={currentEthPrice}
-                  ethPortfolioSize={ethPortfolioSize}
-                  setSelectedPut={setSelectedPut}
-                  setSelectedCall={setSelectedCall}
-                />
-                <PortfolioDetector
-                  web3Provider={provider ?? DEFAULT_PROVIDER}
-                  setEthPortfolioSize={changeEthPortfolioSize}
-                />
-                {ApyElement()}
-              </div>
+              <>
+                <Row>
+                  <Col>
+                    <OptionsILGraph
+                      web3Provider={provider ?? DEFAULT_PROVIDER}
+                      ethPrice={currentEthPrice}
+                      ethPortfolioSize={ethPortfolioSize}
+                      setSelectedPut={setSelectedPut}
+                      setSelectedCall={setSelectedCall}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <PortfolioDetector
+                      web3Provider={provider ?? DEFAULT_PROVIDER}
+                      setEthPortfolioSize={changeEthPortfolioSize}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>{ApyElement()}</Col>
+                </Row>
+              </>
             }
           />
           <Route
             path="sell/"
             element={<OptionsSeller web3Provider={provider} />}
           />
-          <Route
-            path="faq/"
-            element={<Faq />}
-          />
+          <Route path="faq/" element={<Faq />} />
         </Routes>
-      </Body>
+      </Container>
     </BrowserRouter>
   );
 }
