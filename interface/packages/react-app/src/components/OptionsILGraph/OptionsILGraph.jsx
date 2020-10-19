@@ -4,11 +4,12 @@ import { abis } from '@permanentloss-interface/contracts';
 import { Contract } from 'ethers';
 import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useState } from 'react';
+import { BreedingRhombusSpinner } from 'react-epic-spinners';
 import Plot from 'react-plotly.js';
 import GET_OPYN_V1_OPTIONS_CONTRACTS from '../../graphql/opynv1subgraph';
 import { getEthOptions, getImpermanentLossPoints } from './utils';
 
-const EMPTY_PLOT = {x:[], y:[]};
+const EMPTY_PLOT = { x: [], y: [] };
 const PUT_COLOR = 'green';
 const CALL_COLOR = 'orange';
 
@@ -141,7 +142,7 @@ function OptionsILGraph({
       overlaying: 'y',
       side: 'right',
     },
-    shapes: [putLineData, callLineData]
+    shapes: [putLineData, callLineData],
   };
 
   function handlePlotClick(pointsAndEvent) {
@@ -168,16 +169,16 @@ function OptionsILGraph({
       line: {
         color: isPut ? PUT_COLOR : CALL_COLOR,
         width: 3,
-        dash: 'dash'
-      }
-    }
+        dash: 'dash',
+      },
+    };
     if (isPut) {
       setPutLineData(data);
     } else {
       setCallLineData(data);
     }
   }
-  
+
   function clearStalePoints(isPut) {
     if (isPut) {
       setPutOptions(EMPTY_PLOT);
@@ -188,7 +189,9 @@ function OptionsILGraph({
     }
   }
 
-  return (
+  return putOptions === EMPTY_PLOT || callOptions === EMPTY_PLOT ? (
+    <BreedingRhombusSpinner />
+  ) : (
     <Plot
       data={[impermanentLossPlotData, putOptionPlotData, callOptionPlotData]}
       layout={layout}
