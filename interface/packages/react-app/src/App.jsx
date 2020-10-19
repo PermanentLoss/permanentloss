@@ -121,7 +121,18 @@ function App() {
             path="sell/"
             element={<OptionsSeller web3Provider={provider} />}
           />
-          <Route path="faq/" element={<Faq />} />
+          <Route
+            path="faq/"
+            element={
+              <>
+                <Row>
+                  <Col>
+                    <Faq />
+                  </Col>
+                </Row>
+              </>
+            }
+          />
         </Routes>
       </Container>
     </BrowserRouter>
