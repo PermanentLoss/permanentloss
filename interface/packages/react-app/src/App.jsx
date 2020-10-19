@@ -1,8 +1,10 @@
 import { EtherscanProvider, Web3Provider } from '@ethersproject/providers';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useCallback, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Body, Header } from './components';
+import { Body } from './components';
 import ApyCalculator from './components/ApyCalculator';
+import Header from './components/Header';
 import OptionsILGraph from './components/OptionsILGraph';
 import OptionsSeller from './components/OptionsSeller';
 import PortfolioDetector from './components/PortfolioDetector/PortfolioDetector';
