@@ -9,6 +9,7 @@ import OptionsILGraph from './components/OptionsILGraph';
 import OptionsSeller from './components/OptionsSeller';
 import PortfolioDetector from './components/PortfolioDetector/PortfolioDetector';
 import WalletButton from './components/WalletButton';
+import Faq from './components/faq';
 import ethPriceFeed from './utils/ethPriceFeed';
 import { web3Modal } from './utils/web3Modal';
 
@@ -105,6 +106,10 @@ function App() {
           <Route
             path="sell/"
             element={<OptionsSeller web3Provider={provider} />}
+          />
+          <Route
+            path="faq/"
+            element={<Faq />}
           />
         </Routes>
       </Body>
