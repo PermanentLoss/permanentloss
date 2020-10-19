@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const PortfolioSection = styled.input`
-  width: 40px;
+  width: 70px;
 `;
 
 function PortfolioDetector({ web3Provider, setEthPortfolioSize }) {
