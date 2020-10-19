@@ -31,8 +31,12 @@ function App() {
 
   /* Open wallet selection modal. */
   const loadWeb3Modal = useCallback(async () => {
-    const newProvider = await web3Modal.connect();
-    setProvider(new Web3Provider(newProvider));
+    try {
+      const newProvider = await web3Modal.connect();
+      setProvider(new Web3Provider(newProvider));
+    } catch {
+      // Ignore when user closes the modal before connecting to the Web3 wallet
+    }
   }, []);
 
   /* If user has loaded a wallet before, load it automatically. */
