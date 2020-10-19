@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ApyCalculator from './components/ApyCalculator';
 import Faq from './components/faq';
 import Header from './components/Header';
+import OptionsBuyer from './components/OptionsBuyer';
 import OptionsILGraph from './components/OptionsILGraph';
 import OptionsSeller from './components/OptionsSeller';
 import PortfolioDetector from './components/PortfolioDetector/PortfolioDetector';
@@ -117,6 +118,13 @@ function App() {
                 </Row>
                 <Row>
                   <Col>{ApyElement()}</Col>
+                  <Col>
+                    <OptionsBuyer
+                      putOption={selectedPut}
+                      callOption={selectedCall}
+                      ethPortfolioSize={ethPortfolioSize}
+                    />
+                  </Col>
                 </Row>
               </>
             }
