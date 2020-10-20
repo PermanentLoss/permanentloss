@@ -163,6 +163,10 @@ function OptionsILGraph({
     height: 600,
   };
 
+  const config = {
+    displayModeBar: false,
+  };
+
   function handlePlotClick(pointsAndEvent) {
     const closestCurve = pointsAndEvent.points[0];
     if (closestCurve.customdata) {
@@ -214,6 +218,7 @@ function OptionsILGraph({
       data={[impermanentLossPlotData, putOptionPlotData, callOptionPlotData]}
       layout={layout}
       onClick={handlePlotClick}
+      config={config}
     />
   );
 }
