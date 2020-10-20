@@ -8,7 +8,9 @@ import Card from 'react-bootstrap/Card';
 import styled from 'styled-components';
 
 const FormGroupTight = styled(Form.Group)`
-  margin-bottom: 0
+  margin-bottom: 0;
+  width: inherit;
+  height: inherit;
 `;
 
 const Cards = styled.div`
