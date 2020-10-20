@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ApyCalculator from './components/ApyCalculator';
-import Faq from './components/faq';
+import Faq from './components/Faq';
 import Header from './components/Header';
 import OptionsBuyer from './components/OptionsBuyer';
 import OptionsILGraph from './components/OptionsILGraph';
@@ -91,14 +91,13 @@ function App() {
       <Header>
         <WalletButton web3Provider={provider} loadWeb3Modal={loadWeb3Modal} />
       </Header>
-      <Container className="bg-dark text-white">
+      <Container>
         <Routes>
           <Route
             path="/"
             element={
               <>
-                <Row>
-                  <Col>
+                <Row className="justify-content-center">
                     <OptionsILGraph
                       web3Provider={provider ?? DEFAULT_PROVIDER}
                       ethPrice={currentEthPrice}
@@ -106,10 +105,9 @@ function App() {
                       setSelectedPut={setSelectedPut}
                       setSelectedCall={setSelectedCall}
                     />
-                  </Col>
                 </Row>
                 <Row>
-                  <Col>
+                  <Col> 
                     <PortfolioDetector
                       web3Provider={provider ?? DEFAULT_PROVIDER}
                       setEthPortfolioSize={changeEthPortfolioSize}
@@ -137,10 +135,8 @@ function App() {
             path="faq/"
             element={
               <>
-                <Row>
-                  <Col>
+                <Row className="justify-content-center">
                     <Faq />
-                  </Col>
                 </Row>
               </>
             }

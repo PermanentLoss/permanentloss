@@ -8,10 +8,15 @@ import { BreedingRhombusSpinner } from 'react-epic-spinners';
 import Plot from 'react-plotly.js';
 import GET_OPYN_V1_OPTIONS_CONTRACTS from '../../graphql/opynv1subgraph';
 import { getEthOptions, getImpermanentLossPoints } from './utils';
+import styled from 'styled-components';
 
 const EMPTY_PLOT = { x: [], y: [] };
 const PUT_COLOR = 'green';
 const CALL_COLOR = 'orange';
+
+const BreedingRhombusSpinnerStyled = styled(BreedingRhombusSpinner)`
+  margin-top: 5em;
+`;
 
 function OptionsILGraph({
   web3Provider,
@@ -123,7 +128,7 @@ function OptionsILGraph({
 
   const layout = {
     responsive: true,
-    title: 'Impermanent Loss',
+    title: 'Available Eth Protection',
     xaxis: {
       title: 'ETH Value',
       tickformat: ',.0%',
@@ -190,7 +195,7 @@ function OptionsILGraph({
   }
 
   return putOptions === EMPTY_PLOT || callOptions === EMPTY_PLOT ? (
-    <BreedingRhombusSpinner />
+    <BreedingRhombusSpinnerStyled color="orange"/>
   ) : (
     <Plot
       data={[impermanentLossPlotData, putOptionPlotData, callOptionPlotData]}

@@ -2,13 +2,23 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import logo from './logo.png';
+import styled from 'styled-components';
+
+export const Image = styled.img`
+  height: 65px;
+`;
+
+const OurNavBar = styled(Navbar)`
+  padding: 0;
+`;
 
 function Header({ children }) {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <OurNavBar bg="dark" variant="dark" expand="lg">
       <Navbar.Brand>
         <Nav.Link href="/" className="btn-dark">
-          PermanentLoss
+          <Image src={logo} />
         </Nav.Link>
       </Navbar.Brand>
       <Navbar.Collapse id="basic-navbar-nav">
@@ -18,7 +28,7 @@ function Header({ children }) {
         Faq
       </Nav.Link>
       {children}
-    </Navbar>
+    </OurNavBar>
   );
 }
 
