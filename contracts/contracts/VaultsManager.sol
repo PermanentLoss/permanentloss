@@ -44,6 +44,13 @@ contract VaultsManager is OpynV2Helpers {
 
     event NewOtokenCreated(address newOtokenAddress);
 
+    event OtokensMinted(
+        address otoken,
+        uint256 amount,
+        uint256 vaultId,
+        address receiver
+    );
+
     constructor(address _OpynV2AddressBook, address[3] memory _validCollateral)
         OpynV2Helpers(_OpynV2AddressBook)
     {
@@ -253,5 +260,28 @@ contract VaultsManager is OpynV2Helpers {
         emit NewOtokenCreated(newOtoken);
 
         return newOtoken;
+    }
+
+    function mintOtokensFromVault(
+        uint256 _vaultId,
+        address _otoken,
+        uint256 _amount
+    ) public {
+        Actions.ActionArgs[] memory actions = new Actions.ActionArgs[](1);
+
+        actions[0] = Actions.ActionArgs({
+            actionType: Actions.ActionType.MintShortOption,
+            owner: address(this), // should change to msg.sender after checking his collateral provided to vaultId
+            secondAddress: address(this),
+            asset: _otoken,
+            vaultId: _vaultId,
+            amount: _amount,
+            index: 0,
+            data: "0x0000000000000000000000000000000000000000"
+        });
+
+        emit OtokensMinted(_otoken, _amount, _vaultId, address(this));
+
+        controller.operate(actions);
     }
 }
