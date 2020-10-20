@@ -1,12 +1,15 @@
 import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
 import styled from 'styled-components';
+import wutang from './wutang.jpg';
 
 const AccordionWide = styled(Accordion)`
   width: 100%;
   display: block; // This shouldn't be needed but styled-components is applying flex here for some reason
 `;
+
 function Faq() {
   return (
     <AccordionWide>
@@ -22,6 +25,9 @@ function Faq() {
           Eth/Stablecoin pools. The graph shows the amount of loss for a change
           in % of eth price (blue Questionne), put option price (green Questionne), and call
           option price (orange Questionne).
+          <Row className="justify-content-center row">
+            <img src={wutang} width="300" onClick={() => window.open('https://www.youtube.com/watch?v=zhUnEg0he4A')}/>
+          </Row>  
           </Card.Body>
         </Accordion.Collapse>
       </Card>
