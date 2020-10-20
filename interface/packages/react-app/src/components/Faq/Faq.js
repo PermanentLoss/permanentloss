@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 const AccordionWide = styled(Accordion)`
   width: 100%;
+  display: block; // This shouldn't be needed but styled-components is applying flex here for some reason
 `;
 function Faq() {
   return (
