@@ -8,12 +8,14 @@ import {SafeMath} from "@openzeppelin/contracts/math/SafeMath.sol";
 
 import "./OpynV2Helpers.sol";
 import {IController, Actions} from "./interfaces/IController.sol";
+import {IOtokenFactory} from "./interfaces/IOtokenFactory.sol";
 
 contract VaultsManager is OpynV2Helpers {
     using SafeMath for uint256;
 
     address[3] public validCollateral;
     IController public controller;
+    IOtokenFactory public otokenFactory;
     mapping(address => mapping(uint256 => uint256))[3]
         public ownerVaultIdBalance;
 
@@ -40,11 +42,14 @@ contract VaultsManager is OpynV2Helpers {
         uint256 amount
     );
 
+    event NewOtokenCreated(address newOtokenAddress);
+
     constructor(address _OpynV2AddressBook, address[3] memory _validCollateral)
         OpynV2Helpers(_OpynV2AddressBook)
     {
         validCollateral = _validCollateral;
         controller = IController(OpynV2AddressBook.getController());
+        otokenFactory = IOtokenFactory(OpynV2AddressBook.getOtokenFactory());
 
         address MarginPool = OpynV2AddressBook.getMarginPool();
         IERC20 collateral;
@@ -214,5 +219,39 @@ contract VaultsManager is OpynV2Helpers {
         });
 
         controller.operate(actions);
+    }
+
+    function createOtoken(
+        address _underlyingAsset,
+        address _strikeAsset,
+        Collateral _collateralAsset,
+        uint256 _strikePrice,
+        uint256 _expiry,
+        bool _isPut
+    ) public returns (address) {
+        require(
+            otokenFactory.getOtoken(
+                _underlyingAsset,
+                _strikeAsset,
+                validCollateral[uint256(_collateralAsset)],
+                _strikePrice,
+                _expiry,
+                _isPut
+            ) == address(0),
+            "VaultsManager: A token has already been created with these parameters"
+        );
+
+        address newOtoken = otokenFactory.createOtoken(
+            _underlyingAsset,
+            _strikeAsset,
+            validCollateral[uint256(_collateralAsset)],
+            _strikePrice,
+            _expiry,
+            _isPut
+        );
+
+        emit NewOtokenCreated(newOtoken);
+
+        return newOtoken;
     }
 }
