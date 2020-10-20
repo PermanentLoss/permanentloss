@@ -26,7 +26,7 @@ function Faq() {
           in % of eth price (blue Questionne), put option price (green Questionne), and call
           option price (orange Questionne).
           <Row className="justify-content-center row">
-            <img src={wutang} width="300" onClick={() => window.open('https://www.youtube.com/watch?v=zhUnEg0he4A')}/>
+            <img alt="C.R.E.A.M. get the money" src={wutang} width="300" onClick={() => window.open('https://www.youtube.com/watch?v=zhUnEg0he4A')}/>
           </Row>  
           </Card.Body>
         </Accordion.Collapse>
