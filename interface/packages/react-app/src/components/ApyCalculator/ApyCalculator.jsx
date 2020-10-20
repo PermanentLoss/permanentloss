@@ -1,7 +1,22 @@
 import React, { useState }  from 'react';
 import PropTypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import OptionsBuyer from '../OptionsBuyer/OptionsBuyer';
+import Card from 'react-bootstrap/Card';
+import styled from 'styled-components';
 
-function ApyCalculator({put, call, ethPrice, onRemoveOption}) {
+const FormGroupTight = styled(Form.Group)`
+  margin-bottom: 0
+`;
+
+const Cards = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+`;
+
+function ApyCalculator({put, call, ethPrice, ethPortfolioSize, onRemoveOption}) {
     const [uniswapRoi, setUniswapRoi] = useState(20);
     const [projectedGain, setProjectedGain] = 
         useState(getProjectedGainzPerOptionPeriod(put?.expiry) + getProjectedGainzPerOptionPeriod(call?.expiry));
@@ -45,19 +60,50 @@ function ApyCalculator({put, call, ethPrice, onRemoveOption}) {
     function renderOption(option, isPut)
     {
         if (option) {
-            return <div>
-                <h4>{isPut ? 'Put' : 'Call'} Option <span onClick={onRemoveOption.bind(null, option)}>X</span></h4>
-                {optionSection(option.strikePriceInDollars, option.price, option.expiry)}
-            </div>
+            return <Card style={{ width: '18rem' }}>
+                <Card.Header>
+                    {isPut ? 'Put' : 'Call'} Option
+                    <button type="button" className="close" onClick={onRemoveOption.bind(null, option)}><span aria-hidden="true">×</span><span className="sr-only">Close</span></button>
+                </Card.Header>
+                <Card.Body>
+                    {optionSection(option.strikePriceInDollars, option.price, option.expiry)}   
+                    <OptionsBuyer
+                        putOption={isPut ? put : null}
+                        callOption={isPut ? null : call}
+                        ethPortfolioSize={ethPortfolioSize}
+                    />
+                </Card.Body>
+            </Card>
         }
     }
 
     function optionSection(strikePriceInDollars, price, expiry) {
-        return <div>
-                <div>Strike: ${strikePriceInDollars}</div>
-                <div>Price per Eth:${price?.toFixed(2)}</div>
-                <div>Expiration: {getExpirationDate(expiry).toLocaleString()}</div>                
-            </div>
+        return <Form>
+                <FormGroupTight as={Row}>
+                    <Form.Label column sm={6}>
+                        Strike:
+                    </Form.Label>
+                    <Col sm={6}>
+                        ${strikePriceInDollars}
+                    </Col>
+                </FormGroupTight>
+                <FormGroupTight as={Row}>
+                    <Form.Label column sm={6}>
+                        Price per Eth:
+                    </Form.Label>
+                    <Col sm={6}>
+                        ${price?.toFixed(2)}
+                    </Col>
+                </FormGroupTight>
+                <FormGroupTight as={Row}>
+                    <Form.Label column sm={6}>
+                        Expiration:
+                    </Form.Label>
+                    <Col sm={6}>
+                        {getExpirationDate(expiry).toLocaleString()}
+                    </Col>
+                </FormGroupTight>
+            </Form>
     }
 
     function updateUniswapRoi(newValue) {
@@ -81,25 +127,49 @@ function ApyCalculator({put, call, ethPrice, onRemoveOption}) {
     }
     
     return (
-        <div className="apy-section">
-            <div>
-                Uniswap APY: <input type="number" value={uniswapRoi} onChange={e => updateUniswapRoi(e.target.value)} /> over the next {numberOfDaysTillExpiration(getMinEpoch()).toFixed(2)} days 
-            </div>
-            <div>
-                Projected Naked Gain:${projectedGain.toFixed(2)}
-            </div>
-            <div>
-                Projected Protected Gain:${(projectedGain - getCostOfOptions()).toFixed(2)}
-            </div>    
-            <div>
-                Cost to APY:-{getPercentCostOfOptions().toFixed(2)}%
-            </div>                
-            <div>
-                Net APY:{((1 - (getPercentCostOfOptions() / 100)) * uniswapRoi).toFixed(2)}%
-            </div>
-            {putSection()}
-            {callSection()}
-        </div>
+        <>
+            <Form>
+                <Form.Group as={Row}>
+                    <Form.Label column sm={3}>
+                        Uniswap APY:
+                    </Form.Label>
+                    <Col sm={2}>
+                        <Form.Control type="number" value={uniswapRoi} onChange={e => updateUniswapRoi(e.target.value)} />
+                    </Col>
+                    <Form.Label column sm={7}>
+                        over the next {numberOfDaysTillExpiration(getMinEpoch()).toFixed(2)} days
+                    </Form.Label>
+                </Form.Group>
+                <Form.Group as={Row}>
+                    <Form.Label column sm={6}>
+                        Projected Naked Gain:
+                    </Form.Label>
+                    <Col sm={6}>
+                        ${(projectedGain - getCostOfOptions()).toFixed(2)}
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row}>
+                    <Form.Label column sm={6}>
+                        Cost to APY:
+                    </Form.Label>
+                    <Col sm={6}>
+                        -{getPercentCostOfOptions().toFixed(2)}%
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row}>
+                    <Form.Label column sm={6}>
+                        Net APY:
+                    </Form.Label>
+                    <Col sm={6}>
+                        {((1 - (getPercentCostOfOptions() / 100)) * uniswapRoi).toFixed(2)}%
+                    </Col>
+                </Form.Group>
+            </Form>
+            <Cards>
+                {putSection()}
+                {callSection()}
+            </Cards>
+        </>
       );
 }
 
@@ -107,6 +177,7 @@ ApyCalculator.propTypes = {
     put: PropTypes.object,
     call: PropTypes.object,
     ethPrice: PropTypes.number.isRequired,
+    ethPortfolioSize: PropTypes.number.isRequired,
     onRemoveOption: PropTypes.func
   };
 

@@ -15,7 +15,8 @@ const PUT_COLOR = 'green';
 const CALL_COLOR = 'orange';
 
 const BreedingRhombusSpinnerStyled = styled(BreedingRhombusSpinner)`
-  margin-top: 5em;
+  padding-top: 2em;
+  min-height: 450px;
 `;
 
 function OptionsILGraph({
@@ -24,6 +25,7 @@ function OptionsILGraph({
   ethPortfolioSize,
   setSelectedPut,
   setSelectedCall,
+  removeSelectionOf
 }) {
   const [putOptions, setPutOptions] = useState(EMPTY_PLOT);
   const [callOptions, setCallOptions] = useState(EMPTY_PLOT);
@@ -94,6 +96,14 @@ function OptionsILGraph({
     ethPortfolioSize,
     optionsContracts,
   ]);
+
+  useEffect(() => {
+    if (removeSelectionOf?.isPut) {
+      setPutLineData(null);
+    } else if (!removeSelectionOf?.isPut) {
+      setCallLineData(null);
+    }
+  }, [removeSelectionOf])
 
   const impermanentLossPoints = getImpermanentLossPoints();
   const impermanentLossPlotData = {
@@ -214,6 +224,7 @@ OptionsILGraph.propTypes = {
   ethPortfolioSize: PropTypes.number.isRequired,
   setSelectedPut: PropTypes.func.isRequired,
   setSelectedCall: PropTypes.func.isRequired,
+  removeSelectionOf: PropTypes.object
 };
 
 export default OptionsILGraph;
