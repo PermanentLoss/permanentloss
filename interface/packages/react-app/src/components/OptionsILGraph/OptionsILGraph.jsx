@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useMemo, useState } from 'react';
 import { BreedingRhombusSpinner } from 'react-epic-spinners';
 import Plot from 'react-plotly.js';
+import styled from 'styled-components';
 import GET_OPYN_V1_OPTIONS_CONTRACTS from '../../graphql/opynv1subgraph';
 import { getEthOptions, getImpermanentLossPoints } from './utils';
-import styled from 'styled-components';
 
 const EMPTY_PLOT = { x: [], y: [] };
 const PUT_COLOR = 'green';
@@ -25,7 +25,7 @@ function OptionsILGraph({
   ethPortfolioSize,
   setSelectedPut,
   setSelectedCall,
-  removeSelectionOf
+  removeSelectionOf,
 }) {
   const [putOptions, setPutOptions] = useState(EMPTY_PLOT);
   const [callOptions, setCallOptions] = useState(EMPTY_PLOT);
@@ -103,7 +103,7 @@ function OptionsILGraph({
     } else if (!removeSelectionOf?.isPut) {
       setCallLineData(null);
     }
-  }, [removeSelectionOf])
+  }, [removeSelectionOf]);
 
   const impermanentLossPoints = getImpermanentLossPoints();
   const impermanentLossPlotData = {
@@ -158,6 +158,9 @@ function OptionsILGraph({
       side: 'right',
     },
     shapes: [putLineData, callLineData],
+    autosize: false,
+    width: 900,
+    height: 600,
   };
 
   function handlePlotClick(pointsAndEvent) {
@@ -205,7 +208,7 @@ function OptionsILGraph({
   }
 
   return putOptions === EMPTY_PLOT || callOptions === EMPTY_PLOT ? (
-    <BreedingRhombusSpinnerStyled color="orange"/>
+    <BreedingRhombusSpinnerStyled color="orange" />
   ) : (
     <Plot
       data={[impermanentLossPlotData, putOptionPlotData, callOptionPlotData]}
@@ -224,7 +227,7 @@ OptionsILGraph.propTypes = {
   ethPortfolioSize: PropTypes.number.isRequired,
   setSelectedPut: PropTypes.func.isRequired,
   setSelectedCall: PropTypes.func.isRequired,
-  removeSelectionOf: PropTypes.object
+  removeSelectionOf: PropTypes.object,
 };
 
 export default OptionsILGraph;
