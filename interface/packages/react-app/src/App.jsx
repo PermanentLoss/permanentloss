@@ -9,7 +9,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ApyCalculator from './components/ApyCalculator';
 import Faq from './components/Faq';
 import Header from './components/Header';
-import OptionsBuyer from './components/OptionsBuyer';
 import OptionsILGraph from './components/OptionsILGraph';
 import OptionsSeller from './components/OptionsSeller';
 import PortfolioDetector from './components/PortfolioDetector/PortfolioDetector';
@@ -29,6 +28,7 @@ function App() {
   const [selectedCall, setSelectedCall] = useState(null);
   const [currentEthPrice, setCurrentEthPrice] = useState(0);
   const [ethPortfolioSize, setEthPortfolioSize] = useState(1);
+  const [removedOption, setRemovedOption] = useState(null);
 
   /* Open wallet selection modal. */
   const loadWeb3Modal = useCallback(async () => {
@@ -64,6 +64,7 @@ function App() {
       } else {
         setSelectedCall(null);
       }
+      setRemovedOption(option);
     }
   }
 
@@ -72,6 +73,7 @@ function App() {
       return (
         <ApyCalculator
           ethPrice={currentEthPrice}
+          ethPortfolioSize={ethPortfolioSize}
           put={selectedPut}
           call={selectedCall}
           onRemoveOption={removeOption}
@@ -104,25 +106,17 @@ function App() {
                       ethPortfolioSize={ethPortfolioSize}
                       setSelectedPut={setSelectedPut}
                       setSelectedCall={setSelectedCall}
+                      removeSelectionOf={removedOption}
                     />
                 </Row>
-                <Row>
-                  <Col> 
+                <Row className="justify-content-center">
                     <PortfolioDetector
                       web3Provider={provider ?? DEFAULT_PROVIDER}
                       setEthPortfolioSize={changeEthPortfolioSize}
                     />
-                  </Col>
                 </Row>
                 <Row>
                   <Col>{ApyElement()}</Col>
-                  <Col>
-                    <OptionsBuyer
-                      putOption={selectedPut}
-                      callOption={selectedCall}
-                      ethPortfolioSize={ethPortfolioSize}
-                    />
-                  </Col>
                 </Row>
               </>
             }
