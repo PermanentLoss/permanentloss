@@ -147,6 +147,14 @@ function ApyCalculator({put, call, ethPrice, ethPortfolioSize, onRemoveOption}) 
                         Projected Naked Gain:
                     </Form.Label>
                     <Col sm={6}>
+                        ${projectedGain.toFixed(2)}
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row}>
+                    <Form.Label column sm={6}>
+                        Projected Protected Gain:
+                    </Form.Label>
+                    <Col sm={6}>
                         ${(projectedGain - getCostOfOptions()).toFixed(2)}
                     </Col>
                 </Form.Group>
