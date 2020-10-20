@@ -14,6 +14,17 @@ contract("VaultsManager", (accounts) => {
 
   const Collateral = {USDC: 0, cUSDC: 1, WETH: 2};
 
+  const newOtoken = [
+    validCollateral[Collateral.WETH],
+    validCollateral[Collateral.USDC],
+    Collateral.USDC,
+    ethers.BigNumber.from("20000000000"),
+    ethers.BigNumber.from("1608796800"),
+    true,
+  ];
+
+  const newOtokenAddress = "0x97bB0FCdFedE034E77ae3CF348f1C7653Ee3B94E";
+
   before(async () => {
     vaultsManager = await VaultsManager.deployed();
 
@@ -102,17 +113,25 @@ contract("VaultsManager", (accounts) => {
     });
 
     it("should create new oToken", async () => {
-      const newOtoken = [
-        validCollateral[Collateral.WETH],
-        validCollateral[Collateral.USDC],
-        Collateral.USDC,
-        ethers.BigNumber.from("20000000000"),
-        ethers.BigNumber.from("1608796800"),
-        true,
-      ];
       const txReceipt = await vaultsManager.createOtoken(...newOtoken);
       expectEvent(txReceipt, "NewOtokenCreated", {
-        newOtokenAddress: "0x97bB0FCdFedE034E77ae3CF348f1C7653Ee3B94E",
+        newOtokenAddress: newOtokenAddress,
+      });
+    });
+  });
+
+  describe("testing the mintOtokensFromVault function", async () => {
+    it("should mint otokens from a given vault", async () => {
+      const txReceipt = await vaultsManager.mintOtokensFromVault(
+        "1",
+        newOtokenAddress,
+        ethers.BigNumber.from(100)
+      );
+      expectEvent(txReceipt, "OtokensMinted", {
+        otoken: newOtokenAddress,
+        amount: "100",
+        vaultId: "1",
+        receiver: vaultsManager.address,
       });
     });
   });
