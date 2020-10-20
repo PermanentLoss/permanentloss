@@ -1,14 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const Question = styled.li`
-  padding: 1em;
-`;
-
 function Faq() {
   return (
     <ul>
-      <Question>
+      <li>
         <div>
           <h1>What is this?</h1>
         </div>
@@ -16,8 +10,8 @@ function Faq() {
         Eth/Stablecoin pools. The graph shows the amount of loss for a change
         in % of eth price (blue Questionne), put option price (green Questionne), and call
         option price (orange Questionne).
-      </Question>
-      <Question>
+      </li>
+      <li>
         <div>
           <h1>What's impermanent loss?</h1>
         </div>
@@ -25,8 +19,8 @@ function Faq() {
         <a href="https://uniswap.org/docs/v2/advanced-topics/understanding-returns/">
           on the subject
         </a>
-      </Question>
-      <Question>
+      </li>
+      <li>
         <div>
           <h1>How do the options work?</h1>
         </div>
@@ -34,8 +28,8 @@ function Faq() {
         <a href="https://bankless.substack.com/p/how-to-protect-your-eth-with-opyn">
           here
         </a>
-      </Question>
-      <Question>
+      </li>
+      <li>
         <div>
           <h1>How can I protect myself?</h1>
         </div>
@@ -46,14 +40,14 @@ function Faq() {
         on the price of eth. This{' '}
         <a href="https://www.youtube.com/watch?v=GSIlF5q4eUk">video</a> covers
         the concept
-      </Question>
-      <Question>
+      </li>
+      <li>
         <div>
           <h1>Can I see the source code?</h1>
         </div>
         Yup!{' '}
         <a href="https://github.com/PermanentLoss/permanentloss">github</a>
-      </Question>
+      </li>
     </ul>
   );
 }
