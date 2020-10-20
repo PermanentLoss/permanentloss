@@ -1,9 +1,10 @@
 const VaultsManager = artifacts.require("VaultsManager");
 const {expect} = require("chai");
 const ERC20 = require("@openzeppelin/contracts/build/contracts/ERC20.json");
-const {expectEvent} = require("@openzeppelin/test-helpers");
+const {expectEvent, expectRevert} = require("@openzeppelin/test-helpers");
 const ethers = require("ethers");
 const {validCollateral} = require("../utils/collateral");
+const ether = require("@openzeppelin/test-helpers/src/ether");
 
 contract("VaultsManager", (accounts) => {
   let vaultsManager;
@@ -80,6 +81,38 @@ contract("VaultsManager", (accounts) => {
         collateral: validCollateral[Collateral.USDC],
         vaultId: "1",
         amount: (parseInt(aHundredUSDC) / 2).toString(),
+      });
+    });
+  });
+
+  describe("testing the createOtoken function", async () => {
+    it("should revert when trying to create an existing oToken", async () => {
+      const alreadyCreatedOtoken = [
+        validCollateral[Collateral.WETH],
+        validCollateral[Collateral.USDC],
+        Collateral.USDC,
+        ethers.BigNumber.from("25000000000"),
+        ethers.BigNumber.from("1606809600"),
+        true,
+      ];
+      await expectRevert(
+        vaultsManager.createOtoken(...alreadyCreatedOtoken),
+        "VaultsManager: A token has already been created with these parameters"
+      );
+    });
+
+    it("should create new oToken", async () => {
+      const newOtoken = [
+        validCollateral[Collateral.WETH],
+        validCollateral[Collateral.USDC],
+        Collateral.USDC,
+        ethers.BigNumber.from("20000000000"),
+        ethers.BigNumber.from("1608796800"),
+        true,
+      ];
+      const txReceipt = await vaultsManager.createOtoken(...newOtoken);
+      expectEvent(txReceipt, "NewOtokenCreated", {
+        newOtokenAddress: "0x97bB0FCdFedE034E77ae3CF348f1C7653Ee3B94E",
       });
     });
   });
