@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import OptionsBuyer from '../OptionsBuyer/OptionsBuyer';
 import Card from 'react-bootstrap/Card';
 import styled from 'styled-components';
@@ -14,9 +16,13 @@ const FormGroupTight = styled(Form.Group)`
 `;
 
 const Cards = styled.div`
-    display: flex;
-    justify-content: space-evenly;
+    display:flex;
 `;
+
+const OptionExpirationInput = styled.input`
+    width: 6em;
+    margin-left: 5px;
+`
 
 function ApyCalculator({put, call, ethPrice, ethPortfolioSize, onRemoveOption}) {
     const [uniswapRoi, setUniswapRoi] = useState(20);
@@ -62,7 +68,7 @@ function ApyCalculator({put, call, ethPrice, ethPortfolioSize, onRemoveOption}) 
     function renderOption(option, isPut)
     {
         if (option) {
-            return <Card style={{ width: '18rem' }}>
+            return <Card style={{ width: '18rem', marginLeft: !isPut && put && call ? '2em' : '0' }}>
                 <Card.Header>
                     {isPut ? 'Put' : 'Call'} Option
                     <button type="button" className="close" onClick={onRemoveOption.bind(null, option)}><span aria-hidden="true">×</span><span className="sr-only">Close</span></button>
@@ -78,6 +84,12 @@ function ApyCalculator({put, call, ethPrice, ethPortfolioSize, onRemoveOption}) 
             </Card>
         }
     }
+
+    function renderTooltip(text, props) {
+        return <Tooltip {...props}>
+            {text}
+        </Tooltip>
+    };
 
     function optionSection(strikePriceInDollars, price, expiry) {
         return <Form>
@@ -132,46 +144,77 @@ function ApyCalculator({put, call, ethPrice, ethPortfolioSize, onRemoveOption}) 
         <>
             <Form>
                 <Form.Group as={Row}>
-                    <Form.Label column sm={3}>
-                        Uniswap APY:
+                    <Form.Label column sm={6}>
+                        <span>Uniswap APY over the next</span>
+                        <OverlayTrigger
+                            placement="right"
+                            delay={{ show: 250, hide: 400 }}
+                            overlay={renderTooltip.bind(null, "Calculated by earliest expiration of selected options")}
+                        >
+                            <span>
+                                <OptionExpirationInput type="number" value={numberOfDaysTillExpiration(getMinEpoch()).toFixed(2)} readOnly disabled />
+                                days
+                            </span>
+                        </OverlayTrigger>    
                     </Form.Label>
                     <Col sm={2}>
                         <Form.Control type="number" value={uniswapRoi} onChange={e => updateUniswapRoi(e.target.value)} />
                     </Col>
-                    <Form.Label column sm={7}>
-                        over the next {numberOfDaysTillExpiration(getMinEpoch()).toFixed(2)} days
-                    </Form.Label>
                 </Form.Group>
                 <Form.Group as={Row}>
                     <Form.Label column sm={6}>
-                        Projected Naked Gain:
+                        <span>Projected Naked Gain:</span>
                     </Form.Label>
                     <Col sm={6}>
-                        ${projectedGain.toFixed(2)}
+                        <OverlayTrigger
+                            placement="left"
+                            delay={{ show: 250, hide: 400 }}
+                            overlay={renderTooltip.bind(null, "Gain over option expiry period without protection based on APY")}
+                        >
+                            <span>${projectedGain.toFixed(2)}</span>
+                        </OverlayTrigger>
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row}>
                     <Form.Label column sm={6}>
-                        Projected Protected Gain:
+                        <span>Projected Protected Gain:</span>
                     </Form.Label>
                     <Col sm={6}>
-                        ${(projectedGain - getCostOfOptions()).toFixed(2)}
+                        <OverlayTrigger
+                            placement="left"
+                            delay={{ show: 250, hide: 400 }}
+                            overlay={renderTooltip.bind(null, "Gain over option expiry period with protection based on APY")}
+                        >
+                            <span>${(projectedGain - getCostOfOptions()).toFixed(2)}</span>
+                        </OverlayTrigger>
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row}>
                     <Form.Label column sm={6}>
-                        Cost to APY:
+                        <span>Cost to APY:</span>
                     </Form.Label>
                     <Col sm={6}>
-                        -{getPercentCostOfOptions().toFixed(2)}%
+                    <OverlayTrigger
+                        placement="left"
+                        delay={{ show: 250, hide: 400 }}
+                        overlay={renderTooltip.bind(null, "% of the APY it will cost to have protection")}
+                    >
+                            <span>-{getPercentCostOfOptions().toFixed(2)}%</span>
+                        </OverlayTrigger>
                     </Col>
                 </Form.Group>
                 <Form.Group as={Row}>
                     <Form.Label column sm={6}>
-                        Net APY:
+                        <span>Net APY:</span>
                     </Form.Label>
                     <Col sm={6}>
-                        {((1 - (getPercentCostOfOptions() / 100)) * uniswapRoi).toFixed(2)}%
+                    <OverlayTrigger
+                        placement="left"
+                        delay={{ show: 250, hide: 400 }}
+                        overlay={renderTooltip.bind(null, "Protected APY (compare to Uniswap APY)")}
+                    >
+                        <span>{((1 - (getPercentCostOfOptions() / 100)) * uniswapRoi).toFixed(2)}%</span>
+                    </OverlayTrigger>
                     </Col>
                 </Form.Group>
             </Form>

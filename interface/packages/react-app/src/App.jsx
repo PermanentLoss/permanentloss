@@ -16,6 +16,11 @@ import WalletButton from './components/WalletButton';
 import './index.css';
 import ethPriceFeed from './utils/ethPriceFeed';
 import { web3Modal } from './utils/web3Modal';
+import styled from 'styled-components';
+
+const ColAlignedWithGraphTitle = styled(Col)`
+  margin-top: 20px;
+`;
 
 const DEFAULT_PROVIDER = new EtherscanProvider(
   'homestead',
@@ -93,13 +98,14 @@ function App() {
       <Header>
         <WalletButton web3Provider={provider} loadWeb3Modal={loadWeb3Modal} />
       </Header>
-      <Container>
+      <Container fluid>
         <Routes>
           <Route
             path="/"
             element={
               <>
-                <Row className="justify-content-center">
+                <Row className="">
+                  <Col>
                     <OptionsILGraph
                       web3Provider={provider ?? DEFAULT_PROVIDER}
                       ethPrice={currentEthPrice}
@@ -108,15 +114,14 @@ function App() {
                       setSelectedCall={setSelectedCall}
                       removeSelectionOf={removedOption}
                     />
-                </Row>
-                <Row className="justify-content-center">
+                  </Col>
+                  <ColAlignedWithGraphTitle>
                     <PortfolioDetector
                       web3Provider={provider ?? DEFAULT_PROVIDER}
                       setEthPortfolioSize={changeEthPortfolioSize}
                     />
-                </Row>
-                <Row>
-                  <Col>{ApyElement()}</Col>
+                    {ApyElement()}
+                  </ColAlignedWithGraphTitle>
                 </Row>
               </>
             }
