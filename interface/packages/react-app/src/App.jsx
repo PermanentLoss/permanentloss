@@ -6,17 +6,16 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import styled from 'styled-components';
 import ApyCalculator from './components/ApyCalculator';
 import Faq from './components/Faq';
 import Header from './components/Header';
 import OptionsILGraph from './components/OptionsILGraph';
 import OptionsSeller from './components/OptionsSeller';
 import PortfolioDetector from './components/PortfolioDetector/PortfolioDetector';
-import WalletButton from './components/WalletButton';
 import './index.css';
 import ethPriceFeed from './utils/ethPriceFeed';
 import { web3Modal } from './utils/web3Modal';
-import styled from 'styled-components';
 
 const ColAlignedWithGraphTitle = styled(Col)`
   margin-top: 20px;
@@ -95,9 +94,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header>
-        <WalletButton web3Provider={provider} loadWeb3Modal={loadWeb3Modal} />
-      </Header>
+      <Header web3Provider={provider} loadWeb3Modal={loadWeb3Modal} />
       <Container fluid>
         <Routes>
           <Route
@@ -135,7 +132,7 @@ function App() {
             element={
               <>
                 <Row className="justify-content-center">
-                    <Faq />
+                  <Faq />
                 </Row>
               </>
             }
