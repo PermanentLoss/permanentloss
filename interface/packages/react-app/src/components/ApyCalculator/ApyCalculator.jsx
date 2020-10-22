@@ -44,7 +44,11 @@ function ApyCalculator({put, call, ethPrice, ethPortfolioSize, onRemoveOption}) 
     function getProjectedGainzPerOptionPeriod() {
         const minEpoch = getMinEpoch();
         if (minEpoch > 0) {
-            return getRoiPerDay() * numberOfDaysTillExpiration(minEpoch) * ethPrice * 2
+            return getRoiPerDay() 
+                * numberOfDaysTillExpiration(minEpoch) 
+                * ethPrice 
+                * 2 // APY is calculated against whole position not just ETH part
+                * ethPortfolioSize
         } else {
             return 0;
         }
@@ -132,10 +136,10 @@ function ApyCalculator({put, call, ethPrice, ethPortfolioSize, onRemoveOption}) 
     function getCostOfOptions() {
         let cost = 0;
         if (put && put.price !== null) {
-            cost += put.price;
+            cost += (put.price * ethPortfolioSize);
         }
         if (call && call.price != null) {
-            cost += call.price 
+            cost += (call.price * ethPortfolioSize);
         }
         return cost;
     }
