@@ -127,16 +127,26 @@ function App() {
             path="sell/"
             element={<OptionsSeller web3Provider={provider} />}
           />
-          <Route
-            path="faq/"
-            element={
-              <>
-                <Row className="justify-content-center">
-                  <Faq />
-                </Row>
-              </>
-            }
-          />
+          <Route path="/faq">
+            <Route path=":id"
+              element={
+                <>
+                  <Row className="justify-content-center">
+                    <Faq />
+                  </Row>
+                </>
+              }
+            />
+            <Route path=""
+              element={
+                <>
+                  <Row className="justify-content-center">
+                    <Faq />
+                  </Row>
+                </>
+              }
+            />
+          </Route>
         </Routes>
       </Container>
     </BrowserRouter>
