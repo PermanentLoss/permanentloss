@@ -91,7 +91,7 @@ function ApyCalculator({put, call, ethPrice, ethPortfolioSize, onRemoveOption}) 
 
     function renderTooltip(text, props) {
         return <Tooltip {...props}>
-            {text}
+            <div className="content" dangerouslySetInnerHTML={{__html: text}}></div>
         </Tooltip>
     };
 
@@ -117,9 +117,15 @@ function ApyCalculator({put, call, ethPrice, ethPortfolioSize, onRemoveOption}) 
                     <Form.Label column sm={6}>
                         Expiration:
                     </Form.Label>
-                    <Col sm={6}>
-                        {getExpirationDate(expiry).toLocaleString()}
-                    </Col>
+                    <OverlayTrigger
+                            placement="left"
+                            delay={{ show: 250, hide: 1000 }}
+                            overlay={renderTooltip.bind(null, '<a href="/faq/exercise">expiry faq</a>')}
+                        >
+                        <Col sm={6}>
+                            {getExpirationDate(expiry).toLocaleString()}
+                        </Col>
+                    </OverlayTrigger>
                 </FormGroupTight>
             </Form>
     }

@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import styled from 'styled-components';
 import wutang from './wutang.jpg';
+import { useParams } from 'react-router-dom';
 
 const AccordionWide = styled(Accordion)`
   width: 100%;
@@ -11,8 +12,13 @@ const AccordionWide = styled(Accordion)`
 `;
 
 function Faq() {
+  let params = useParams();
+  let activeKey = null;
+  if (params && params.id) {
+    activeKey=params.id;
+  }
   return (
-    <AccordionWide>
+    <AccordionWide activeKey={activeKey}>
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Card.Header} eventKey="0">
@@ -33,11 +39,11 @@ function Faq() {
       </Card>
       <Card>
         <Card.Header>
-          <Accordion.Toggle as={Card.Header} eventKey="1">
+          <Accordion.Toggle as={Card.Header} eventKey="impermanent-loss">
             What's impermanent loss?
           </Accordion.Toggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="1">
+        <Accordion.Collapse eventKey="impermanent-loss">
           <Card.Body>
           Uniswap blog post{' '}
           <a href="https://uniswap.org/docs/v2/advanced-topics/understanding-returns/">
@@ -48,11 +54,11 @@ function Faq() {
       </Card>
       <Card>
         <Card.Header>
-          <Accordion.Toggle as={Card.Header} eventKey="2">
+          <Accordion.Toggle as={Card.Header} eventKey="options">
             How do the options work?
           </Accordion.Toggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="2">
+        <Accordion.Collapse eventKey="options">
           <Card.Body>
             Read more{' '}
             <a href="https://bankless.substack.com/p/how-to-protect-your-eth-with-opyn">
@@ -63,11 +69,11 @@ function Faq() {
       </Card>
       <Card>
         <Card.Header>
-          <Accordion.Toggle as={Card.Header} eventKey="3">
+          <Accordion.Toggle as={Card.Header} eventKey="protect">
             How can I protect myself?
           </Accordion.Toggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="3">
+        <Accordion.Collapse eventKey="protect">
           <Card.Body>
             Purchase options to construct a{' '}
             <a href="https://www.investopedia.com/ask/answers/05/052805.asp">
@@ -81,11 +87,23 @@ function Faq() {
       </Card>
       <Card>
         <Card.Header>
-          <Accordion.Toggle as={Card.Header} eventKey="4">
+          <Accordion.Toggle as={Card.Header} eventKey="exercise">
+            I have options - how do I use them?
+          </Accordion.Toggle>
+        </Card.Header>
+        <Accordion.Collapse eventKey="exercise">
+          <Card.Body>
+            If your options are "in the green" (profitable) then you'll want to {' '}<a id="exercise-options" href="https://opyn.gitbook.io/opyn/faq#how-do-claims-exercise-work">"exercise"</a> them before they expire.
+          </Card.Body>
+        </Accordion.Collapse>
+      </Card>
+      <Card>
+        <Card.Header>
+          <Accordion.Toggle as={Card.Header} eventKey="source">
             Can I see the source code?
           </Accordion.Toggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="4">
+        <Accordion.Collapse eventKey="source">
           <Card.Body>
             Yup!{' '}
             <a href="https://github.com/PermanentLoss/permanentloss">github</a>
